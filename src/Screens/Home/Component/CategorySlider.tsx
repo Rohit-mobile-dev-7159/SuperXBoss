@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo} from "react";
 import {
   View,
   Text,
@@ -6,11 +6,11 @@ import {
   StyleSheet,
   FlatList,
   Image,
-} from 'react-native';
-import ImagePath from '../../../Constant/ImagePath';
-import {useNavigation} from '@react-navigation/native';
-import NavigationString from '../../../Constant/NavigationString';
-import colors from '../../../Style/Color';
+} from "react-native";
+import ImagePath from "../../../Constant/ImagePath";
+import {useNavigation} from "@react-navigation/native";
+import NavigationString from "../../../Constant/NavigationString";
+import colors from "../../../Style/Color";
 
 const CategorySlider = ({data}: any) => {
   const Navigation: any = useNavigation();
@@ -84,14 +84,14 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginBottom: 6,
   },
   divider: {
     height: 3,
     width: 40,
-    backgroundColor: '#4a6da7',
+    backgroundColor: "#4a6da7",
     borderRadius: 2,
   },
   listContainer: {
@@ -100,43 +100,43 @@ const styles = StyleSheet.create({
   categoryCard: {
     width: 75,
     marginRight: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   imageContainer: {
     width: 75,
     height: 75,
     backgroundColor: colors.White,
     borderRadius: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginBottom: 8,
     padding: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   categoryImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   categoryName: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 11,
-    fontWeight: '500',
-    color: '#444',
+    fontWeight: "500",
+    color: "#444",
     lineHeight: 16,
     paddingHorizontal: 2,
   },
   viewAllButton: {
     width: 100,
     height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#dfe8f7ff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#dfe8f7ff",
     borderRadius: 10,
     marginLeft: 4,
   },
   viewAllText: {
-    color: '#4a6da7',
-    fontWeight: '600',
+    color: "#4a6da7",
+    fontWeight: "600",
     fontSize: 14,
   },
 });

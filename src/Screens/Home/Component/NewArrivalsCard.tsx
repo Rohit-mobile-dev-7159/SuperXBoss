@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo} from "react";
 import {
   View,
   Text,
@@ -7,17 +7,17 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
-} from 'react-native';
-import colors from '../../../Style/Color';
-import MainStyle from '../../../Styles/MainStyle';
-import Icon from 'react-native-vector-icons/AntDesign';
-import ImagePath from '../../../Constant/ImagePath';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
-import NavigationString from '../../../Constant/NavigationString';
-import WishlistButton from '../../Product/Component/WishlistButton';
+} from "react-native";
+import colors from "../../../Style/Color";
+import MainStyle from "../../../Styles/MainStyle";
+import Icon from "react-native-vector-icons/AntDesign";
+import ImagePath from "../../../Constant/ImagePath";
+import {useSelector} from "react-redux";
+import {useNavigation} from "@react-navigation/native";
+import NavigationString from "../../../Constant/NavigationString";
+import WishlistButton from "../../Product/Component/WishlistButton";
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get("window");
 const CARD_WIDTH = width * 0.43;
 const SPACING = 12;
 
@@ -66,7 +66,7 @@ const NewArrivalsCard = ({data}: any) => {
             <View style={styles.priceContainer}>
               <Text style={styles.price}>
                 ₹
-                {userData.type === 'customer'
+                {userData.type === "customer"
                   ? item.discount_customer_price
                   : item.discount_b2b_price}
               </Text>
@@ -74,7 +74,7 @@ const NewArrivalsCard = ({data}: any) => {
                 <>
                   <Text style={styles.originalPrice}>
                     ₹
-                    {userData.type === 'customer'
+                    {userData.type === "customer"
                       ? item.customer_price
                       : item.b2b_price}
                   </Text>
@@ -139,15 +139,15 @@ const styles = StyleSheet.create({
   viewAllButton: {
     width: 100,
     height: 230,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#dfe8f7ff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#dfe8f7ff",
     borderRadius: 10,
     marginLeft: 4,
   },
   viewAllText: {
-    color: '#4a6da7',
-    fontWeight: '600',
+    color: "#4a6da7",
+    fontWeight: "600",
     fontSize: 14,
   },
   container: {
@@ -160,9 +160,9 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.White,
-    textAlign: 'center',
+    textAlign: "center",
   },
   productsContainer: {
     paddingHorizontal: SPACING,
@@ -173,31 +173,31 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: colors.white,
     marginRight: SPACING,
-    overflow: 'hidden',
-    shadowColor: '#000',
+    overflow: "hidden",
+    shadowColor: "#000",
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 3,
   },
   imageContainer: {
-    width: '100%',
+    width: "100%",
     height: 140,
     backgroundColor: colors.White,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
     padding: 10, // Added padding to ensure image doesn't touch edges
   },
   productImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   pointsContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 8,
     right: 8,
-    backgroundColor: 'rgba(255, 165, 0, 0.9)',
+    backgroundColor: "rgba(255, 165, 0, 0.9)",
     borderRadius: 10,
     paddingHorizontal: 8,
     paddingVertical: 3,
@@ -206,18 +206,18 @@ const styles = StyleSheet.create({
   pointsText: {
     color: colors.white,
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   wishlistButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 8,
     left: 8,
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: 'rgba(201, 199, 199, 0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(201, 199, 199, 0.3)",
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 2, // Ensure it stays above other elements
   },
   productInfo: {
@@ -225,44 +225,44 @@ const styles = StyleSheet.create({
   },
   productName: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginBottom: 8,
   },
   priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
   },
   price: {
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: "700",
     color: colors.DBlue,
     marginRight: 8,
   },
   originalPrice: {
     fontSize: 12,
-    color: '#888',
-    textDecorationLine: 'line-through',
+    color: "#888",
+    textDecorationLine: "line-through",
     marginRight: 8,
   },
   discountText: {
-    color: 'green',
-    fontWeight: '500',
+    color: "green",
+    fontWeight: "500",
     fontSize: 11,
   },
   megaDealsBanner: {
     marginTop: 20,
     marginHorizontal: 16,
     borderRadius: 8,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   megaDealsText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 1,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 2,
   },
 });

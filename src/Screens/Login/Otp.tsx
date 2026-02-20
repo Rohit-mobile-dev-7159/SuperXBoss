@@ -8,32 +8,32 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import messaging from '@react-native-firebase/messaging';
-import axios from 'axios';
-import LinearGradient from 'react-native-linear-gradient';
-import React, {useRef, useState} from 'react';
-import OTPTextInput from 'react-native-otp-textinput';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {scale, verticalScale} from 'react-native-size-matters';
-import {useDispatch} from 'react-redux';
+} from "react-native";
+import messaging from "@react-native-firebase/messaging";
+import axios from "axios";
+import LinearGradient from "react-native-linear-gradient";
+import React, {useRef, useState} from "react";
+import OTPTextInput from "react-native-otp-textinput";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {scale, verticalScale} from "react-native-size-matters";
+import {useDispatch} from "react-redux";
 import {
   AllUrls,
   ImagePath,
   NavigationString,
   colors,
   showErrorAlert,
-} from '../../Constant/AllImports';
-import MainStyle from '../../Styles/MainStyle';
-import {setToken} from '../../Redux/Slices/Token';
-import {useNavigation} from '@react-navigation/native';
+} from "../../Constant/AllImports";
+import MainStyle from "../../Styles/MainStyle";
+import {setToken} from "../../Redux/Slices/Token";
+import {useNavigation} from "@react-navigation/native";
 import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from 'react-native-reanimated';
-import LoginStyle from './LoginStyle';
+} from "react-native-reanimated";
+import LoginStyle from "./LoginStyle";
 
 const Otp = (props: any) => {
   const data = props.route.params;
@@ -53,8 +53,8 @@ const Otp = (props: any) => {
     return {
       width,
       height: 50,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
       borderRadius: 25,
     };
   });
@@ -62,7 +62,7 @@ const Otp = (props: any) => {
   const handleVerify = async () => {
     setAllBoolean((prev: any) => ({...prev, isLoading: true}));
     const fcm_token = await messaging().getToken();
-    const otp = Number(otpInput.current?.state.otpText.join(''));
+    const otp = Number(otpInput.current?.state.otpText.join(""));
     const data1 = {
       ...data,
       otp: String(otp),
@@ -75,7 +75,7 @@ const Otp = (props: any) => {
     }
     try {
       const response = await axios.post(`${AllUrls.OtpVerify}`, data1);
-      if (response.data.type === 'success') {
+      if (response.data.type === "success") {
         if (!response.data._payload.type) {
           setAllBoolean((prev: any) => ({...prev, isLoading: false}));
           dispatch(setToken({...response.data._payload}));
@@ -111,14 +111,14 @@ const Otp = (props: any) => {
 
   React.useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
+      "keyboardDidShow",
       () => {
         setKeyboardVisible(true);
         focusOnInput();
       },
     );
     const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
+      "keyboardDidHide",
       () => {
         setKeyboardVisible(false);
       },
@@ -134,7 +134,7 @@ const Otp = (props: any) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.White}}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{flex: 1}}
       >
         <ScrollView
@@ -164,7 +164,7 @@ const Otp = (props: any) => {
             <View
               style={[
                 MainStyle.flexCloumn,
-                {alignItems: 'center', marginBottom: 20},
+                {alignItems: "center", marginBottom: 20},
               ]}
             >
               <Text style={styles.mainHeading}>Enter Verification Code</Text>
@@ -174,7 +174,7 @@ const Otp = (props: any) => {
               <Text
                 style={[
                   styles.subHeading,
-                  {color: colors.Black, fontWeight: '500'},
+                  {color: colors.Black, fontWeight: "500"},
                 ]}
               >
                 +91-{data.mobile}
@@ -195,9 +195,9 @@ const Otp = (props: any) => {
               />
             </View>
 
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{justifyContent: "center", alignItems: "center"}}>
               <LinearGradient
-                colors={['#1B4B66', '#1B4B66']}
+                colors={["#1B4B66", "#1B4B66"]}
                 style={[LoginStyle.gradient, {marginTop: 30}, animatedStyle]}
               >
                 <AnimatedTouchableOpacity
@@ -218,12 +218,12 @@ const Otp = (props: any) => {
                 >
                   {isSubmitted ? (
                     <Text
-                      style={{color: '#fff', fontWeight: 'bold', fontSize: 15}}
+                      style={{color: "#fff", fontWeight: "bold", fontSize: 15}}
                     >
                       Continue
                     </Text>
                   ) : (
-                    <ActivityIndicator size={'small'} color={colors.White} />
+                    <ActivityIndicator size={"small"} color={colors.White} />
                   )}
                 </AnimatedTouchableOpacity>
               </LinearGradient>
@@ -250,30 +250,30 @@ const styles = StyleSheet.create({
     padding: verticalScale(10),
   },
   headerTitle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 18,
     color: colors.Black,
-    fontWeight: '600',
-    fontFamily: 'Poppins-SemiBold',
+    fontWeight: "600",
+    fontFamily: "Poppins-SemiBold",
   },
   mainHeading: {
     fontSize: 22,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.Black,
     marginTop: 24,
     marginBottom: 8,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: "Poppins-SemiBold",
   },
   subHeading: {
     fontSize: 14,
-    fontWeight: '400',
+    fontWeight: "400",
     color: colors.DGray,
-    fontFamily: 'Poppins-Regular',
-    textAlign: 'center',
+    fontFamily: "Poppins-Regular",
+    textAlign: "center",
     lineHeight: 20,
   },
   otpContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   otpInputContainer: {
     marginHorizontal: scale(20),
@@ -287,16 +287,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.White,
     color: colors.Black,
     fontSize: 20,
-    fontWeight: '600',
-    fontFamily: 'Poppins-SemiBold',
+    fontWeight: "600",
+    fontFamily: "Poppins-SemiBold",
   },
   submitButton: {
     height: 56,
     borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
-    shadowColor: '#FF6347',
+    shadowColor: "#FF6347",
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -304,26 +304,26 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.White,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: "Poppins-SemiBold",
   },
   resendContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 24,
   },
   resendText: {
     fontSize: 14,
     color: colors.DGray,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: "Poppins-Regular",
   },
   resendButton: {
     fontSize: 14,
     color: colors.primary,
-    fontWeight: '600',
+    fontWeight: "600",
     marginLeft: 4,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: "Poppins-SemiBold",
   },
 });
 

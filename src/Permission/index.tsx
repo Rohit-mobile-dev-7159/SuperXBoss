@@ -6,8 +6,8 @@ import {
   openSettings,
   PERMISSIONS,
   Permission,
-} from 'react-native-permissions';
-import {Platform} from 'react-native';
+} from "react-native-permissions";
+import {Platform} from "react-native";
 
 // Normalize permission for platform
 const normalizePermission = (perm: string): string => {
@@ -53,24 +53,24 @@ export const requestSinglePermission = async (
 
 // Fallback definition
 const POST_NOTIFICATIONS =
-  Platform.OS === 'android' ? 'android.permission.POST_NOTIFICATIONS' : '';
+  Platform.OS === "android" ? "android.permission.POST_NOTIFICATIONS" : "";
 
 export const requestNotificationPermission = async (): Promise<boolean> => {
-  if (Platform.OS !== 'android' || !POST_NOTIFICATIONS) {
-    console.log('Notification permission not needed on this platform.');
+  if (Platform.OS !== "android" || !POST_NOTIFICATIONS) {
+    console.log("Notification permission not needed on this platform.");
     return true;
   }
 
   const status: PermissionStatus = await check(POST_NOTIFICATIONS);
 
   if (status === RESULTS.GRANTED) {
-    console.log('🔔 Notification permission already granted.');
+    console.log("🔔 Notification permission already granted.");
     return true;
   }
 
   if (status === RESULTS.BLOCKED) {
     console.log(
-      '🔕 Notification permission is blocked. Prompt user to open settings.',
+      "🔕 Notification permission is blocked. Prompt user to open settings.",
     );
     openSettings();
     return false;
@@ -79,10 +79,10 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
   if (status === RESULTS.DENIED) {
     const result: PermissionStatus = await request(POST_NOTIFICATIONS);
     if (result === RESULTS.GRANTED) {
-      console.log('✅ Notification permission granted.');
+      console.log("✅ Notification permission granted.");
       return true;
     } else {
-      console.log('❌ Notification permission denied.');
+      console.log("❌ Notification permission denied.");
       return false;
     }
   }
@@ -109,7 +109,7 @@ export async function checkPermission(permission: any) {
     const result = await check(permission);
     return result === RESULTS.GRANTED;
   } catch (error) {
-    console.warn('Permission check error:', error);
+    console.warn("Permission check error:", error);
     return false;
   }
 }

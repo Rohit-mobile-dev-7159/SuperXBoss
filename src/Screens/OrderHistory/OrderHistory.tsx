@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
 import {
   View,
   Text,
@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 import Animated, {
   FadeIn,
   FadeInDown,
@@ -16,23 +16,23 @@ import Animated, {
   SlideInRight,
   ZoomIn,
   ZoomOut,
-} from 'react-native-reanimated';
-import NavigationString from '../../Constant/NavigationString';
-import {useFetchAllOrder} from '../../Services/Main/Hooks';
-import {Header} from '../../Component/Index';
-import colors from '../../Style/Color';
+} from "react-native-reanimated";
+import NavigationString from "../../Constant/NavigationString";
+import {useFetchAllOrder} from "../../Services/Main/Hooks";
+import {Header} from "../../Component/Index";
+import colors from "../../Style/Color";
 
 const STATUS_FILTERS = [
-  'All',
-  'Confirmed',
-  'Shipped',
-  'Completed',
-  'Cancelled',
+  "All",
+  "Confirmed",
+  "Shipped",
+  "Completed",
+  "Cancelled",
 ];
 
 const OrderHistory = () => {
   const navigation: any = useNavigation();
-  const [selectedStatus, setSelectedStatus] = useState('All');
+  const [selectedStatus, setSelectedStatus] = useState("All");
 
   const {data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage}: any =
     useFetchAllOrder({});
@@ -40,7 +40,7 @@ const OrderHistory = () => {
   const orders = data?.result || [];
 
   const filteredOrders =
-    selectedStatus === 'All'
+    selectedStatus === "All"
       ? orders
       : orders.filter(
           (order: any) =>
@@ -94,16 +94,16 @@ const OrderHistory = () => {
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
-      case 'delivered':
-        return '#4CAF50';
-      case 'shipped':
-        return '#2196F3';
-      case 'processing':
-        return '#FF9800';
-      case 'cancelled':
-        return '#F44336';
+      case "delivered":
+        return "#4CAF50";
+      case "shipped":
+        return "#2196F3";
+      case "processing":
+        return "#FF9800";
+      case "cancelled":
+        return "#F44336";
       default:
-        return '#000';
+        return "#000";
     }
   };
 
@@ -159,7 +159,7 @@ const OrderHistory = () => {
           <Text style={styles.orderDate}>Placed on {orderDate}</Text>
           <View style={styles.orderFooter}>
             <Text style={styles.itemCount}>
-              {totalItems} {totalItems > 1 ? 'items' : 'item'}
+              {totalItems} {totalItems > 1 ? "items" : "item"}
             </Text>
             <Text style={styles.orderTotal}>
               ₹{item.summary.grandTotal.toFixed(2)}
@@ -183,7 +183,7 @@ const OrderHistory = () => {
 
   return (
     <>
-      <Header title={'My Orders'} />
+      <Header title={"My Orders"} />
       <View style={styles.container} testID="order_history">
         {renderFilterTabs()}
         {isLoading ? (
@@ -208,7 +208,7 @@ const OrderHistory = () => {
               >
                 <Text style={styles.emptyText}>No orders found</Text>
                 <Text style={styles.emptySubText}>
-                  {selectedStatus !== 'All'
+                  {selectedStatus !== "All"
                     ? 'Try changing the filter to "All"'
                     : "You haven't placed any orders yet"}
                 </Text>
@@ -234,9 +234,9 @@ const styles = StyleSheet.create({
   },
   screenTitle: {
     fontSize: 28,
-    fontWeight: '800',
+    fontWeight: "800",
     marginBottom: 16,
-    color: '#1a1a1a',
+    color: "#1a1a1a",
   },
   filterContainer: {
     marginBottom: 20,
@@ -248,45 +248,45 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 24,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     marginRight: 12,
     height: 40,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   activeFilter: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: "#1a1a1a",
   },
   filterText: {
-    color: '#555',
-    fontWeight: '600',
+    color: "#555",
+    fontWeight: "600",
     fontSize: 14,
   },
   activeFilterText: {
-    color: '#fff',
+    color: "#fff",
   },
   listContainer: {
     paddingBottom: 30,
   },
   orderCard: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 16,
     padding: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.05,
     shadowRadius: 6,
     elevation: 2,
   },
   orderHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   orderId: {
     fontSize: 16,
-    fontWeight: '700',
-    color: '#1a1a1a',
+    fontWeight: "700",
+    color: "#1a1a1a",
   },
   statusBadge: {
     paddingHorizontal: 12,
@@ -295,77 +295,77 @@ const styles = StyleSheet.create({
   },
   orderStatus: {
     fontSize: 13,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   orderDate: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginBottom: 12,
   },
   orderFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderTopWidth: 1,
-    borderTopColor: '#f0f0f0',
+    borderTopColor: "#f0f0f0",
     paddingTop: 12,
-    alignItems: 'center',
+    alignItems: "center",
   },
   itemCount: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
   orderTotal: {
     fontSize: 17,
-    fontWeight: '700',
-    color: '#1a1a1a',
+    fontWeight: "700",
+    color: "#1a1a1a",
   },
   emptyContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 60,
   },
   emptyText: {
-    textAlign: 'center',
-    color: '#555',
+    textAlign: "center",
+    color: "#555",
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 8,
   },
   emptySubText: {
-    textAlign: 'center',
-    color: '#888',
+    textAlign: "center",
+    color: "#888",
     fontSize: 14,
   },
   separator: {
     height: 12,
   },
   skeletonCard: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 16,
     padding: 20,
     marginBottom: 12,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.05,
     shadowRadius: 6,
     elevation: 2,
   },
   skeletonHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 16,
   },
   skeletonLine: {
     height: 14,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 4,
     marginBottom: 16,
-    width: '70%',
+    width: "70%",
   },
   skeletonFooter: {
     height: 16,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 4,
     marginTop: 8,
   },

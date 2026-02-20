@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState, useMemo} from "react";
 import {
   View,
   Text,
@@ -7,9 +7,9 @@ import {
   ScrollView,
   ActivityIndicator,
   FlatList,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import AddressModal from './Component/AddressModal';
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import AddressModal from "./Component/AddressModal";
 import {
   useFetchAddress,
   useFetchAllAddToCartProduct,
@@ -18,15 +18,15 @@ import {
   useOrderConfirm,
   useOrderPaymnet,
   useUpdateAddress,
-} from '../../Services/Main/Hooks';
-import {showSuccessAlert} from '../../Constant/ShowDailog';
-import RazorpayCheckout from 'react-native-razorpay';
-import colors from '../../Style/Color';
-import {getDistanceInKm} from '../../Helper/getDistanceInKm';
-import {useDispatch} from 'react-redux';
-import {clearCart} from '../../Redux/Slices/AddToCartProduct';
-import {useNavigation} from '@react-navigation/native';
-import NavigationString from '../../Constant/NavigationString';
+} from "../../Services/Main/Hooks";
+import {showSuccessAlert} from "../../Constant/ShowDailog";
+import RazorpayCheckout from "react-native-razorpay";
+import colors from "../../Style/Color";
+import {getDistanceInKm} from "../../Helper/getDistanceInKm";
+import {useDispatch} from "react-redux";
+import {clearCart} from "../../Redux/Slices/AddToCartProduct";
+import {useNavigation} from "@react-navigation/native";
+import NavigationString from "../../Constant/NavigationString";
 
 const PaymentScreen = ({route}: any) => {
   const {payload, total} = route.params || {};
@@ -39,12 +39,12 @@ const PaymentScreen = ({route}: any) => {
   const {mutate: confirmOrderMutate, isPending: isPending2} = useOrderConfirm();
   const [selectedAddress, setSelectedAddress] = useState(0);
   const [selectedMethods, setSelectedMethods] = useState<string[]>([
-    'razorpay',
+    "razorpay",
   ]);
   const [isAddressCollapsed, setIsAddressCollapsed] = useState(false);
   const [addAddress, setAddAddress] = useState(false);
   const {mutate, isPending} = useUpdateAddress();
-  const [showDelete, setShowDelete] = useState('');
+  const [showDelete, setShowDelete] = useState("");
   const [distance, setDistance] = useState(0);
   const [shippingCharge, setShippingCharge] = useState(0);
   const [PlatformCharge, setPlatformCharge] = useState(0);
@@ -56,8 +56,8 @@ const PaymentScreen = ({route}: any) => {
   // Calculate if shipping should be applied (orderTotal > freeShippingThreshold)
   const shouldApplyShipping = orderTotal < freeShippingThreshold;
 
-  const isWalletUsed = selectedMethods.includes('wallet');
-  const isPointsUsed = selectedMethods.includes('points');
+  const isWalletUsed = selectedMethods.includes("wallet");
+  const isPointsUsed = selectedMethods.includes("points");
 
   const walletBalance = userProfile?._payload?.wallet_amount || 0;
   const pointsBalance = userProfile?._payload?.points || 0;
@@ -107,12 +107,12 @@ const PaymentScreen = ({route}: any) => {
   };
 
   const togglePaymentMethod = (id: string) => {
-    if (id === 'razorpay') {
+    if (id === "razorpay") {
       return;
     }
 
     setSelectedMethods(prev => {
-      if (id === 'wallet' || id === 'points') {
+      if (id === "wallet" || id === "points") {
         return prev.includes(id)
           ? prev.filter(item => item !== id)
           : [...prev, id];
@@ -147,7 +147,7 @@ const PaymentScreen = ({route}: any) => {
           (Charges?._payload?.platformCharges || 0).toFixed(2),
         ),
       };
-      console.log(mainPayload, '99999999999999999999999999');
+      console.log(mainPayload, "99999999999999999999999999");
 
       orderMutate(mainPayload, {
         onSuccess: res => {
@@ -155,12 +155,12 @@ const PaymentScreen = ({route}: any) => {
             // Only proceed to Razorpay if there's an amount to pay
             if (remainingAmount > 0) {
               const options: any = {
-                description: 'Payment for order',
-                currency: 'INR',
-                key: 'rzp_test_FJbZTaMr0yy4pM',
+                description: "Payment for order",
+                currency: "INR",
+                key: "rzp_test_FJbZTaMr0yy4pM",
                 amount: res?._payload?.razorpay?.amount,
-                name: 'SuperXBoss',
-                order_id: res?._payload?.razorpay?.order_id || '',
+                name: "SuperXBoss",
+                order_id: res?._payload?.razorpay?.order_id || "",
                 prefill: {
                   email: userProfile?._payload?.email,
                   contact: userProfile?._payload?.mobile,
@@ -258,23 +258,23 @@ const PaymentScreen = ({route}: any) => {
 
   const paymentOptions = [
     {
-      id: 'razorpay',
-      name: 'Online Payment',
-      icon: 'credit-card',
+      id: "razorpay",
+      name: "Online Payment",
+      icon: "credit-card",
       value: 0,
       alwaysSelected: true,
     },
     {
-      id: 'wallet',
-      name: 'Wallet Balance',
-      icon: 'account-balance-wallet',
+      id: "wallet",
+      name: "Wallet Balance",
+      icon: "account-balance-wallet",
       value: walletBalance,
       disabled: walletBalance <= 0,
     },
     {
-      id: 'points',
-      name: 'Point Balance',
-      icon: 'stars',
+      id: "points",
+      name: "Point Balance",
+      icon: "stars",
       value: pointsBalance,
       disabled: pointsBalance <= 0,
     },
@@ -286,11 +286,11 @@ const PaymentScreen = ({route}: any) => {
         style={{
           flex: 1,
           backgroundColor: colors.White,
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <ActivityIndicator color={colors.DBlue} size={'large'} />
+        <ActivityIndicator color={colors.DBlue} size={"large"} />
       </View>
     );
   }
@@ -312,7 +312,7 @@ const PaymentScreen = ({route}: any) => {
             <Text style={styles.sectionTitle}>Delivery Address</Text>
             <Icon
               name={
-                isAddressCollapsed ? 'keyboard-arrow-down' : 'keyboard-arrow-up'
+                isAddressCollapsed ? "keyboard-arrow-down" : "keyboard-arrow-up"
               }
               size={24}
               color="#1B4B66"
@@ -337,14 +337,14 @@ const PaymentScreen = ({route}: any) => {
                       <Icon
                         name={
                           selectedAddress === address._id
-                            ? 'check-box'
-                            : 'check-box-outline-blank'
+                            ? "check-box"
+                            : "check-box-outline-blank"
                         }
                         size={20}
                         color={
                           selectedAddress === address._id
-                            ? '#1B4B66'
-                            : '#757575'
+                            ? "#1B4B66"
+                            : "#757575"
                         }
                       />
                     </View>
@@ -352,7 +352,7 @@ const PaymentScreen = ({route}: any) => {
                     {data?._payload.length > 1 && (
                       <TouchableOpacity
                         style={{
-                          position: 'absolute',
+                          position: "absolute",
                           right: 10,
                           top: 5,
                           padding: 5,
@@ -374,7 +374,7 @@ const PaymentScreen = ({route}: any) => {
 
                     <View style={styles.addressDetails}>
                       <Text style={styles.addressType}>
-                        <Icon name="location-on" size={16} color="#1B4B66" />{' '}
+                        <Icon name="location-on" size={16} color="#1B4B66" />{" "}
                         {address.label}
                       </Text>
                       <Text style={styles.addressText}>{address.address}</Text>
@@ -412,20 +412,20 @@ const PaymentScreen = ({route}: any) => {
               onPress={() => togglePaymentMethod(option.id)}
             >
               <View
-                style={{flexDirection: 'row', gap: 10, alignItems: 'center'}}
+                style={{flexDirection: "row", gap: 10, alignItems: "center"}}
               >
                 <Icon
                   name={option.icon}
                   size={24}
                   color={
                     selectedMethods.includes(option.id)
-                      ? '#1B4B66'
+                      ? "#1B4B66"
                       : option.disabled
-                      ? '#ccc'
-                      : '#757575'
+                      ? "#ccc"
+                      : "#757575"
                   }
                 />
-                <View style={{flexDirection: 'column'}}>
+                <View style={{flexDirection: "column"}}>
                   <Text
                     style={[
                       styles.optionText,
@@ -436,8 +436,8 @@ const PaymentScreen = ({route}: any) => {
                   >
                     {option.name}
                   </Text>
-                  {option.id !== 'razorpay' && (
-                    <View style={{flexDirection: 'row', gap: 5}}>
+                  {option.id !== "razorpay" && (
+                    <View style={{flexDirection: "row", gap: 5}}>
                       <Text
                         style={[
                           styles.optionSubtext,
@@ -446,7 +446,7 @@ const PaymentScreen = ({route}: any) => {
                       >
                         {option.value.toFixed(2)}
                       </Text>
-                      {option.id === 'points' && (
+                      {option.id === "points" && (
                         <Text
                           style={[
                             styles.optionSubtext,
@@ -468,16 +468,16 @@ const PaymentScreen = ({route}: any) => {
                   <Icon
                     name={
                       selectedMethods.includes(option.id)
-                        ? 'check-box'
-                        : 'check-box-outline-blank'
+                        ? "check-box"
+                        : "check-box-outline-blank"
                     }
                     size={20}
                     color={
                       selectedMethods.includes(option.id)
-                        ? '#1B4B66'
+                        ? "#1B4B66"
                         : option.disabled
-                        ? '#ccc'
-                        : '#757575'
+                        ? "#ccc"
+                        : "#757575"
                     }
                   />
                 )}
@@ -510,7 +510,7 @@ const PaymentScreen = ({route}: any) => {
               {shouldApplyShipping ? (
                 `₹${shippingCharge.toFixed(2)}`
               ) : (
-                <Text style={{color: '#4CAF50'}}>
+                <Text style={{color: "#4CAF50"}}>
                   FREE (Order over ₹{freeShippingThreshold})
                 </Text>
               )}
@@ -566,11 +566,11 @@ const PaymentScreen = ({route}: any) => {
         disabled={isPending1 || isPending2}
       >
         {isPending1 || isPending2 ? (
-          <ActivityIndicator color={colors.White} size={'small'} />
+          <ActivityIndicator color={colors.White} size={"small"} />
         ) : (
           <Text style={styles.proceedButtonText}>
             {remainingAmount === 0
-              ? 'Confirm Order'
+              ? "Confirm Order"
               : `Pay ₹${remainingAmount.toFixed(2)}`}
           </Text>
         )}
@@ -589,7 +589,7 @@ const PaymentScreen = ({route}: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
     paddingTop: 20,
   },
   content: {
@@ -601,170 +601,170 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1B4B66',
+    fontWeight: "bold",
+    color: "#1B4B66",
   },
   section: {
     marginBottom: 24,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 12,
     padding: 16,
     elevation: 2,
     maxHeight: 400,
   },
   sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#1B4B66',
+    fontWeight: "600",
+    color: "#1B4B66",
   },
   addressCard: {
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 12,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: "#e0e0e0",
     borderRadius: 8,
     marginBottom: 8,
     marginTop: 12,
-    position: 'relative',
+    position: "relative",
   },
   selectedCard: {
-    borderColor: '#1B4B66',
-    backgroundColor: '#F1F1F1',
+    borderColor: "#1B4B66",
+    backgroundColor: "#F1F1F1",
   },
   radioIcon: {
     marginRight: 12,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   addressDetails: {
     flex: 1,
   },
   addressType: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
     marginBottom: 4,
   },
   addressText: {
     fontSize: 13,
-    color: '#666',
+    color: "#666",
     marginBottom: 2,
   },
   addButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 12,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginTop: 8,
   },
   addButtonText: {
-    color: '#1B4B66',
+    color: "#1B4B66",
     marginLeft: 8,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   paymentOption: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     padding: 12,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: "#e0e0e0",
     borderRadius: 8,
     marginBottom: 8,
     marginTop: 12,
   },
   selectedOption: {
-    borderColor: '#1B4B66',
-    backgroundColor: '#F1F1F1',
+    borderColor: "#1B4B66",
+    backgroundColor: "#F1F1F1",
   },
   disabledOption: {
     opacity: 0.6,
   },
   optionText: {
     fontSize: 15,
-    color: '#333',
+    color: "#333",
   },
   selectedOptionText: {
-    color: '#1B4B66',
-    fontWeight: '500',
+    color: "#1B4B66",
+    fontWeight: "500",
   },
   disabledText: {
-    color: '#ccc',
+    color: "#ccc",
   },
   optionSubtext: {
     fontSize: 12,
-    color: '#666',
+    color: "#666",
   },
   summaryCard: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 12,
     padding: 16,
     elevation: 2,
   },
   summaryTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#1B4B66',
+    fontWeight: "600",
+    color: "#1B4B66",
     marginBottom: 12,
   },
   summaryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 8,
   },
   summaryLabel: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
   summaryValue: {
     fontSize: 14,
-    color: '#333',
-    fontWeight: '500',
+    color: "#333",
+    fontWeight: "500",
   },
   divider: {
     height: 1,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: "#e0e0e0",
     marginVertical: 12,
   },
   totalRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   totalLabel: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
   },
   totalValue: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#1B4B66',
+    fontWeight: "bold",
+    color: "#1B4B66",
   },
   footerNote: {
     fontSize: 12,
-    color: '#999',
+    color: "#999",
     marginTop: 12,
-    textAlign: 'center',
+    textAlign: "center",
   },
   proceedButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     left: 16,
     right: 16,
-    backgroundColor: '#1B4B66',
+    backgroundColor: "#1B4B66",
     borderRadius: 8,
     padding: 16,
-    alignItems: 'center',
+    alignItems: "center",
     elevation: 4,
   },
   proceedButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 

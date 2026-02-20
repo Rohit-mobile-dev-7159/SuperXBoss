@@ -1,4 +1,4 @@
-import React, {memo, useRef} from 'react';
+import React, {memo, useRef} from "react";
 import {
   View,
   Text,
@@ -7,18 +7,18 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-} from 'react-native';
-import ImagePath from '../../../Constant/ImagePath';
-import {useSelector} from 'react-redux';
-import colors from '../../../Style/Color';
-import {useNavigation} from '@react-navigation/native';
-import NavigationString from '../../../Constant/NavigationString';
-import WishlistButton from '../../Product/Component/WishlistButton';
-import BulkDiscount from './BulkDiscount';
-import QuantitySelector from '../../Product/Component/QuantitySelector';
-import MainStyle from '../../../Styles/MainStyle';
+} from "react-native";
+import ImagePath from "../../../Constant/ImagePath";
+import {useSelector} from "react-redux";
+import colors from "../../../Style/Color";
+import {useNavigation} from "@react-navigation/native";
+import NavigationString from "../../../Constant/NavigationString";
+import WishlistButton from "../../Product/Component/WishlistButton";
+import BulkDiscount from "./BulkDiscount";
+import QuantitySelector from "../../Product/Component/QuantitySelector";
+import MainStyle from "../../../Styles/MainStyle";
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get("window");
 const ITEM_WIDTH = width * 0.75;
 const SPACING = 16;
 const ITEM_HEIGHT = 310;
@@ -30,10 +30,10 @@ const TrendingProductsSlider = ({data, label}: any) => {
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
   const shouldShowViewAll = data.length >= 10;
-  const displayData = shouldShowViewAll ? [...data, {id: 'view-all'}] : data;
+  const displayData = shouldShowViewAll ? [...data, {id: "view-all"}] : data;
 
   const renderItem = ({item, index}: any) => {
-    if (item.id === 'view-all') {
+    if (item.id === "view-all") {
       return (
         <TouchableOpacity
           testID="view_all"
@@ -66,13 +66,13 @@ const TrendingProductsSlider = ({data, label}: any) => {
     const scale = scrollX.interpolate({
       inputRange,
       outputRange: [0.92, 1, 0.92],
-      extrapolate: 'clamp',
+      extrapolate: "clamp",
     });
 
     const opacity = scrollX.interpolate({
       inputRange,
       outputRange: [0.85, 1, 0.85],
-      extrapolate: 'clamp',
+      extrapolate: "clamp",
     });
 
     return (
@@ -126,7 +126,7 @@ const TrendingProductsSlider = ({data, label}: any) => {
           <View style={styles.priceContainer}>
             <Text style={styles.price}>
               ₹
-              {userData.type === 'customer'
+              {userData.type === "customer"
                 ? product.discount_customer_price
                 : product.discount_b2b_price}
             </Text>
@@ -134,7 +134,7 @@ const TrendingProductsSlider = ({data, label}: any) => {
               <>
                 <Text style={styles.originalPrice}>
                   ₹
-                  {userData.type === 'customer'
+                  {userData.type === "customer"
                     ? product.customer_price
                     : product.b2b_price}
                 </Text>
@@ -146,12 +146,12 @@ const TrendingProductsSlider = ({data, label}: any) => {
           </View>
           <View style={[MainStyle.flexBetween]}>
             <Text
-              style={{fontSize: 12, color: colors.Black, fontWeight: '500'}}
+              style={{fontSize: 12, color: colors.Black, fontWeight: "500"}}
             >
               Item Stock : {product.item_stock}
             </Text>
             <Text
-              style={{fontSize: 12, color: colors.Black, fontWeight: '500'}}
+              style={{fontSize: 12, color: colors.Black, fontWeight: "500"}}
             >
               MinQty : {product.min_qty}
             </Text>
@@ -169,15 +169,15 @@ const TrendingProductsSlider = ({data, label}: any) => {
             <View
               style={{
                 height: 35,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: '#e5adadff',
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#e5adadff",
                 borderRadius: 10,
                 marginTop: 5,
               }}
             >
               <Text
-                style={{fontSize: 15, color: colors.White, fontWeight: '600'}}
+                style={{fontSize: 15, color: colors.White, fontWeight: "600"}}
               >
                 Stock not available
               </Text>
@@ -192,8 +192,8 @@ const TrendingProductsSlider = ({data, label}: any) => {
     <View style={styles.container} testID="trending_product">
       <View style={styles.headerContainer}>
         <Text style={styles.header}>
-          {' '}
-          {label ? label : 'Trending Products'}
+          {" "}
+          {label ? label : "Trending Products"}
         </Text>
         <View style={styles.divider} />
       </View>
@@ -231,14 +231,14 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginBottom: 8,
   },
   divider: {
     height: 3,
     width: 40,
-    backgroundColor: '#4a6da7',
+    backgroundColor: "#4a6da7",
     borderRadius: 2,
   },
   flatListContent: {
@@ -249,27 +249,27 @@ const styles = StyleSheet.create({
     width: ITEM_WIDTH,
     height: ITEM_HEIGHT * 1.15,
     marginRight: SPACING,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 12,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 12,
     shadowOffset: {width: 0, height: 6},
     elevation: 5,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   viewAllContainer: {
     backgroundColor: colors.primaryHighlight,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   viewAllContent: {
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   viewAllText: {
     color: colors.Black,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 20,
     marginBottom: 4,
   },
@@ -282,10 +282,10 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'rgba(146, 146, 146, 0.2)',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(146, 146, 146, 0.2)",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   arrowIconText: {
     color: colors.Black,
@@ -293,107 +293,107 @@ const styles = StyleSheet.create({
     marginTop: -8,
   },
   imageContainer: {
-    width: '100%',
+    width: "100%",
     height: ITEM_WIDTH * 0.6,
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: colors.White, // clean background for edge spread
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
     padding: 10,
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   pointsContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 12,
     right: 12,
     backgroundColor: colors.white,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    shadowColor: '#000',
+    flexDirection: "row",
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 4,
     shadowOffset: {width: 0, height: 2},
     elevation: 3,
   },
   pointsText: {
-    color: '#FFA500',
-    fontWeight: 'bold',
+    color: "#FFA500",
+    fontWeight: "bold",
     fontSize: 13,
   },
   wishlistButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 12,
     left: 12,
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: 'rgba(201, 199, 199, 0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(201, 199, 199, 0.3)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   detailsContainer: {
     padding: 16,
     flex: 1,
   },
   titleRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 6,
   },
   category: {
-    color: '#888',
+    color: "#888",
     fontSize: 12,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#1a1a1a',
+    fontWeight: "600",
+    color: "#1a1a1a",
     lineHeight: 20,
   },
   priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
   },
   price: {
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: "700",
     color: colors.DBlue,
     marginRight: 8,
   },
   originalPrice: {
     fontSize: 14,
-    color: '#888',
-    textDecorationLine: 'line-through',
+    color: "#888",
+    textDecorationLine: "line-through",
     marginRight: 8,
   },
   discountText: {
-    color: 'green',
-    fontWeight: '500',
+    color: "green",
+    fontWeight: "500",
     fontSize: 12,
   },
   actionButton: {
     backgroundColor: colors.DBlue,
     paddingVertical: 12,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
   actionButtonText: {
-    color: '#fff',
-    fontWeight: '600',
+    color: "#fff",
+    fontWeight: "600",
     fontSize: 14,
   },
 });

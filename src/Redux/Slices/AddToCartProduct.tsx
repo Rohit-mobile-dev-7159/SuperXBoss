@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 // Define types
 interface CartProduct {
@@ -15,7 +15,7 @@ const initialState: CartState = {
 };
 
 export const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     // Add/update product quantity

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from "react";
 import {
   View,
   Text,
@@ -7,10 +7,10 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {useFetchCoupon} from '../../../Services/Main/Hooks';
-import colors from '../../../Style/Color';
+} from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import {useFetchCoupon} from "../../../Services/Main/Hooks";
+import colors from "../../../Style/Color";
 
 interface Coupon {
   _id: string;
@@ -140,9 +140,9 @@ const CouponModal: React.FC<CouponModalProps> = ({
             <Icon name="close-circle" size={24} color="#ccc" />
           ) : (
             <Icon
-              name={isSelected ? 'radio-button-on' : 'radio-button-off'}
+              name={isSelected ? "radio-button-on" : "radio-button-off"}
               size={24}
-              color={isSelected ? '#4CAF50' : '#ccc'}
+              color={isSelected ? "#4CAF50" : "#ccc"}
             />
           )}
         </View>
@@ -184,8 +184,8 @@ const CouponModal: React.FC<CouponModalProps> = ({
                   {cartTotal > 0 && (
                     <Text style={styles.emptySubText}>
                       {data?.length > 0
-                        ? 'No coupons match your cart value'
-                        : 'No active coupons right now'}
+                        ? "No coupons match your cart value"
+                        : "No active coupons right now"}
                     </Text>
                   )}
                 </View>
@@ -204,8 +204,8 @@ const CouponModal: React.FC<CouponModalProps> = ({
             >
               <Text style={styles.applyButtonText}>
                 {selectedCoupon?._id === appliedCoupon?._id
-                  ? 'Applied'
-                  : 'Apply Coupon'}
+                  ? "Applied"
+                  : "Apply Coupon"}
               </Text>
             </TouchableOpacity>
           </View>
@@ -218,55 +218,55 @@ const CouponModal: React.FC<CouponModalProps> = ({
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'flex-end',
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "flex-end",
   },
   modalContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    maxHeight: '80%',
+    maxHeight: "80%",
   },
   modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: "#f0f0f0",
   },
   modalTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 40,
   },
   couponList: {
     paddingHorizontal: 16,
   },
   couponItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 16,
     marginVertical: 8,
     borderRadius: 8,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: "#eee",
   },
   selectedCoupon: {
-    borderColor: '#4CAF50',
-    backgroundColor: '#F0FFF4',
+    borderColor: "#4CAF50",
+    backgroundColor: "#F0FFF4",
   },
   disabledCoupon: {
-    backgroundColor: '#f0f0f0',
-    borderColor: '#e0e0e0',
+    backgroundColor: "#f0f0f0",
+    borderColor: "#e0e0e0",
   },
   couponLeft: {
     flex: 1,
@@ -276,64 +276,64 @@ const styles = StyleSheet.create({
   },
   couponCode: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
     marginBottom: 4,
   },
   selectedText: {
-    color: '#114915',
+    color: "#114915",
   },
   couponDiscount: {
     fontSize: 14,
-    color: '#114915ff',
+    color: "#114915ff",
     marginBottom: 4,
   },
   couponTerms: {
     fontSize: 12,
-    color: '#666',
+    color: "#666",
     marginBottom: 2,
   },
   requiredAmountText: {
     fontSize: 12,
-    color: '#9bdf9fff',
+    color: "#9bdf9fff",
     marginTop: 4,
-    fontStyle: 'italic',
+    fontStyle: "italic",
   },
   disabledText: {
-    color: '#999',
+    color: "#999",
   },
   emptyContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 40,
   },
   emptyText: {
     marginTop: 16,
-    color: '#999',
+    color: "#999",
     fontSize: 16,
   },
   emptySubText: {
     marginTop: 8,
-    color: '#999',
+    color: "#999",
     fontSize: 14,
   },
   modalFooter: {
     padding: 16,
     borderTopWidth: 1,
-    borderTopColor: '#f0f0f0',
+    borderTopColor: "#f0f0f0",
   },
   applyButton: {
-    backgroundColor: '#223c23ff',
+    backgroundColor: "#223c23ff",
     padding: 16,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   disabledButton: {
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
   },
   applyButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
     fontSize: 16,
   },
 });

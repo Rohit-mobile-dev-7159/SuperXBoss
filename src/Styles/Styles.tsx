@@ -1,21 +1,21 @@
-import {StyleSheet} from 'react-native';
-import colors from '../Style/Color';
+import {StyleSheet} from "react-native";
+import colors from "../Style/Color";
 
 const Styles = StyleSheet.create({
   logo: {
     marginTop: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   heading: {
     fontWeight: 800,
     fontSize: 18,
     lineHeight: 29,
-    textAlign: 'center',
-    color: '#1B4B66',
+    textAlign: "center",
+    color: "#1B4B66",
   },
   button: {
     backgroundColor: colors.DBlue,
-    width: '100%',
+    width: "100%",
     paddingVertical: 15,
     paddingHorizontal: 28,
     borderRadius: 50,
@@ -24,9 +24,9 @@ const Styles = StyleSheet.create({
   },
   next: {
     fontSize: 15,
-    color: 'white',
+    color: "white",
     fontWeight: 700,
-    textAlign: 'center',
+    textAlign: "center",
     letterSpacing: 3,
   },
   input: {
@@ -39,9 +39,9 @@ const Styles = StyleSheet.create({
     elevation: 2,
   },
   flexDesign: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     gap: 10,
   },
   paddding: {
@@ -51,36 +51,36 @@ const Styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 500,
     width: 290,
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     color: colors.DBlue,
     marginTop: 5,
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 12,
     fontWeight: 800,
-    fontFamily: 'quicksand-SemiBold',
+    fontFamily: "quicksand-SemiBold",
     color: colors.DBlue,
   },
   Button_2: {
-    width: '100%',
+    width: "100%",
     backgroundColor: colors.DBlue,
     paddingVertical: 10,
     borderRadius: 10,
   },
   Button_2_Text: {
-    fontFamily: 'Inter-Bold',
-    textAlign: 'center',
+    fontFamily: "Inter-Bold",
+    textAlign: "center",
     fontSize: 15,
     fontWeight: 800,
     lineHeight: 24,
   },
   Button_3: {
     backgroundColor: colors.DBlue,
-    width: '70%',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "70%",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
     paddingVertical: 15,
     borderRadius: 8,
     gap: 5,
@@ -89,10 +89,10 @@ const Styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 800,
     lineHeight: 24,
-    color: 'white',
+    color: "white",
   },
   productName: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 14,
     fontWeight: 800,
     lineHeight: 16,
@@ -100,14 +100,14 @@ const Styles = StyleSheet.create({
   },
   productDiscription: {
     fontSize: 13,
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontWeight: 800,
     lineHeight: 16,
     color: colors.DGray,
     marginTop: 2,
   },
   date: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontWeight: 800,
     fontSize: 13,
     lineHeight: 16,
@@ -115,14 +115,14 @@ const Styles = StyleSheet.create({
   },
 
   cost: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 14,
     fontWeight: 700,
     lineHeight: 18,
     color: colors.Black,
   },
   emptyCartHeading: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 28,
     fontWeight: 800,
     lineHeight: 26,
@@ -130,14 +130,14 @@ const Styles = StyleSheet.create({
     marginTop: 30,
   },
   emptyCartDiscription: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 15,
     fontWeight: 700,
     lineHeight: 18,
     color: colors.Black,
     marginTop: 16,
-    width: '60%',
-    textAlign: 'center',
+    width: "60%",
+    textAlign: "center",
   },
   phone: {
     fontSize: 19,
@@ -147,7 +147,7 @@ const Styles = StyleSheet.create({
     marginTop: 9,
   },
   itemCount: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 17,
     fontWeight: 800,
     lineHeight: 19,
@@ -156,7 +156,7 @@ const Styles = StyleSheet.create({
   },
   qty: {
     fontSize: 12,
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontWeight: 600,
     lineHeight: 18,
     color: colors.DGray,
@@ -172,8 +172,8 @@ const Styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 14,
     lineHeight: 25,
-    color: '#333333',
-    textAlign: 'justify',
+    color: "#333333",
+    textAlign: "justify",
   },
   heading_3: {
     color: colors.DGray,
@@ -183,7 +183,7 @@ const Styles = StyleSheet.create({
     marginBottom: 8,
   },
   address: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 14,
     fontWeight: 700,
     lineHeight: 18,
@@ -192,26 +192,26 @@ const Styles = StyleSheet.create({
   buttonSize: {
     width: 30,
     height: 30,
-    alignItems: 'center',
+    alignItems: "center",
   },
   deletePrice: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 13,
     fontWeight: 700,
-    color: '#626262',
-    textDecorationLine: 'line-through',
+    color: "#626262",
+    textDecorationLine: "line-through",
   },
   off: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 12,
     fontWeight: 700,
-    color: '#E21D1D',
+    color: "#E21D1D",
   },
   currentPrice: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: "Inter-Bold",
     fontSize: 17,
     fontWeight: 800,
-    color: '#171520',
+    color: "#171520",
   },
 });
 export default Styles;

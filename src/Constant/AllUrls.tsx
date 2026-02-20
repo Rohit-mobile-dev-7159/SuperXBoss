@@ -1,4 +1,4 @@
-import Variable from './Variable';
+import Variable from "./Variable";
 
 // Customer
 const Login = `${Variable.Main_Base}/customer/login`;

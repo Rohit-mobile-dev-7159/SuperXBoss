@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
-import Lottie from 'lottie-react-native';
-import ImagePath from '../../Constant/ImagePath';
-import MainStyle from '../../Styles/MainStyle';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import NavigationString from '../../Constant/NavigationString';
-import {useSelector} from 'react-redux';
+import React, {useEffect} from "react";
+import {StyleSheet, View} from "react-native";
+import Lottie from "lottie-react-native";
+import ImagePath from "../../Constant/ImagePath";
+import MainStyle from "../../Styles/MainStyle";
+import {CommonActions, useNavigation} from "@react-navigation/native";
+import {SafeAreaView} from "react-native-safe-area-context";
+import NavigationString from "../../Constant/NavigationString";
+import {useSelector} from "react-redux";
 
 const Splash = () => {
   const navigation = useNavigation<any>();
@@ -63,14 +63,14 @@ const Splash = () => {
         <View
           style={[
             MainStyle.flexRow,
-            {width: '100%', height: 200, position: 'absolute', bottom: 0},
+            {width: "100%", height: 200, position: "absolute", bottom: 0},
           ]}
         >
           <Lottie
-            source={require('../../lottie/Cogwheels.json')}
+            source={require("../../lottie/Cogwheels.json")}
             autoPlay
             loop
-            style={{width: '30%', height: '100%'}}
+            style={{width: "30%", height: "100%"}}
           />
         </View>
       </View>
@@ -81,12 +81,12 @@ const Splash = () => {
 export default Splash;
 
 const styles = StyleSheet.create({
-  wrapper: {flex: 1, alignItems: 'center'},
+  wrapper: {flex: 1, alignItems: "center"},
   logo: {marginTop: 55},
   gair: {
-    marginTop: 'auto',
-    alignItems: 'center',
+    marginTop: "auto",
+    alignItems: "center",
     marginBottom: 20,
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
 });

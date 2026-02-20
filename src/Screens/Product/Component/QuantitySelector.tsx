@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, memo} from 'react';
+import React, {useState, useEffect, useCallback, memo} from "react";
 import {
   View,
   Text,
@@ -7,15 +7,15 @@ import {
   ActivityIndicator,
   ViewStyle,
   TextStyle,
-} from 'react-native';
-import Icon2 from 'react-native-vector-icons/MaterialIcons';
-import {useSelector, useDispatch} from 'react-redux';
-import colors from '../../../Style/Color';
-import {useAddToCart} from '../../../Services/Main/Hooks';
+} from "react-native";
+import Icon2 from "react-native-vector-icons/MaterialIcons";
+import {useSelector, useDispatch} from "react-redux";
+import colors from "../../../Style/Color";
+import {useAddToCart} from "../../../Services/Main/Hooks";
 import {
   removeFromCart,
   setQuantity,
-} from '../../../Redux/Slices/AddToCartProduct';
+} from "../../../Redux/Slices/AddToCartProduct";
 
 type Props = {
   quantity: number;
@@ -223,7 +223,7 @@ const QuantitySelector = ({
         <Text
           style={[
             mergedStyles.qtyBtnText,
-            {color: disableDecrement ? '#ccc' : '#000'},
+            {color: disableDecrement ? "#ccc" : "#000"},
           ]}
         >
           -
@@ -249,7 +249,7 @@ const QuantitySelector = ({
         <Text
           style={[
             mergedStyles.qtyBtnText,
-            {color: localQty == itemStock ? '#ccc' : '#000'},
+            {color: localQty == itemStock ? "#ccc" : "#000"},
           ]}
         >
           +
@@ -263,23 +263,23 @@ const styles = StyleSheet.create({
   actionButton: {
     paddingVertical: 10,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
   cartIcon: {
     marginLeft: 8,
   },
   actionButtonText: {
-    color: '#fff',
-    fontWeight: '600',
+    color: "#fff",
+    fontWeight: "600",
     fontSize: 14,
   },
   qtyControls: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 5,
     gap: 8,
     borderWidth: 1.5,
@@ -289,29 +289,29 @@ const styles = StyleSheet.create({
   },
   qtyButton: {
     backgroundColor: colors.White,
-    width: '25%',
+    width: "25%",
     height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   disabledButton: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
   },
   qtyBtnText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   qtyBox: {
     backgroundColor: colors.White,
-    width: '25%',
+    width: "25%",
     height: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   qtyCount: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
     color: colors.DBlue,
   },
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -8,12 +8,12 @@ import {
   ImageBackground,
   Image,
   Dimensions,
-} from 'react-native';
+} from "react-native";
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get("window");
 
 interface SalesBannerProps {
-  variant?: 'default' | 'modern' | 'elegant' | 'minimal';
+  variant?: "default" | "modern" | "elegant" | "minimal";
   discountText?: string;
   saleText?: string;
   backgroundColor?: string;
@@ -27,15 +27,15 @@ interface SalesBannerProps {
 
 // const SalesBanner: React.FC<SalesBannerProps> = ({
 const SalesBanner: React.FC<SalesBannerProps> = ({
-  variant = 'default',
-  discountText = '50% OFF',
-  saleText = 'SUMMER SALE',
-  backgroundColor = '#FF5252',
-  textColor = '#fff',
+  variant = "default",
+  discountText = "50% OFF",
+  saleText = "SUMMER SALE",
+  backgroundColor = "#FF5252",
+  textColor = "#fff",
   onPress,
   imageUrl,
   timeRemaining,
-  badgeText = 'HOT',
+  badgeText = "HOT",
   height = 140,
 }) => {
   const scaleValue = new Animated.Value(1);
@@ -71,12 +71,12 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
 
   const rotateInterpolation = rotateValue.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', variant === 'modern' ? '-3deg' : '0deg'],
+    outputRange: ["0deg", variant === "modern" ? "-3deg" : "0deg"],
   });
 
   const renderVariant = () => {
     switch (variant) {
-      case 'modern':
+      case "modern":
         return (
           <Animated.View
             style={[
@@ -84,7 +84,7 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
               styles.modernContainer,
               {
                 height,
-                backgroundColor: imageUrl ? 'transparent' : backgroundColor,
+                backgroundColor: imageUrl ? "transparent" : backgroundColor,
                 transform: [{scale: scaleValue}, {rotate: rotateInterpolation}],
               },
             ]}
@@ -135,7 +135,7 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
           </Animated.View>
         );
 
-      case 'elegant':
+      case "elegant":
         return (
           <Animated.View
             style={[
@@ -143,7 +143,7 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
               styles.elegantContainer,
               {
                 height,
-                backgroundColor: imageUrl ? 'transparent' : backgroundColor,
+                backgroundColor: imageUrl ? "transparent" : backgroundColor,
                 transform: [{scale: scaleValue}],
               },
             ]}
@@ -186,7 +186,7 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
           </Animated.View>
         );
 
-      case 'minimal':
+      case "minimal":
         return (
           <Animated.View
             style={[
@@ -194,7 +194,7 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
               styles.minimalContainer,
               {
                 height: height - 20,
-                backgroundColor: imageUrl ? 'transparent' : backgroundColor,
+                backgroundColor: imageUrl ? "transparent" : backgroundColor,
                 transform: [{scale: scaleValue}],
               },
             ]}
@@ -231,7 +231,7 @@ const SalesBanner: React.FC<SalesBannerProps> = ({
               styles.defaultContainer,
               {
                 height,
-                backgroundColor: imageUrl ? 'transparent' : backgroundColor,
+                backgroundColor: imageUrl ? "transparent" : backgroundColor,
                 transform: [{scale: scaleValue}, {rotate: rotateInterpolation}],
               },
             ]}
@@ -298,9 +298,9 @@ const styles = StyleSheet.create({
   },
   bannerContainer: {
     borderRadius: 16,
-    overflow: 'hidden',
+    overflow: "hidden",
     elevation: 5,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 6,
@@ -313,69 +313,69 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: "rgba(0,0,0,0.3)",
   },
 
   // Modern Variant Styles
   modernContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   modernBadge: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     left: 10,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: "rgba(255,255,255,0.2)",
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.5)',
+    borderColor: "rgba(255,255,255,0.5)",
   },
   modernBadgeText: {
     fontSize: 12,
-    fontWeight: '800',
-    textTransform: 'uppercase',
+    fontWeight: "800",
+    textTransform: "uppercase",
   },
   modernImageStyle: {
     borderTopRightRadius: 80,
   },
   modernDiscountContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
     zIndex: 2,
   },
   modernDiscountText: {
     fontSize: 28,
-    fontWeight: '800',
-    textShadowColor: 'rgba(0,0,0,0.3)',
+    fontWeight: "800",
+    textShadowColor: "rgba(0,0,0,0.3)",
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 2,
   },
   modernDivider: {
-    width: '60%',
+    width: "60%",
     height: 2,
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: "rgba(255,255,255,0.5)",
     marginVertical: 8,
   },
   modernTimeText: {
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   modernSaleContainer: {
     flex: 2,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: "center",
+    alignItems: "flex-start",
     paddingLeft: 20,
     zIndex: 2,
   },
   modernSaleText: {
     fontSize: 22,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 0.5,
     marginBottom: 5,
-    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowColor: "rgba(0,0,0,0.3)",
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 2,
   },
@@ -383,18 +383,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 6,
     borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: "rgba(255,255,255,0.2)",
   },
   modernArrowText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   modernDecoration: {
-    position: 'absolute',
+    position: "absolute",
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: "rgba(255,255,255,0.1)",
     right: -40,
     bottom: -40,
     zIndex: 1,
@@ -403,157 +403,157 @@ const styles = StyleSheet.create({
   // Elegant Variant Styles
   elegantContainer: {
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
+    borderColor: "rgba(255,255,255,0.2)",
   },
   elegantImageStyle: {
     borderBottomRightRadius: 100,
   },
   elegantOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: "rgba(0,0,0,0.4)",
   },
   elegantRibbon: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
-    backgroundColor: '#D4AF37',
+    backgroundColor: "#D4AF37",
     paddingVertical: 4,
     paddingHorizontal: 20,
     borderBottomRightRadius: 16,
   },
   elegantRibbonText: {
-    color: '#000',
-    fontWeight: 'bold',
+    color: "#000",
+    fontWeight: "bold",
     fontSize: 14,
   },
   elegantContent: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1,
   },
   elegantDiscountContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
     zIndex: 2,
   },
   elegantDiscountText: {
     fontSize: 32,
-    fontWeight: '300',
-    fontStyle: 'italic',
+    fontWeight: "300",
+    fontStyle: "italic",
   },
   elegantSaleContainer: {
     flex: 2,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: "center",
+    alignItems: "flex-start",
     paddingLeft: 20,
     zIndex: 2,
   },
   elegantSaleText: {
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: "600",
     letterSpacing: 1,
     marginBottom: 5,
   },
   elegantTimeText: {
     fontSize: 12,
-    fontWeight: '300',
+    fontWeight: "300",
     letterSpacing: 0.5,
   },
 
   // Minimal Variant Styles
   minimalContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)',
-    backgroundColor: '#fff',
+    borderColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "#fff",
     elevation: 2,
   },
   minimalImage: {
     width: width * 0.35,
-    height: '100%',
+    height: "100%",
   },
   minimalContent: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
   },
   minimalDiscountText: {
     fontSize: 24,
-    fontWeight: '700',
-    color: '#333',
+    fontWeight: "700",
+    color: "#333",
     marginBottom: 4,
   },
   minimalSaleText: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#666',
+    fontWeight: "500",
+    color: "#666",
     marginBottom: 8,
   },
   minimalTimeText: {
     fontSize: 12,
-    fontWeight: '400',
-    color: '#999',
+    fontWeight: "400",
+    color: "#999",
   },
 
   // Default Variant Styles
   defaultContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   defaultBadge: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: '#FFD700',
+    backgroundColor: "#FFD700",
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
   },
   defaultBadgeText: {
-    color: '#333',
-    fontWeight: 'bold',
+    color: "#333",
+    fontWeight: "bold",
     fontSize: 12,
   },
   defaultDiscountContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
     zIndex: 2,
   },
   defaultDiscountText: {
     fontSize: 28,
-    fontWeight: '800',
-    textShadowColor: 'rgba(0,0,0,0.3)',
+    fontWeight: "800",
+    textShadowColor: "rgba(0,0,0,0.3)",
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 2,
   },
   defaultSaleContainer: {
     flex: 2,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: "center",
+    alignItems: "flex-start",
     paddingLeft: 20,
     zIndex: 2,
   },
   defaultSaleText: {
     fontSize: 22,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 0.5,
     marginBottom: 5,
-    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowColor: "rgba(0,0,0,0.3)",
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 2,
   },
   defaultTimeText: {
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   defaultDecoration: {
-    position: 'absolute',
+    position: "absolute",
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: "rgba(255,255,255,0.1)",
     right: -30,
     bottom: -30,
     zIndex: 1,

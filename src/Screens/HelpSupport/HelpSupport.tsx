@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -7,10 +7,10 @@ import {
   ScrollView,
   Linking,
   Alert,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import colors from '../../Style/Color';
+} from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import Feather from "react-native-vector-icons/Feather";
+import colors from "../../Style/Color";
 
 const HelpSupport = () => {
   // const [activeFaq, setActiveFaq] = useState(null);
@@ -24,14 +24,14 @@ const HelpSupport = () => {
   // };
 
   const callSupport = () => {
-    Alert.alert('Call Support', 'Would you like to call our support team?', [
+    Alert.alert("Call Support", "Would you like to call our support team?", [
       {
-        text: 'Cancel',
-        style: 'cancel',
+        text: "Cancel",
+        style: "cancel",
       },
       {
-        text: 'Call',
-        onPress: () => Linking.openURL('tel:9897004181'),
+        text: "Call",
+        onPress: () => Linking.openURL("tel:9897004181"),
       },
     ]);
   };
@@ -177,130 +177,130 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 24,
   },
   headerText: {
     fontSize: 24,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginLeft: 12,
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
   },
   cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 12,
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginLeft: 8,
   },
   cardText: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginBottom: 16,
     lineHeight: 20,
   },
   callButton: {
-    flexDirection: 'row',
-    backgroundColor: '#4a6fa5',
+    flexDirection: "row",
+    backgroundColor: "#4a6fa5",
     padding: 14,
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   callButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     marginLeft: 8,
   },
   faqItem: {
     marginBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: "#eee",
     paddingBottom: 12,
   },
   faqQuestionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   faqQuestion: {
     fontSize: 15,
-    fontWeight: '500',
-    color: '#333',
+    fontWeight: "500",
+    color: "#333",
     flex: 1,
   },
   faqAnswer: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginTop: 8,
     lineHeight: 20,
     paddingLeft: 4,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderRadius: 8,
     padding: 12,
     fontSize: 15,
     marginBottom: 16,
     minHeight: 120,
-    textAlignVertical: 'top',
-    backgroundColor: '#fafafa',
+    textAlignVertical: "top",
+    backgroundColor: "#fafafa",
   },
   submitButton: {
-    backgroundColor: '#4a6fa5',
+    backgroundColor: "#4a6fa5",
     padding: 14,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   disabledButton: {
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
   },
   submitButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   successMessage: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 16,
     padding: 8,
-    backgroundColor: '#f0fff0',
+    backgroundColor: "#f0fff0",
     borderRadius: 6,
   },
   successText: {
-    color: 'green',
+    color: "green",
     fontSize: 14,
     marginLeft: 8,
   },
   optionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: "#eee",
   },
   optionButtonText: {
     fontSize: 15,
-    color: '#333',
+    color: "#333",
     marginLeft: 12,
   },
 });

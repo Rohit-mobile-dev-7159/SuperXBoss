@@ -1,8 +1,8 @@
-import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {WebView} from 'react-native-webview';
-import {usePrivacyPolicy} from '../../Services/Main/Hooks';
-import MainStyle from '../../Styles/MainStyle';
+import React from "react";
+import {View, StyleSheet, Text} from "react-native";
+import {WebView} from "react-native-webview";
+import {usePrivacyPolicy} from "../../Services/Main/Hooks";
+import MainStyle from "../../Styles/MainStyle";
 
 const PrivacyPolicy = () => {
   const {data} = usePrivacyPolicy();

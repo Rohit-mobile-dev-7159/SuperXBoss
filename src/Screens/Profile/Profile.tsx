@@ -1,5 +1,5 @@
 // ProfileScreen.tsx
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 import {
   View,
   Text,
@@ -9,24 +9,24 @@ import {
   ToastAndroid,
   TextInput,
   ActivityIndicator,
-} from 'react-native';
-import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon2 from 'react-native-vector-icons/MaterialIcons';
-import Animated, {FadeInUp, FadeInDown} from 'react-native-reanimated';
-import LinearGradient from 'react-native-linear-gradient';
-import axios from 'axios';
-import AllUrls from '../../Constant/AllUrls';
-import {useDispatch, useSelector} from 'react-redux';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import NavigationString from '../../Constant/NavigationString';
-import {setToken} from '../../Redux/Slices/Token';
-import {clearCart} from '../../Redux/Slices/AddToCartProduct';
-import {useFetchUserProfile} from '../../Services/Main/Hooks';
-import colors from '../../Style/Color';
-import {pickImageFromGallery} from '../../Helper';
-import {updateProfile} from '../../Services/Main/apis';
-import ImagePath from '../../Constant/ImagePath';
+} from "react-native";
+import Modal from "react-native-modal";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon2 from "react-native-vector-icons/MaterialIcons";
+import Animated, {FadeInUp, FadeInDown} from "react-native-reanimated";
+import LinearGradient from "react-native-linear-gradient";
+import axios from "axios";
+import AllUrls from "../../Constant/AllUrls";
+import {useDispatch, useSelector} from "react-redux";
+import {CommonActions, useNavigation} from "@react-navigation/native";
+import NavigationString from "../../Constant/NavigationString";
+import {setToken} from "../../Redux/Slices/Token";
+import {clearCart} from "../../Redux/Slices/AddToCartProduct";
+import {useFetchUserProfile} from "../../Services/Main/Hooks";
+import colors from "../../Style/Color";
+import {pickImageFromGallery} from "../../Helper";
+import {updateProfile} from "../../Services/Main/apis";
+import ImagePath from "../../Constant/ImagePath";
 
 const AnimatedButton = Animated.createAnimatedComponent(TouchableOpacity);
 const ProfileScreen = () => {
@@ -36,60 +36,60 @@ const ProfileScreen = () => {
   const {data: userProfile, refetch} = useFetchUserProfile();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [userName, setUserName] = useState('John Doe');
+  const [userName, setUserName] = useState("John Doe");
   const orders = [
     {
-      icon: 'history',
-      label: 'Order History',
-      color: '#4CAF50',
+      icon: "history",
+      label: "Order History",
+      color: "#4CAF50",
       onPress: () => {
         Navigation.navigate(NavigationString.OrderHistory);
       },
     },
     {
-      icon: 'heart-outline',
-      label: 'Wishlist',
-      color: '#F06292',
+      icon: "heart-outline",
+      label: "Wishlist",
+      color: "#F06292",
       onPress: () => {
         Navigation.navigate(NavigationString.WishListProduct);
       },
     },
     {
-      icon: 'wallet',
-      label: 'Wallet',
-      color: '#03903bff',
+      icon: "wallet",
+      label: "Wallet",
+      color: "#03903bff",
       onPress: () => {
         Navigation.navigate(NavigationString.Wallet);
       },
     },
     {
-      icon: 'headset',
-      label: 'Help & Support',
-      color: '#5a0b4fff',
+      icon: "headset",
+      label: "Help & Support",
+      color: "#5a0b4fff",
       onPress: () => {
         Navigation.navigate(NavigationString.HelpSupport);
       },
     },
     {
-      icon: 'shield-check-outline',
-      label: 'Privacy Policy',
-      color: '#2196F3',
+      icon: "shield-check-outline",
+      label: "Privacy Policy",
+      color: "#2196F3",
       onPress: () => {
         Navigation.navigate(NavigationString.PrivacyPolicy);
       },
     },
     {
-      icon: 'file-document-outline',
-      label: 'Terms & Conditions',
-      color: '#FF9800',
+      icon: "file-document-outline",
+      label: "Terms & Conditions",
+      color: "#FF9800",
       onPress: () => {
         Navigation.navigate(NavigationString.TermsCondition);
       },
     },
     {
-      icon: 'help-circle-outline',
-      label: 'FAQs',
-      color: '#9C27B0',
+      icon: "help-circle-outline",
+      label: "FAQs",
+      color: "#9C27B0",
       onPress: () => {
         Navigation.navigate(NavigationString.Faqs);
       },
@@ -131,7 +131,7 @@ const ProfileScreen = () => {
     const result = await pickImageFromGallery();
     if (result) {
       const formData = new FormData();
-      formData.append('profile', {
+      formData.append("profile", {
         uri: result.uri,
         name: result.fileName,
         type: result.type,
@@ -147,7 +147,7 @@ const ProfileScreen = () => {
   const handleUpdate = async () => {
     const formData = new FormData();
     if (userName) {
-      formData.append('name', userName);
+      formData.append("name", userName);
     }
 
     const result = await updateProfile(formData);
@@ -162,7 +162,7 @@ const ProfileScreen = () => {
   return (
     <LinearGradient
       testID="profile_wrapper"
-      colors={['#fff', '#fff']}
+      colors={["#fff", "#fff"]}
       style={styles.gradientBackground}
     >
       <View style={styles.profileContainer}>
@@ -270,7 +270,7 @@ const ProfileScreen = () => {
               {userName?.length > 0 && (
                 <TouchableOpacity
                   testID="cancel"
-                  onPress={() => setUserName('')}
+                  onPress={() => setUserName("")}
                   style={styles.clearButton}
                   activeOpacity={0.7}
                 >
@@ -299,9 +299,9 @@ const ProfileScreen = () => {
       <TouchableOpacity style={styles.logoutBtn} onPress={logout}>
         <Icon name="logout" size={22} color="#9E9E9E" />
         {loading ? (
-          <ActivityIndicator size={'small'} color={'#9E9E9E'} />
+          <ActivityIndicator size={"small"} color={"#9E9E9E"} />
         ) : (
-          <Text style={[styles.listText, {color: '#9E9E9E'}]}>Logout</Text>
+          <Text style={[styles.listText, {color: "#9E9E9E"}]}>Logout</Text>
         )}
       </TouchableOpacity>
     </LinearGradient>
@@ -313,25 +313,25 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#333',
-    position: 'absolute',
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#333",
+    position: "absolute",
     top: 15,
     left: 28,
   },
   modal: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     margin: 0,
   },
   modalContent: {
     width: 300,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 12,
     padding: 25,
     paddingTop: 40,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -341,21 +341,21 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     right: 10,
     borderRadius: 15,
     width: 30,
     height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 1,
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 20,
@@ -367,23 +367,23 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 45,
-    color: '#333',
+    color: "#333",
     paddingVertical: 10,
   },
   clearButton: {
     padding: 5,
   },
   saveButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: "#4CAF50",
     borderRadius: 8,
     paddingVertical: 12,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   saveButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
     marginLeft: 8,
     fontSize: 16,
   },
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#EFEFEF',
+    backgroundColor: "#EFEFEF",
   },
   gradientBackground: {
     flex: 1,
@@ -400,8 +400,8 @@ const styles = StyleSheet.create({
     paddingTop: 80,
   },
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
     marginTop: 10,
   },
@@ -410,45 +410,45 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   profileContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: -10,
     marginBottom: 10,
   },
   avatarWrapper: {
     width: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 100,
     borderWidth: 3,
-    borderColor: '#fff',
+    borderColor: "#fff",
   },
   cameraIcon: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     right: 20,
-    backgroundColor: '#E91E63',
+    backgroundColor: "#E91E63",
     padding: 6,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: "#fff",
   },
   userName: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 8,
-    textAlign: 'center',
+    textAlign: "center",
   },
   userRole: {
     fontSize: 14,
-    color: '#777',
-    textAlign: 'center',
+    color: "#777",
+    textAlign: "center",
   },
   ordersSection: {
     marginTop: 20,
@@ -456,22 +456,22 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 16,
   },
   grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   gridItem: {
-    width: '30%',
+    width: "30%",
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   gridLabel: {
     fontSize: 12,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 6,
   },
   listSection: {
@@ -479,8 +479,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   listItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 12,
   },
   listText: {
@@ -488,12 +488,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   logoutBtn: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 30,
-    justifyContent: 'center',
-    position: 'absolute',
+    justifyContent: "center",
+    position: "absolute",
     bottom: 10,
   },
 });

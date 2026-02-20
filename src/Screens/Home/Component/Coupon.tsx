@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -6,13 +6,13 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
-} from 'react-native';
-import moment from 'moment';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
-import NavigationString from '../../../Constant/NavigationString';
+} from "react-native";
+import moment from "moment";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import {useNavigation} from "@react-navigation/native";
+import NavigationString from "../../../Constant/NavigationString";
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get("window");
 
 interface Coupon {
   _id: string;
@@ -36,7 +36,7 @@ export const CouponCard = ({item, fullWidth = false}: any) => {
       style={[
         styles.card,
         !isValid && styles.expiredCard,
-        {width: fullWidth ? '100%' : width * 0.55},
+        {width: fullWidth ? "100%" : width * 0.55},
       ]}
     >
       <View style={styles.cardContent}>
@@ -48,7 +48,7 @@ export const CouponCard = ({item, fullWidth = false}: any) => {
           <Ionicons
             name="pricetag"
             size={20}
-            color={isValid ? '#4CAF50' : '#999'}
+            color={isValid ? "#4CAF50" : "#999"}
           />
         </View>
 
@@ -61,7 +61,7 @@ export const CouponCard = ({item, fullWidth = false}: any) => {
           <View style={styles.detailRow}>
             <Ionicons name="calendar" size={12} color="#666" />
             <Text style={styles.detailText}>
-              Till: {moment(item.end_date).format('DD MMM')}
+              Till: {moment(item.end_date).format("DD MMM")}
             </Text>
           </View>
         </View>
@@ -130,20 +130,20 @@ const styles = StyleSheet.create({
   viewAllButton: {
     width: 100,
     height: 120,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#dfe8f7ff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#dfe8f7ff",
     borderRadius: 10,
     marginLeft: 4,
   },
   viewAllText: {
-    color: '#4a6da7',
-    fontWeight: '600',
+    color: "#4a6da7",
+    fontWeight: "600",
     fontSize: 14,
   },
   container: {
     paddingVertical: 12,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: "#f8f9fa",
   },
   headerContainer: {
     marginBottom: 12,
@@ -151,30 +151,30 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 18,
-    fontWeight: '700',
-    color: '#2c3e50',
+    fontWeight: "700",
+    color: "#2c3e50",
     marginBottom: 5,
   },
   divider: {
     height: 2,
     width: 35,
-    backgroundColor: '#4a6da7',
+    backgroundColor: "#4a6da7",
     borderRadius: 2,
   },
   listContainer: {
     paddingHorizontal: 8,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     margin: 6,
     borderRadius: 10,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.08,
     shadowOffset: {width: 0, height: 1},
     shadowRadius: 3,
-    flexDirection: 'row',
-    overflow: 'hidden',
+    flexDirection: "row",
+    overflow: "hidden",
     height: 110, // Reduced height
   },
   expiredCard: {
@@ -183,76 +183,76 @@ const styles = StyleSheet.create({
   cardContent: {
     flex: 1,
     padding: 12,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   couponHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
   },
   couponInfo: {
     flex: 1,
   },
   code: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2c3e50',
+    fontWeight: "bold",
+    color: "#2c3e50",
     marginBottom: 2,
   },
   amount: {
     fontSize: 14,
-    fontWeight: '700',
-    color: '#4CAF50',
+    fontWeight: "700",
+    color: "#4CAF50",
   },
   detailsContainer: {
     marginTop: 8,
   },
   detailRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 4,
   },
   detailText: {
     fontSize: 12,
-    color: '#666',
+    color: "#666",
     marginLeft: 4,
   },
   expiredBadge: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#ffebee',
+    alignSelf: "flex-start",
+    backgroundColor: "#ffebee",
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 3,
     marginTop: 4,
   },
   expiredText: {
-    color: '#d32f2f',
+    color: "#d32f2f",
     fontSize: 10,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   couponEdge: {
     width: 12,
-    backgroundColor: '#f1f1f1',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    backgroundColor: "#f1f1f1",
+    alignItems: "center",
+    justifyContent: "space-around",
     paddingVertical: 8,
   },
   circle: {
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: "#e0e0e0",
   },
   emptyContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
   },
   emptyText: {
     marginTop: 8,
     fontSize: 14,
-    color: '#999',
-    textAlign: 'center',
+    color: "#999",
+    textAlign: "center",
   },
 });
 

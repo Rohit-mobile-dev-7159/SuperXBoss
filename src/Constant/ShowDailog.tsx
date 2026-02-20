@@ -1,9 +1,9 @@
-import {ALERT_TYPE, Dialog, Root, Toast} from 'react-native-alert-notification';
+import {ALERT_TYPE, Dialog, Root, Toast} from "react-native-alert-notification";
 
 const showSuccessAlert = (text: string) => {
   Toast.show({
     type: ALERT_TYPE.SUCCESS,
-    title: 'Success',
+    title: "Success",
     textBody: text,
   });
 };
@@ -11,7 +11,7 @@ const showSuccessAlert = (text: string) => {
 const showErrorAlert = (text: string) => {
   Toast.show({
     type: ALERT_TYPE.DANGER,
-    title: 'Error',
+    title: "Error",
     textBody: text,
   });
 };
@@ -19,7 +19,7 @@ const showErrorAlert = (text: string) => {
 const showToast = (text: string) => {
   Toast.show({
     type: ALERT_TYPE.SUCCESS,
-    title: 'Success',
+    title: "Success",
     textBody: text,
   });
 };
