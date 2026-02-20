@@ -88,10 +88,10 @@ jobs:
           bundle install
 
       - name: Deploy to Google Play Store
+        working-directory: android/fastlane
         env:
           GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         run: |
-          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > android/fastlane/playstore-credentials.json
-          cd android
+          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > playstore-credentials.json
           bundle exec fastlane playstore
 
