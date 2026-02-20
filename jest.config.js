@@ -3,7 +3,7 @@ module.exports = {
 
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
 
-  //  Unit-test setup ONLY
+  // Unit-test setup ONLY
   setupFilesAfterEnv: ['./jest.setup.ts'],
 
   transform: {
@@ -35,16 +35,24 @@ module.exports = {
 
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx|js|jsx)$',
 
-  // 🔥 IGNORE E2E COMPLETELY
+  // Ignore E2E tests completely
   testPathIgnorePatterns: [
     '/node_modules/',
     '/android/',
     '/ios/',
-    '/e2e/', // ✅ THIS FIXES EVERYTHING
+    '/e2e/',
   ],
 
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.tsx',
+
+    // Optional: module alias mapping to fix relative imports
+    '^@Redux/(.*)$': '<rootDir>/src/Redux/$1',
+    '^@Components/(.*)$': '<rootDir>/src/Componnets/$1',
+    '^@Screens/(.*)$': '<rootDir>/src/Screens/$1',
+    '^@Utils/(.*)$': '<rootDir>/src/Utils/$1',
+    '^@Services/(.*)$': '<rootDir>/src/Services/$1',
+    '^@Constant/(.*)$': '<rootDir>/src/Constant/$1',
   },
 
   collectCoverage: true,
@@ -61,8 +69,7 @@ module.exports = {
     '!src/Navigation/Bottom.tsx',
     '!src/Utils/NavigationService.tsx',
     '!src/Services/**',
-    '!src/Component/FilterScreen.tsx',
-    '!src/Screens/SubCatgories/SubCatgories.tsx',
+    '!src/Componnets/FilterScreen.tsx',
     '!src/Screens/SubCatgories/SubCatgories.tsx',
   ],
 };
