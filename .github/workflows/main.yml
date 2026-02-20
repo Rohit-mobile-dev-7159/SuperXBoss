@@ -28,7 +28,7 @@ jobs:
           node-version: '22'
 
       - name: Install Node.js dependencies
-        run: npm ci -f
+        run: npm i -f
 
       - name: Run Prettier
         run: npm run format
@@ -60,7 +60,7 @@ jobs:
           node-version: '22'
 
       - name: Install Node.js dependencies
-        run: npm ci -f
+        run: npm i -f
 
       # ✅ Build AAB
       - name: Build Release AAB
