@@ -63,10 +63,11 @@ jobs:
         run: npm i -f
 
       # ✅ Build AAB
-      # - name: Build Release AAB
-      #   run: |
-      #     cd android
-      #     ./gradlew clean bundleRelease
+      - name: Build Release AAB
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew clean bundleRelease --stacktrace
 
       # ✅ Setup Ruby
       - name: Set up Ruby
