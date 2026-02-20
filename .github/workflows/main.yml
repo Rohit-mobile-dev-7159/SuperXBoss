@@ -75,7 +75,7 @@ jobs:
             ${{ runner.os }}-node-
       
       - name: Install Node.js dependencies
-        run: npm install
+        run: npm install -f
       
       - name: Install Fastlane
         run: gem install fastlane -NV
