@@ -24,7 +24,7 @@ LogBox.ignoreAllLogs(true);
 import Config from 'react-native-config'
 const queryClient = new QueryClient();
 console.log(Config, 'll')
-
+ 
 const App = () => {
   const [isNavigationReady, setIsNavigationReady] = useState(false);
   const [isPersistReady, setIsPersistReady] = useState(false);
