@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307870788002",
+    "project_id": "superxboss-cad3f",
+    "storage_bucket": "superxboss-cad3f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307870788002:android:0e334129e0df61638c2afb",
+        "android_client_info": {
+          "package_name": "com.superxboss"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc7EOKNLtsfzM02K1QOFhA_fLAtA6U64M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,2 @@
+json_key_file("fastlane/playstore-credentials.json")
+package_name("com.superxboss")
