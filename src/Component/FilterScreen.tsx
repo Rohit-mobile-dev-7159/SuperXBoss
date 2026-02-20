@@ -8,20 +8,20 @@ import {
   ActivityIndicator,
   FlatList,
   TextInput,
-} from "react-native";
-import React, {useEffect, useState} from "react";
-import colors from "../Style/Color";
-import Icon from "react-native-vector-icons/Ionicons";
-import MainStyle from "../Styles/MainStyle";
-import {useInfiniteQuery} from "@tanstack/react-query";
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import colors from '../Style/Color';
+import Icon from 'react-native-vector-icons/Ionicons';
+import MainStyle from '../Styles/MainStyle';
+import {useInfiniteQuery} from '@tanstack/react-query';
 import {
   fetchBrandCategory,
   fetchBrands,
   fetchVehicles,
-} from "../Services/Main/apis";
-import {ScrollView} from "react-native-gesture-handler";
-import {useNavigation} from "@react-navigation/native";
-import NavigationString from "../Constant/NavigationString";
+} from '../Services/Main/apis';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
+import NavigationString from '../Constant/NavigationString';
 
 // Debounce hook
 const useDebounce = (value, delay = 500) => {
@@ -65,10 +65,10 @@ const FilterScreen = props => {
   const [showYears, setShowYears] = useState(false);
 
   // Search state
-  const [vehicleBrandSearch, setVehicleBrandSearch] = useState("");
-  const [spareBrandSearch, setSpareBrandSearch] = useState("");
-  const [vehicleModelSearch, setVehicleModelSearch] = useState("");
-  const [categorisSearch, setCategorisSearch] = useState("");
+  const [vehicleBrandSearch, setVehicleBrandSearch] = useState('');
+  const [spareBrandSearch, setSpareBrandSearch] = useState('');
+  const [vehicleModelSearch, setVehicleModelSearch] = useState('');
+  const [categorisSearch, setCategorisSearch] = useState('');
 
   const debouncedVehicleSearch = useDebounce(vehicleBrandSearch);
   const debouncedSpareSearch = useDebounce(spareBrandSearch);
@@ -86,11 +86,11 @@ const FilterScreen = props => {
 
   const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
     useInfiniteQuery({
-      queryKey: ["fetchVehicleBrands", debouncedVehicleSearch],
+      queryKey: ['fetchVehicleBrands', debouncedVehicleSearch],
       queryFn: async ({pageParam = 1}) => {
         const res = await fetchBrands({
           active: true,
-          type: "Vehicle",
+          type: 'Vehicle',
           page: pageParam,
           page_size: 15,
           search: debouncedVehicleSearch,
@@ -113,11 +113,11 @@ const FilterScreen = props => {
     isFetchingNextPage: isFetchingNextPage3,
     isLoading: isLoading3,
   } = useInfiniteQuery({
-    queryKey: ["fetchSpareBrands", debouncedSpareSearch],
+    queryKey: ['fetchSpareBrands', debouncedSpareSearch],
     queryFn: async ({pageParam = 1}) => {
       const res = await fetchBrands({
         active: true,
-        type: "Spare Parts",
+        type: 'Spare Parts',
         page: pageParam,
         page_size: 15,
         search: debouncedSpareSearch,
@@ -140,7 +140,7 @@ const FilterScreen = props => {
     isFetchingNextPage: isFetchingNextPage2,
     isLoading: isLoading2,
   } = useInfiniteQuery({
-    queryKey: ["fetchVehicles", selectedBrandId, debouncedModelSearch],
+    queryKey: ['fetchVehicles', selectedBrandId, debouncedModelSearch],
     queryFn: async ({pageParam = 1}) => {
       const res = await fetchVehicles(
         {
@@ -170,7 +170,7 @@ const FilterScreen = props => {
     isLoading: isLoading4,
   } = useInfiniteQuery({
     queryKey: [
-      "fetchBrandCategory",
+      'fetchBrandCategory',
       selectedSpareBrandId,
       debouncedCategoryModelSearch,
     ],
@@ -265,13 +265,13 @@ const FilterScreen = props => {
     selectedId,
     isCheckbox = false,
     selectedIds = [],
-    search = "",
+    search = '',
     onChangeSearch = () => {},
   ) => (
     <View
       style={[
         styles.categoryContainer,
-        {width: title == "Categories" ? "100%" : "100%"},
+        {width: title == 'Categories' ? '100%' : '100%'},
       ]}
     >
       <TouchableOpacity
@@ -280,20 +280,20 @@ const FilterScreen = props => {
       >
         <Text style={styles.categoryTitle}>{title}</Text>
         <Icon
-          name={show ? "chevron-up" : "chevron-down"}
+          name={show ? 'chevron-up' : 'chevron-down'}
           size={20}
           color="#333"
         />
       </TouchableOpacity>
       {show && (
         <View style={[styles.dropdownContent, {maxHeight: 300}]}>
-          {title != "Year" && (
+          {title != 'Year' && (
             <View style={styles.searchBox}>
               <Icon name="search" size={16} color="#aaa" />
               <TextInput
                 value={search}
                 onChangeText={onChangeSearch}
-                placeholder={"Search..."}
+                placeholder={'Search...'}
                 style={styles.searchInput}
               />
             </View>
@@ -335,21 +335,21 @@ const FilterScreen = props => {
                 return;
               }
               if (
-                title === "Vehicle Brands" &&
+                title === 'Vehicle Brands' &&
                 hasNextPage &&
                 !isFetchingNextPage
               ) {
                 fetchNextPage();
               }
               if (
-                title === "Vehicle Models" &&
+                title === 'Vehicle Models' &&
                 hasNextPage2 &&
                 !isFetchingNextPage2
               ) {
                 fetchNextPage2();
               }
               if (
-                title === "Spare Part Brands" &&
+                title === 'Spare Part Brands' &&
                 hasNextPage3 &&
                 !isFetchingNextPage3
               ) {
@@ -398,7 +398,7 @@ const FilterScreen = props => {
         >
           <View style={styles.categoriesContainer}>
             {renderCategory(
-              "Vehicle Brands",
+              'Vehicle Brands',
               showVehicleBrands,
               setShowVehicleBrands,
               vehicleBrands,
@@ -410,7 +410,7 @@ const FilterScreen = props => {
               setVehicleBrandSearch,
             )}
             {renderCategory(
-              "Vehicle Models",
+              'Vehicle Models',
               showVehicle,
               setShowVehicle,
               vehicles,
@@ -422,7 +422,7 @@ const FilterScreen = props => {
               setVehicleModelSearch,
             )}
             {renderCategory(
-              "Year",
+              'Year',
               showYears,
               setShowYears,
               years,
@@ -430,7 +430,7 @@ const FilterScreen = props => {
               selectedYear,
             )}
             {renderCategory(
-              "Spare Brands",
+              'Spare Brands',
               showSpareBrands,
               setShowSpareBrands,
               spareBrands,
@@ -442,7 +442,7 @@ const FilterScreen = props => {
               setSpareBrandSearch,
             )}
             {renderCategory(
-              "Categories",
+              'Categories',
               showCategories,
               setShowCategories,
               categories,
@@ -485,13 +485,13 @@ const FilterScreen = props => {
               if (categoryIds.length) {
                 filter = {
                   ...filter,
-                  categories: categoryIds.join(","),
+                  categories: categoryIds.join(','),
                 };
               }
               if (selectedVehicleIds.length) {
                 filter = {
                   ...filter,
-                  vehicle: selectedVehicleIds.join(","),
+                  vehicle: selectedVehicleIds.join(','),
                 };
               }
               if (years) {
@@ -523,60 +523,60 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: colors.DGray,
     paddingBottom: 8,
-    alignItems: "center",
+    alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 10,
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   categoriesContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     paddingBottom: 120,
     paddingHorizontal: 12,
   },
   categoryContainer: {
-    width: "49%",
+    width: '49%',
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: "#eee",
+    borderColor: '#eee',
     borderRadius: 8,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   categoryHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 16,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: '#f9f9f9',
   },
   categoryTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#333",
+    fontWeight: '600',
+    color: '#333',
   },
   dropdownContent: {
     paddingHorizontal: 12,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   optionItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: '#eee',
   },
   radioOuter: {
     width: 20,
     height: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: "#999",
+    borderColor: '#999',
     marginRight: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   radioInner: {
     width: 10,
@@ -589,44 +589,44 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     marginRight: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   optionText: {
     fontSize: 14,
-    color: "#333",
+    color: '#333',
   },
   buttonContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingVertical: 20,
     paddingHorizontal: 20,
     gap: 10,
     backgroundColor: colors.white,
     borderTopWidth: 1,
-    borderColor: "#eee",
+    borderColor: '#eee',
   },
   button: {
     flex: 1,
     padding: 14,
     borderRadius: 8,
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonText: {
     color: colors.white,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   searchBox: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     borderRadius: 8,
     paddingHorizontal: 10,
     marginVertical: 10,

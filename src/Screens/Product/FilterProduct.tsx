@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
   SafeAreaView,
-} from "react-native";
-import {Header} from "../../Component/Index";
-import {colors} from "../../Constant/AllImports";
-import {useFetchAllBrandProduct} from "../../Services/Main/Hooks";
-import ProductList from "./Component/ProductList";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import FilterScreen from "../../Component/FilterScreen";
+} from 'react-native';
+import {Header} from '../../Component/Index';
+import {colors} from '../../Constant/AllImports';
+import {useFetchAllBrandProduct} from '../../Services/Main/Hooks';
+import ProductList from './Component/ProductList';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import FilterScreen from '../../Component/FilterScreen';
 interface type {
   brand_id: string;
   spart_brand_id: string;
   vehicle: string[];
-  year: number | "";
+  year: number | '';
   categories: string[];
 }
 const FilterPoroduct = ({route}: any) => {
-  const {segment = "", brandId, spare_brand_id, catId} = route?.params;
+  const {segment = '', brandId, spare_brand_id, catId} = route?.params;
   const [filtersActive, setFiltersActive] = useState(false);
   const [selectedBrandId, setSelectedBrandId] = useState(null);
   const [selectedVehicleIds, setSelectedVehicleIds] = useState([]);
@@ -28,23 +28,23 @@ const FilterPoroduct = ({route}: any) => {
   const [selectedSpareBrandId, setSelectedSpareBrandId] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
   const [filterValue, setFilterValue] = useState<type>({
-    brand_id: "",
+    brand_id: '',
     vehicle: [],
-    year: "",
+    year: '',
     categories: [],
-    spart_brand_id: "",
+    spart_brand_id: '',
   });
   const handleSubmit = () => {
     const {brand_id, vehicle, year, categories, spart_brand_id} = filterValue;
     let filter = {};
     if (brand_id) {
       filter = {
-        brand_id: [brand_id]?.join(","),
+        brand_id: [brand_id]?.join(','),
       };
     }
     if (spart_brand_id) {
       filter = {
-        spart_brand: [spart_brand_id].join(","),
+        spart_brand: [spart_brand_id].join(','),
       };
     }
 
@@ -101,11 +101,11 @@ const FilterPoroduct = ({route}: any) => {
 
   const handleClear = () => {
     setFilterValue({
-      brand_id: "",
+      brand_id: '',
       vehicle: [],
-      year: "",
+      year: '',
       categories: [],
-      spart_brand_id: "",
+      spart_brand_id: '',
     });
     setSelectedBrandId(null);
     setSelectedVehicleIds([]);
@@ -126,7 +126,7 @@ const FilterPoroduct = ({route}: any) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.White}}>
-      <Header title={"Products "} isIcons={true} />
+      <Header title={'Products '} isIcons={true} />
 
       <ProductList
         data={data?.result || []}
@@ -174,26 +174,26 @@ const FilterPoroduct = ({route}: any) => {
 
 const styles = StyleSheet.create({
   bottomBar: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    flexDirection: "row",
+    flexDirection: 'row',
     backgroundColor: colors.White,
     borderTopWidth: 1,
-    borderColor: "#eee",
-    justifyContent: "space-around",
+    borderColor: '#eee',
+    justifyContent: 'space-around',
     paddingVertical: 10,
     elevation: 10,
     zIndex: 20,
   },
   bottomButton: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bottomButtonText: {
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: '500',
     marginTop: 4,
     color: colors.Black,
   },

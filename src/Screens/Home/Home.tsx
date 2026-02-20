@@ -7,23 +7,23 @@ import {
   ScrollView,
   TouchableOpacity,
   RefreshControl,
-} from "react-native";
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import {colors, ImagePath, NavigationString} from "../../Constant/AllImports";
-import Swiper from "react-native-swiper";
-import BrandSlider from "./Component/BrandSlider";
-import CategorySlider from "./Component/CategorySlider";
-import Icon from "react-native-vector-icons/Feather";
-import Icon2 from "react-native-vector-icons/Ionicons";
-import Icon3 from "react-native-vector-icons/MaterialCommunityIcons";
-import SearchButton from "./Component/SearchButton";
-import MainStyle from "../../Styles/MainStyle";
-import TrendingProductsSlider from "./Component/TrendingProductsSlider";
-import NewArrivalsCard from "./Component/NewArrivalsCard";
-import VehicleSegmentCard from "./Component/VehicleSegmentCard";
-import StatsCard from "./Component/StatsCard";
-import RecentProducts from "./Component/RecentProducts";
-import {useFocusEffect, useNavigation} from "@react-navigation/native";
+} from 'react-native';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {colors, ImagePath, NavigationString} from '../../Constant/AllImports';
+import Swiper from 'react-native-swiper';
+import BrandSlider from './Component/BrandSlider';
+import CategorySlider from './Component/CategorySlider';
+import Icon from 'react-native-vector-icons/Feather';
+import Icon2 from 'react-native-vector-icons/Ionicons';
+import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
+import SearchButton from './Component/SearchButton';
+import MainStyle from '../../Styles/MainStyle';
+import TrendingProductsSlider from './Component/TrendingProductsSlider';
+import NewArrivalsCard from './Component/NewArrivalsCard';
+import VehicleSegmentCard from './Component/VehicleSegmentCard';
+import StatsCard from './Component/StatsCard';
+import RecentProducts from './Component/RecentProducts';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {
   useFetchAllProduct,
   useFetchBanners,
@@ -33,20 +33,20 @@ import {
   useFetchRating,
   useFetchRecentViewedProduct,
   useFetchVehicleSegment,
-} from "../../Services/Main/Hooks";
-import LinearGradient from "react-native-linear-gradient";
-import GreetingWithPoints from "./Component/GreetingWithPoints";
-import {Badge} from "react-native-paper";
-import {useSelector} from "react-redux";
-const {height} = Dimensions.get("window");
-import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Share from "react-native-share";
+} from '../../Services/Main/Hooks';
+import LinearGradient from 'react-native-linear-gradient';
+import GreetingWithPoints from './Component/GreetingWithPoints';
+import {Badge} from 'react-native-paper';
+import {useSelector} from 'react-redux';
+const {height} = Dimensions.get('window');
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Share from 'react-native-share';
 import {
   requestNotificationPermission,
   requestSinglePermission,
-} from "../../Permission";
-import Coupon from "./Component/Coupon";
-import ContactSection from "./Component/ContactSection";
+} from '../../Permission';
+import Coupon from './Component/Coupon';
+import ContactSection from './Component/ContactSection';
 const Home = () => {
   const Navigation: any = useNavigation();
   const scrollRef = useRef<ScrollView | null>(null);
@@ -62,11 +62,11 @@ const Home = () => {
     refetch: refetchCategories,
   }: any = useFetchCategory({active: true, page: 1, page_size: 10});
   const {data: vehicleBrand, refetch: refetchVehicleBrand}: any = useFetchBrand(
-    {active: true, type: "Vehicle", page: 1, page_size: 10},
+    {active: true, type: 'Vehicle', page: 1, page_size: 10},
   );
   const {data: spareBrand, refetch: refetchSpareBrand}: any = useFetchBrand({
     active: true,
-    type: "Spare Parts",
+    type: 'Spare Parts',
     page: 1,
     page_size: 10,
   });
@@ -119,15 +119,15 @@ const Home = () => {
 
   const handleShare = () => {
     const shareOptions = {
-      title: "Share via",
-      message: "Check out this awesome app!",
-      url: "https://reactnative.dev/docs/share", // Demo URL
-      subject: "App Recommendation", // for email
+      title: 'Share via',
+      message: 'Check out this awesome app!',
+      url: 'https://reactnative.dev/docs/share', // Demo URL
+      subject: 'App Recommendation', // for email
     };
 
     Share.open(shareOptions)
       .then(res => {
-        console.log("Share successful:", res);
+        console.log('Share successful:', res);
       })
       .catch(() => {
         // console.log('Share failed:', err);
@@ -140,9 +140,9 @@ const Home = () => {
   );
 
   const permissionsToRequest = [
-    "CAMERA",
-    "READ_MEDIA_IMAGES",
-    "ACCESS_FINE_LOCATION",
+    'CAMERA',
+    'READ_MEDIA_IMAGES',
+    'ACCESS_FINE_LOCATION',
   ] as const;
 
   // Request permissions (after slight delay)
@@ -164,9 +164,9 @@ const Home = () => {
       }
 
       if (allGranted) {
-        console.log("✅ All permissions granted.");
+        console.log('✅ All permissions granted.');
       } else {
-        console.log("❌ Some permissions were denied or blocked.");
+        console.log('❌ Some permissions were denied or blocked.');
       }
     };
     requestPermissionsSequentially();
@@ -176,12 +176,12 @@ const Home = () => {
     <View testID="Home" style={{flex: 1, backgroundColor: colors.White}}>
       {/* Search Section */}
       <LinearGradient
-        colors={["rgba(27, 75, 102, 0.8)", "rgba(76, 115, 138, 0.2)"]}
+        colors={['rgba(27, 75, 102, 0.8)', 'rgba(76, 115, 138, 0.2)']}
         start={{x: 0, y: 0}}
         end={{x: 0, y: 1}}
         style={{paddingHorizontal: 10, paddingTop: insets.top}}
       >
-        <View style={[MainStyle.flexBetween, {backgroundColor: "transparent"}]}>
+        <View style={[MainStyle.flexBetween, {backgroundColor: 'transparent'}]}>
           <SearchButton
             onPress={() => {
               Navigation.navigate(
@@ -192,7 +192,7 @@ const Home = () => {
           <View
             style={[
               MainStyle.flexBetween,
-              {width: "40%", justifyContent: "space-around"},
+              {width: '40%', justifyContent: 'space-around'},
             ]}
           >
             <TouchableOpacity
@@ -396,7 +396,7 @@ const Home = () => {
               {trendingProduct?.result?.length > 0 && (
                 <TrendingProductsSlider
                   data={PopProduct?.result}
-                  label={"Popular Product"}
+                  label={'Popular Product'}
                 />
               )}
 
@@ -466,7 +466,7 @@ const Home = () => {
                   </Text>
                   <Image
                     source={{
-                      uri: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe",
+                      uri: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe',
                     }}
                     style={styles.inviteImage}
                   />
@@ -505,25 +505,25 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "#222",
+    fontWeight: '700',
+    color: '#222',
     marginBottom: 4,
   },
   descriptionText: {
     fontSize: 13,
-    color: "#444",
+    color: '#444',
     lineHeight: 20,
   },
   inviteRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 10,
   },
   inviteText: {
     flex: 1,
     fontSize: 13,
-    color: "#333",
+    color: '#333',
   },
   inviteImage: {
     width: 50,
@@ -532,11 +532,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   inviteBtn: {
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
   },
   inviteBtnText: {
     color: colors.DBlue,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   container: {
     flex: 1,
@@ -549,17 +549,17 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     borderRadius: 12,
-    overflow: "hidden",
+    overflow: 'hidden',
     paddingHorizontal: 5,
   },
   image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
     borderRadius: 12,
   },
   dot: {
-    backgroundColor: "#ccc",
+    backgroundColor: '#ccc',
     width: 10,
     height: 7,
     borderRadius: 4,
@@ -573,10 +573,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   badge: {
-    position: "absolute",
+    position: 'absolute',
     right: -8,
     top: -8,
     backgroundColor: colors.DBlue, // Use your theme color
-    color: "white",
+    color: 'white',
   },
 });

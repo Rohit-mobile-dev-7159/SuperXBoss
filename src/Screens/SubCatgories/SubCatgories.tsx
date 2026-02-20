@@ -1,5 +1,5 @@
 // Categories.tsx
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,44 +9,44 @@ import {
   Dimensions,
   ActivityIndicator,
   TouchableOpacity,
-} from "react-native";
-import Animated, {FadeIn, FadeOut} from "react-native-reanimated";
-import {SafeAreaView} from "react-native-safe-area-context";
-import {Header} from "../../Component/Index";
-import {useNavigation} from "@react-navigation/native";
-import {NavigationString} from "../../Constant/AllImports";
-const {width} = Dimensions.get("window");
+} from 'react-native';
+import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Header} from '../../Component/Index';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationString} from '../../Constant/AllImports';
+const {width} = Dimensions.get('window');
 
 const categories = [
   {
-    id: "1",
-    name: "Electronics",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
+    id: '1',
+    name: 'Electronics',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9',
   },
   {
-    id: "2",
-    name: "Fashion",
-    image: "https://images.unsplash.com/photo-1521335629791-ce4aec67dd47",
+    id: '2',
+    name: 'Fashion',
+    image: 'https://images.unsplash.com/photo-1521335629791-ce4aec67dd47',
   },
   {
-    id: "3",
-    name: "Home",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161b89bf2",
+    id: '3',
+    name: 'Home',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161b89bf2',
   },
   {
-    id: "4",
-    name: "Beauty",
-    image: "https://images.unsplash.com/photo-1556228724-4c1d7ca2e0c5",
+    id: '4',
+    name: 'Beauty',
+    image: 'https://images.unsplash.com/photo-1556228724-4c1d7ca2e0c5',
   },
   {
-    id: "5",
-    name: "Sports",
-    image: "https://images.unsplash.com/photo-1534367610501-4c1c7c2e33ba",
+    id: '5',
+    name: 'Sports',
+    image: 'https://images.unsplash.com/photo-1534367610501-4c1c7c2e33ba',
   },
   {
-    id: "6",
-    name: "Books",
-    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f",
+    id: '6',
+    name: 'Books',
+    image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f',
   },
 ];
 
@@ -76,7 +76,7 @@ const SubCategories = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Header title={"Sub Categories"} isIcons={true} />
+      <Header title={'Sub Categories'} isIcons={true} />
       <View style={styles.container}>
         {data.length === 0 ? (
           <View style={styles.loaderContainer}>
@@ -101,40 +101,40 @@ export default SubCategories;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingHorizontal: 10,
   },
   title: {
     fontSize: 26,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 16,
-    textAlign: "center",
+    textAlign: 'center',
   },
   list: {
     paddingBottom: 20,
   },
   card: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: '#f0f0f0',
     borderRadius: 8,
-    overflow: "hidden",
+    overflow: 'hidden',
     margin: 8,
     width: width / 2 - 24,
     elevation: 4,
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 120,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
   name: {
     padding: 12,
     fontSize: 16,
-    fontWeight: "600",
-    textAlign: "center",
+    fontWeight: '600',
+    textAlign: 'center',
   },
   loaderContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

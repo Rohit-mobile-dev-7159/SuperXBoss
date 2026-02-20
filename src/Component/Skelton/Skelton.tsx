@@ -1,6 +1,6 @@
-import {View, Text} from "react-native";
-import React from "react";
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import {View, Text} from 'react-native';
+import React from 'react';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 const Skelton = () => {
   return (
     <View testID="skeleton-container" style={{padding: 10, paddingTop: 20}}>

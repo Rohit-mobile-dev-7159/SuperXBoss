@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -9,18 +9,18 @@ import {
   ScrollView,
   ActivityIndicator,
   Modal,
-} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
-import Swiper from "react-native-swiper";
-import {Header} from "../../Component/Index";
-import {colors, ImagePath, NavigationString} from "../../Constant/AllImports";
+} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import Swiper from 'react-native-swiper';
+import {Header} from '../../Component/Index';
+import {colors, ImagePath, NavigationString} from '../../Constant/AllImports';
 import {
   useAddToCart,
   useFetchProductDetail,
   useRecentViewedProduct,
-} from "../../Services/Main/Hooks";
-import {useDispatch, useSelector} from "react-redux";
-import Icon from "react-native-vector-icons/MaterialIcons";
+} from '../../Services/Main/Hooks';
+import {useDispatch, useSelector} from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Animated, {
   FadeIn,
   FadeInUp,
@@ -31,22 +31,22 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   useSharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 import {
   addToCart,
   removeFromCart,
   setQuantity,
-} from "../../Redux/Slices/AddToCartProduct";
-import {useNavigation} from "@react-navigation/native";
-import Share from "react-native-share";
-import ImageViewer from "react-native-image-zoom-viewer";
-import LottieLoader from "../../Component/LottieLoader";
-import Video from "react-native-video";
+} from '../../Redux/Slices/AddToCartProduct';
+import {useNavigation} from '@react-navigation/native';
+import Share from 'react-native-share';
+import ImageViewer from 'react-native-image-zoom-viewer';
+import LottieLoader from '../../Component/LottieLoader';
+import Video from 'react-native-video';
 
 const ProductDetail = ({route}: any) => {
   const {productId} = route.params;
   const Navigation: any = useNavigation();
-  const {data, isLoading} = useFetchProductDetail({_id: productId || ""});
+  const {data, isLoading} = useFetchProductDetail({_id: productId || ''});
   const userData = useSelector((state: any) => state.token.token);
   const {mutate: recentMutate} = useRecentViewedProduct();
   const [loading, setLoading] = useState(false);
@@ -138,18 +138,18 @@ const ProductDetail = ({route}: any) => {
 
   const handleShare = () => {
     const shareOptions = {
-      title: "Share via",
-      message: "Check out this awesome app!",
-      url: "https://reactnative.dev/docs/share", // Demo URL
-      subject: "App Recommendation", // for email
+      title: 'Share via',
+      message: 'Check out this awesome app!',
+      url: 'https://reactnative.dev/docs/share', // Demo URL
+      subject: 'App Recommendation', // for email
     };
 
     Share.open(shareOptions)
       .then(res => {
-        console.log("Share successful:", res);
+        console.log('Share successful:', res);
       })
       .catch(err => {
-        console.log("Share failed:", err);
+        console.log('Share failed:', err);
       });
   };
 
@@ -174,7 +174,7 @@ const ProductDetail = ({route}: any) => {
   if (!product.status) {
     return (
       <View style={styles.emptyContainer}>
-        <LottieLoader url={require("../../lottie/Inventory.json")} />
+        <LottieLoader url={require('../../lottie/Inventory.json')} />
       </View>
     );
   }
@@ -220,7 +220,7 @@ const ProductDetail = ({route}: any) => {
                   {isVideo ? (
                     <Video
                       source={{uri}}
-                      style={{width: "100%", height: "100%"}}
+                      style={{width: '100%', height: '100%'}}
                       controls={true}
                       paused={true}
                       resizeMode="contain"
@@ -271,13 +271,13 @@ const ProductDetail = ({route}: any) => {
           >
             <Text style={styles.price}>
               ₹
-              {userData?.type === "customer"
+              {userData?.type === 'customer'
                 ? product?.discount_customer_price
                 : product?.discount_b2b_price}
             </Text>
             <Text style={styles.strikePrice}>
               ₹
-              {userData?.type === "customer"
+              {userData?.type === 'customer'
                 ? product?.customer_price
                 : product?.b2b_price}
             </Text>
@@ -300,15 +300,15 @@ const ProductDetail = ({route}: any) => {
                 Unit: <Text style={styles.unitValue}>{product.unit.name}</Text>
                 {product.unit.set && (
                   <Text>
-                    {" "}
-                    •{" "}
+                    {' '}
+                    •{' '}
                     <Text style={styles.unitValue}>{product.unit.set} set</Text>
                   </Text>
                 )}
                 {product.unit.pc && (
                   <Text>
-                    {" "}
-                    •{" "}
+                    {' '}
+                    •{' '}
                     <Text style={styles.unitValue}>{product.unit.pc} pcs</Text>
                   </Text>
                 )}
@@ -328,7 +328,7 @@ const ProductDetail = ({route}: any) => {
                 style={styles.unitIcon}
               />
               <Text style={styles.unitText}>
-                HSN Code:{" "}
+                HSN Code:{' '}
                 <Text style={styles.unitValue}>{product.hsn_code}</Text>
               </Text>
             </Animated.View>
@@ -518,7 +518,7 @@ const ProductDetail = ({route}: any) => {
             </Text>
             <Image
               source={{
-                uri: "https://images.unsplash.com/photo-1502685104226-ee32379fefbe",
+                uri: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe',
               }}
               style={styles.inviteImage}
             />
@@ -533,9 +533,9 @@ const ProductDetail = ({route}: any) => {
         style={{
           paddingHorizontal: 10,
           backgroundColor: colors.White,
-          position: "absolute",
+          position: 'absolute',
           bottom: 0,
-          width: "100%",
+          width: '100%',
           paddingVertical: 10,
         }}
       >
@@ -559,7 +559,7 @@ const ProductDetail = ({route}: any) => {
             setShowPreview(false);
           }}
         >
-          <View style={{flex: 1, backgroundColor: "rgba(0,0,0,0.5"}}>
+          <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.5'}}>
             <ImageViewer imageUrls={formattedImages || []} />
           </View>
         </Modal>
@@ -571,141 +571,141 @@ const ProductDetail = ({route}: any) => {
 // Styles remain the same as in your original code
 const styles = StyleSheet.create({
   emptyContainer: {
-    height: Dimensions.get("screen").height - 150,
-    justifyContent: "center",
-    alignItems: "center",
+    height: Dimensions.get('screen').height - 150,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
     backgroundColor: colors.DBlue,
     borderRadius: 10,
     paddingVertical: 14,
     paddingHorizontal: 24,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    width: "100%",
+    width: '100%',
   },
   disabledButton: {
-    backgroundColor: "#CCCCCC",
+    backgroundColor: '#CCCCCC',
     opacity: 0.7,
   },
   buttonContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   cartIconContainer: {
-    position: "relative",
+    position: 'relative',
     marginRight: 12,
   },
   badge: {
-    position: "absolute",
+    position: 'absolute',
     top: -8,
     right: -8,
-    backgroundColor: "#FFD166", // Yellow color
+    backgroundColor: '#FFD166', // Yellow color
     borderRadius: 10,
     width: 20,
     height: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   badgeText: {
-    color: "#333",
+    color: '#333',
     fontSize: 12,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   buttonText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginLeft: 8,
   },
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   swiperContainer: {
     height: 300,
   },
   slide: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageWrapper: {
-    width: "100%",
+    width: '100%',
     height: 300,
     borderRadius: 5,
-    overflow: "hidden",
+    overflow: 'hidden',
     backgroundColor: colors.White,
     padding: 20,
   },
   image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   detailCard: {
     marginTop: 10,
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: '#eee',
   },
   productName: {
     fontSize: 20,
-    fontWeight: "700",
-    color: "#222",
+    fontWeight: '700',
+    color: '#222',
     marginBottom: 4,
   },
   productSubTitle: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
     marginBottom: 12,
   },
   priceRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 12,
     gap: 5,
   },
   price: {
     fontSize: 18,
-    fontWeight: "700",
-    color: "#000",
+    fontWeight: '700',
+    color: '#000',
   },
   strikePrice: {
     fontSize: 14,
-    color: "#999",
-    textDecorationLine: "line-through",
+    color: '#999',
+    textDecorationLine: 'line-through',
   },
   discountText: {
     fontSize: 14,
-    color: "red",
+    color: 'red',
   },
   pointsContainer: {
-    backgroundColor: "#FFF5E6",
+    backgroundColor: '#FFF5E6',
     padding: 8,
     borderRadius: 4,
     marginBottom: 12,
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
   },
   pointsText: {
-    color: "#FF9500",
-    fontWeight: "600",
+    color: '#FF9500',
+    fontWeight: '600',
   },
   unitContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 8,
-    backgroundColor: "#F7FAFC",
+    backgroundColor: '#F7FAFC',
     paddingVertical: 6,
     paddingHorizontal: 10,
     borderRadius: 8,
@@ -715,49 +715,49 @@ const styles = StyleSheet.create({
   },
   unitText: {
     fontSize: 14,
-    color: "#718096",
+    color: '#718096',
   },
   unitValue: {
-    color: "#2D3748",
-    fontWeight: "500",
+    color: '#2D3748',
+    fontWeight: '500',
   },
   minQtyText: {
     fontSize: 14,
-    color: "#555",
+    color: '#555',
     marginBottom: 8,
   },
   bulkDiscountContainer: {
     marginBottom: 12,
-    backgroundColor: "#F0F8FF",
+    backgroundColor: '#F0F8FF',
     padding: 10,
     borderRadius: 6,
   },
   bulkDiscountTitle: {
-    fontWeight: "600",
+    fontWeight: '600',
     marginBottom: 5,
-    color: "#0066CC",
+    color: '#0066CC',
   },
   bulkDiscountText: {
     fontSize: 13,
-    color: "#333",
+    color: '#333',
     marginBottom: 3,
   },
   couponContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#eef7ff",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#eef7ff',
     padding: 10,
     borderRadius: 6,
     marginBottom: 12,
   },
   couponText: {
     fontSize: 13,
-    color: "#333",
+    color: '#333',
     flex: 1,
   },
   couponBox: {
-    backgroundColor: "#cde5fd",
+    backgroundColor: '#cde5fd',
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: 4,
@@ -765,45 +765,45 @@ const styles = StyleSheet.create({
   },
   couponCode: {
     color: colors.DBlue,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   quantityContainer: {},
   cartQuantityControls: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: colors.DBlue,
     borderRadius: 6,
-    overflow: "hidden",
-    alignSelf: "flex-end",
+    overflow: 'hidden',
+    alignSelf: 'flex-end',
   },
   cartQuantityButton: {
     width: 40,
     height: 40,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: colors.DBlue,
   },
   cartQuantityButtonText: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#fff",
+    fontWeight: 'bold',
+    color: '#fff',
   },
   cartQuantityValue: {
     width: 50,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
     color: colors.Black,
   },
   addToCartContainer: {
-    alignSelf: "flex-start",
-    width: "100%",
+    alignSelf: 'flex-start',
+    width: '100%',
   },
   addToCartButton: {
     backgroundColor: colors.DBlue,
     padding: 14,
     borderRadius: 6,
-    alignItems: "center",
+    alignItems: 'center',
     shadowColor: colors.DBlue,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.3,
@@ -812,20 +812,20 @@ const styles = StyleSheet.create({
     minWidth: 150,
   },
   addToCartButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 16,
   },
   outOfStockButton: {
     backgroundColor: colors.LGray,
   },
   segmentContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 8,
   },
   segmentPill: {
-    backgroundColor: "#E1F5FE",
+    backgroundColor: '#E1F5FE',
     borderRadius: 16,
     paddingVertical: 6,
     paddingHorizontal: 12,
@@ -833,36 +833,36 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   segmentText: {
-    color: "#0288D1",
+    color: '#0288D1',
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   sectionContainer: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: '#eee',
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "#222",
+    fontWeight: '700',
+    color: '#222',
     marginBottom: 4,
   },
   descriptionText: {
     fontSize: 13,
-    color: "#444",
+    color: '#444',
     lineHeight: 20,
   },
   inviteRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 10,
   },
   inviteText: {
     flex: 1,
     fontSize: 13,
-    color: "#333",
+    color: '#333',
   },
   inviteImage: {
     width: 50,
@@ -871,11 +871,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   inviteBtn: {
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
   },
   inviteBtnText: {
     color: colors.DBlue,
-    fontWeight: "600",
+    fontWeight: '600',
   },
 });
 

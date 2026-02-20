@@ -1,38 +1,38 @@
-import {apiCall} from "../../Axios/Axios";
-import AllUrls from "../../Constant/AllUrls";
+import {apiCall} from '../../Axios/Axios';
+import AllUrls from '../../Constant/AllUrls';
 import {
   categoryPayload,
   OrderPaymentType,
   orderType,
   productType,
-} from "./types";
+} from './types';
 // User
 export const fetchUserProfile = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.userInfo}`);
+  const data = await apiCall<any>('get', `${AllUrls.userInfo}`);
   return data;
 };
 
 export const updateProfile = async (payload: any): Promise<any> => {
-  console.log("put", `${AllUrls.userInfo}`, payload, {}, "multipart/form-data");
+  console.log('put', `${AllUrls.userInfo}`, payload, {}, 'multipart/form-data');
 
   const data = await apiCall<any>(
-    "put",
+    'put',
     `${AllUrls.userInfo}`,
     payload,
     {},
-    "multipart/form-data",
+    'multipart/form-data',
   );
   return data;
 };
 // Category
 export const fetchCategory = async (payload: categoryPayload): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.categoryApi}`, {}, payload);
+  const data = await apiCall<any>('get', `${AllUrls.categoryApi}`, {}, payload);
   return data;
 };
 
 // Brand
 export const fetchBrands = async (payload: categoryPayload): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.brandsApi}`, {}, payload);
+  const data = await apiCall<any>('get', `${AllUrls.brandsApi}`, {}, payload);
   return data;
 };
 export const fetchVehicles = async (
@@ -40,7 +40,7 @@ export const fetchVehicles = async (
   brand_id: number,
 ): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.vehicleApi}/${brand_id}`,
     {},
     payload,
@@ -52,7 +52,7 @@ export const fetchBrandCategory = async (
   payload: categoryPayload,
 ): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.brandCategoryApi}/${payload?.brand_id}`,
     {},
     payload,
@@ -62,7 +62,7 @@ export const fetchBrandCategory = async (
 
 // Banner
 export const fetchBanners = async (payload: categoryPayload): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.bannersApi}`, payload);
+  const data = await apiCall<any>('get', `${AllUrls.bannersApi}`, payload);
   return data;
 };
 
@@ -70,13 +70,13 @@ export const fetchBanners = async (payload: categoryPayload): Promise<any> => {
 export const fetchVehicleSegment = async (
   payload: categoryPayload,
 ): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.segmentApi}`, {}, payload);
+  const data = await apiCall<any>('get', `${AllUrls.segmentApi}`, {}, payload);
   return data;
 };
 
 // products
 export const fetchAllProduct = async (payload: productType): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.productApi}`, {}, payload);
+  const data = await apiCall<any>('get', `${AllUrls.productApi}`, {}, payload);
   return data;
 };
 export const fetchAllBrandProduct = async (
@@ -85,7 +85,7 @@ export const fetchAllBrandProduct = async (
   // console.log(payload,'-----------------------------------------------++++++++++++');
 
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.brandProductApi}`,
     {},
     payload,
@@ -97,7 +97,7 @@ export const fetchProductDetails = async (payload: {
   _id: string;
 }): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.ProductDetailsApi}/${payload._id}`,
   );
   return data;
@@ -107,7 +107,7 @@ export const updateWishlist = async (payload: {
   product: string;
 }): Promise<any> => {
   const data = await apiCall<any>(
-    "post",
+    'post',
     `${AllUrls.ProductWishlistApi}`,
     payload,
   );
@@ -118,21 +118,21 @@ export const updateAddToCart = async (payload: {
   qty: number;
 }): Promise<any> => {
   const data = await apiCall<any>(
-    "post",
+    'post',
     `${AllUrls.updateAddToCartApi}`,
     payload,
   );
   return data;
 };
 export const fetchWishlist = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.ProductWishlistApi}`);
+  const data = await apiCall<any>('get', `${AllUrls.ProductWishlistApi}`);
   return data;
 };
 export const addRecentViewd = async (payload: {
   product: string;
 }): Promise<any> => {
   const data = await apiCall<any>(
-    "post",
+    'post',
     `${AllUrls.recentViewedProductApi}`,
     payload,
   );
@@ -143,7 +143,7 @@ export const fetchRecentViewd = async (payload: {
   page_size: number;
 }): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.recentViewedProductApi}`,
     {},
     payload,
@@ -151,20 +151,20 @@ export const fetchRecentViewd = async (payload: {
   return data;
 };
 export const fetchAllAddToCart = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.updateAddToCartApi}`);
+  const data = await apiCall<any>('get', `${AllUrls.updateAddToCartApi}`);
   return data;
 };
 
 // Rating
 export const fetchRating = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.ratingApi}`);
+  const data = await apiCall<any>('get', `${AllUrls.ratingApi}`);
   return data;
 };
 
 // Coupon
 export const fetchCoupon = async (payload: any): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.couponApi}`,
     {},
     {status: true, ...payload},
@@ -174,23 +174,23 @@ export const fetchCoupon = async (payload: any): Promise<any> => {
 
 // Orders
 export const fetchAllOrder = async (payload: orderType): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.orderApi}`, {}, payload);
+  const data = await apiCall<any>('get', `${AllUrls.orderApi}`, {}, payload);
   return data;
 };
 
 // Add Address
 export const createAddress = async (payload: any): Promise<any> => {
-  const data = await apiCall<any>("post", `${AllUrls.addressApi}`, payload);
+  const data = await apiCall<any>('post', `${AllUrls.addressApi}`, payload);
   return data;
 };
 export const fetchAddress = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.addressApi}`);
+  const data = await apiCall<any>('get', `${AllUrls.addressApi}`);
   return data;
 };
 
 export const updateAddress = async (payload: any): Promise<any> => {
   const data = await apiCall<any>(
-    "put",
+    'put',
     `${AllUrls.addressStatusApi}/${payload._id}`,
     payload,
   );
@@ -202,7 +202,7 @@ export const updateRecharge = async (payload: {
   offer_id?: string;
 }): Promise<any> => {
   const data = await apiCall<any>(
-    "post",
+    'post',
     `${AllUrls.rechrgeWalletApi}`,
     payload,
   );
@@ -210,7 +210,7 @@ export const updateRecharge = async (payload: {
 };
 export const rechargeVerify = async (payload: any): Promise<any> => {
   const data = await apiCall<any>(
-    "put",
+    'put',
     `${AllUrls.rechrgeWalletVerifyApi}`,
     payload,
   );
@@ -220,7 +220,7 @@ export const rechargeVerify = async (payload: any): Promise<any> => {
 // Order Payment
 export const createOrder = async (payload: OrderPaymentType): Promise<any> => {
   const data = await apiCall<any>(
-    "post",
+    'post',
     `${AllUrls.orderPaymentApi}`,
     payload,
   );
@@ -228,20 +228,20 @@ export const createOrder = async (payload: OrderPaymentType): Promise<any> => {
 };
 
 export const confirmOrder = async (payload: any): Promise<any> => {
-  const data = await apiCall<any>("put", `${AllUrls.orderConfirmApi}`, payload);
+  const data = await apiCall<any>('put', `${AllUrls.orderConfirmApi}`, payload);
   return data;
 };
 
 // Charges
 export const fetchCharges = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.chargesApi}`);
+  const data = await apiCall<any>('get', `${AllUrls.chargesApi}`);
   return data;
 };
 
 // Coupon
 export const fetchFAQs = async (payload: any): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.FAQsApi}`,
     {},
     {...payload, status: true},
@@ -254,22 +254,22 @@ export const fetchWalletHistory = async (
   payload: categoryPayload,
 ): Promise<any> => {
   const data = await apiCall<any>(
-    "get",
+    'get',
     `${AllUrls.rechrgeWalletHistoryApi}`,
     {},
-    {...payload, status: "success"},
+    {...payload, status: 'success'},
   );
   return data;
 };
 
 // Offers
 export const fetchOffers = async (payload: categoryPayload): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.offersApi}`, {}, payload);
+  const data = await apiCall<any>('get', `${AllUrls.offersApi}`, {}, payload);
   return data;
 };
 
 // Charges
 export const fetchPrivacyPolicy = async (): Promise<any> => {
-  const data = await apiCall<any>("get", `${AllUrls.privacyPolicyApi}`);
+  const data = await apiCall<any>('get', `${AllUrls.privacyPolicyApi}`);
   return data;
 };

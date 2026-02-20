@@ -1,4 +1,4 @@
-import React, {memo, useMemo, useRef, useState} from "react";
+import React, {memo, useMemo, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -7,15 +7,15 @@ import {
   Dimensions,
   ActivityIndicator,
   RefreshControl,
-} from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Animated, {SlideInRight} from "react-native-reanimated";
-import {Header} from "../../Component/Index";
-import colors from "../../Style/Color";
-import {useFetchWalletHistory} from "../../Services/Main/Hooks";
-import moment from "moment";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Animated, {SlideInRight} from 'react-native-reanimated';
+import {Header} from '../../Component/Index';
+import colors from '../../Style/Color';
+import {useFetchWalletHistory} from '../../Services/Main/Hooks';
+import moment from 'moment';
 
-const {width} = Dimensions.get("window");
+const {width} = Dimensions.get('window');
 
 const WalletHistory = () => {
   const payload = useMemo(() => ({page_size: 10}), []);
@@ -64,23 +64,23 @@ const WalletHistory = () => {
       <View
         style={[
           styles.iconWrapper,
-          {backgroundColor: item.source === "debit" ? "#f5e9e8ff" : "#E8F5E9"},
+          {backgroundColor: item.source === 'debit' ? '#f5e9e8ff' : '#E8F5E9'},
         ]}
       >
         <Icon
           name={
-            item.source === "debit"
-              ? "arrow-up-bold-circle"
-              : "arrow-down-bold-circle"
+            item.source === 'debit'
+              ? 'arrow-up-bold-circle'
+              : 'arrow-down-bold-circle'
           }
           size={32}
-          color={item.source === "debit" ? colors.Red : "#4CAF50"}
+          color={item.source === 'debit' ? colors.Red : '#4CAF50'}
         />
       </View>
       <View style={{flex: 1}}>
         {item?.order_id ? (
           <Text style={styles.title}>Product Purchase</Text>
-        ) : item.source === "free" ? (
+        ) : item.source === 'free' ? (
           <Text style={styles.title}>Free Amount</Text>
         ) : (
           <Text style={styles.title}>Wallet Recharge</Text>
@@ -88,13 +88,13 @@ const WalletHistory = () => {
         <Text
           style={[
             styles.amount,
-            {color: item.source === "debit" ? colors.Red : "#4CAF50"},
+            {color: item.source === 'debit' ? colors.Red : '#4CAF50'},
           ]}
         >
-          {item.source === "debit" && "-"} ₹{item.amount}{" "}
+          {item.source === 'debit' && '-'} ₹{item.amount}{' '}
           {item.offer_id && `+${item.offer_amount}`}
         </Text>
-        <Text style={styles.date}>{moment(item.createdAt).format("LLL")}</Text>
+        <Text style={styles.date}>{moment(item.createdAt).format('LLL')}</Text>
       </View>
     </Animated.View>
   );
@@ -109,7 +109,7 @@ const WalletHistory = () => {
 
   return (
     <View testID="wrapper">
-      <Header title={"Wallet History"} />
+      <Header title={'Wallet History'} />
       <View style={styles.container}>
         <Text style={styles.sectionTitle}>Added Money</Text>
         <FlatList
@@ -152,25 +152,25 @@ const styles = StyleSheet.create({
   },
   loader: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: '600',
     marginBottom: 14,
-    color: "#333",
+    color: '#333',
   },
   transactionCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#fff",
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
     padding: 18,
     borderRadius: 14,
     marginBottom: 14,
     width: width - 35,
-    alignSelf: "center",
-    shadowColor: "#000",
+    alignSelf: 'center',
+    shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowOffset: {width: 0, height: 3},
     shadowRadius: 6,
@@ -181,29 +181,29 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 16,
   },
   title: {
     fontSize: 17,
     color: colors.Black,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   amount: {
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   date: {
     fontSize: 13,
-    color: "#666",
+    color: '#666',
     marginTop: 4,
   },
   emptyText: {
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 40,
-    color: "#999",
+    color: '#999',
   },
 });
 

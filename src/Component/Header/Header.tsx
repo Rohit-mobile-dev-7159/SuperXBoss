@@ -1,11 +1,11 @@
-import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
-import React, {memo} from "react";
-import {colors, FontsFamily, NavigationString} from "../../Constant/AllImports";
-import {useNavigation} from "@react-navigation/native";
-import {moderateScale} from "react-native-size-matters";
-import {useSelector} from "react-redux";
-import {Badge} from "react-native-paper";
-import ImagePath from "../../Constant/ImagePath";
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, {memo} from 'react';
+import {colors, FontsFamily, NavigationString} from '../../Constant/AllImports';
+import {useNavigation} from '@react-navigation/native';
+import {moderateScale} from 'react-native-size-matters';
+import {useSelector} from 'react-redux';
+import {Badge} from 'react-native-paper';
+import ImagePath from '../../Constant/ImagePath';
 
 const Header = (props: any) => {
   const navigation = useNavigation();
@@ -19,7 +19,7 @@ const Header = (props: any) => {
         styles.Wrapper,
         {
           paddingHorizontal: moderateScale(10),
-          backgroundColor: "white",
+          backgroundColor: 'white',
           zIndex: 11,
           elevation: 1,
           paddingTop: 35,
@@ -106,11 +106,11 @@ export default memo(Header);
 
 const styles = StyleSheet.create({
   Wrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     gap: 10,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.5,
     shadowRadius: 2,
@@ -119,23 +119,23 @@ const styles = StyleSheet.create({
   HeaderText: {
     fontFamily: FontsFamily.poppinsBold,
     fontSize: 18,
-    fontWeight: "600", // Note: fontWeight should be string in React Native
+    fontWeight: '600', // Note: fontWeight should be string in React Native
     color: colors.DBlue,
     marginTop: 10,
   },
   iconContainer: {
-    position: "relative",
+    position: 'relative',
     padding: 5, // Add some padding for better touch area
   },
   badge: {
-    position: "absolute",
+    position: 'absolute',
     right: -8,
     top: -8,
     backgroundColor: colors.DBlue, // Use your theme color
-    color: "white",
+    color: 'white',
   },
   shadow: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
@@ -143,6 +143,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 9,
-    backgroundColor: "red",
+    backgroundColor: 'red',
   },
 });

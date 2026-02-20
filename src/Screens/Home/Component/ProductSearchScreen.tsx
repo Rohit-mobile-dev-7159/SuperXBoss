@@ -1,5 +1,5 @@
 // ProductSearchScreen.tsx
-import React, {useEffect, useRef, useState, useCallback} from "react";
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {
   View,
   Text,
@@ -10,18 +10,18 @@ import {
   Animated,
   FlatList,
   ActivityIndicator,
-} from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import {debounce} from "lodash";
-import {useQuery} from "@tanstack/react-query";
-import {fetchAllProduct} from "../../../Services/Main/apis";
-import NavigationString from "../../../Constant/NavigationString";
-import {useDispatch, useSelector} from "react-redux";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {debounce} from 'lodash';
+import {useQuery} from '@tanstack/react-query';
+import {fetchAllProduct} from '../../../Services/Main/apis';
+import NavigationString from '../../../Constant/NavigationString';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   addRecentSearch,
   clearRecentSearch,
   selectRecentSearches,
-} from "../../../Redux/Slices/searchSlice";
+} from '../../../Redux/Slices/searchSlice';
 
 interface Product {
   _id: string;
@@ -37,7 +37,7 @@ interface RecentSearch {
 }
 
 const ProductSearchScreen = ({navigation}: any) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -45,14 +45,14 @@ const ProductSearchScreen = ({navigation}: any) => {
   const recentSearches = useSelector(selectRecentSearches);
 
   const {data, isLoading, refetch} = useQuery({
-    queryKey: ["searchProducts", searchQuery],
+    queryKey: ['searchProducts', searchQuery],
     queryFn: () => fetchAllProduct({search: searchQuery}),
     enabled: false,
   });
 
   const debouncedSearch = useCallback(
     debounce((query: string) => {
-      if (query.trim() === "") {
+      if (query.trim() === '') {
         setFilteredProducts([]);
         setIsSearching(false);
         return;
@@ -90,7 +90,7 @@ const ProductSearchScreen = ({navigation}: any) => {
     };
 
     const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
+      'hardwareBackPress',
       backAction,
     );
     return () => backHandler.remove();
@@ -98,7 +98,7 @@ const ProductSearchScreen = ({navigation}: any) => {
 
   const handleProductPress = (product: Product) => {
     dispatch(addRecentSearch({_id: product._id, name: product.name}));
-    setSearchQuery("");
+    setSearchQuery('');
     navigation.navigate(NavigationString.ProductDetail, {
       productId: product._id,
     });
@@ -108,7 +108,7 @@ const ProductSearchScreen = ({navigation}: any) => {
     navigation.navigate(NavigationString.ProductDetail, {
       productId: searchItem._id,
     });
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   const clearRecentSearches = () => {
@@ -203,7 +203,7 @@ const ProductSearchScreen = ({navigation}: any) => {
 
   return (
     <Animated.View
-      testID={"search"}
+      testID={'search'}
       style={[styles.container, {opacity: fadeAnim}]}
     >
       {/* Header */}
@@ -227,7 +227,7 @@ const ProductSearchScreen = ({navigation}: any) => {
         {searchQuery.length > 0 && (
           <TouchableOpacity
             testID="empty_search"
-            onPress={() => setSearchQuery("")}
+            onPress={() => setSearchQuery('')}
             style={styles.clearButton}
           >
             <Icon name="close-circle" size={20} color="#999" />
@@ -255,18 +255,18 @@ export default ProductSearchScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingTop: 50,
     paddingHorizontal: 16,
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     paddingHorizontal: 12,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: '#f8f8f8',
     marginBottom: 16,
     height: 48,
   },
@@ -279,8 +279,8 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     marginHorizontal: 8,
-    height: "100%",
-    color: "#333",
+    height: '100%',
+    color: '#333',
     fontSize: 16,
   },
   listContent: {
@@ -288,14 +288,14 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
   productItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "#fff",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    borderBottomColor: '#f0f0f0',
   },
   productInfo: {
     flex: 1,
@@ -303,30 +303,30 @@ const styles = StyleSheet.create({
   },
   productName: {
     fontSize: 15,
-    fontWeight: "500",
-    color: "#333",
+    fontWeight: '500',
+    color: '#333',
     marginBottom: 2,
   },
   brandName: {
     fontSize: 13,
-    color: "#666",
+    color: '#666',
   },
   emptyContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 40,
   },
   noRecentContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingTop: 80,
   },
   emptyText: {
     marginTop: 16,
     fontSize: 16,
-    color: "#999",
+    color: '#999',
   },
   loader: {
     marginTop: 40,
@@ -335,30 +335,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   recentSearchesHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#333",
+    fontWeight: '600',
+    color: '#333',
   },
   clearText: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
   },
   recentListContent: {
     paddingBottom: 20,
   },
   recentSearchItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    borderBottomColor: '#f0f0f0',
   },
   clockIcon: {
     marginRight: 12,
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
   recentSearchText: {
     flex: 1,
     fontSize: 15,
-    color: "#333",
+    color: '#333',
     marginRight: 12,
   },
 });

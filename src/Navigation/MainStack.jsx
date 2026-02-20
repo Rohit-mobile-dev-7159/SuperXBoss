@@ -1,20 +1,20 @@
-import * as React from "react";
-import {createStackNavigator} from "@react-navigation/stack";
+import * as React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import Screens from "../Screens";
-import NavigationString from "../Constant/NavigationString";
-import colors from "../Style/Color";
-import BottomTab from "./Bottom";
+import Screens from '../Screens';
+import NavigationString from '../Constant/NavigationString';
+import colors from '../Style/Color';
+import BottomTab from './Bottom';
 
 export default function MainStack() {
   const Stack = createStackNavigator();
   const option = {headerShown: false};
 
   const fadeTransition = {
-    gestureDirection: "horizontal",
+    gestureDirection: 'horizontal',
     transitionSpec: {
-      open: {animation: "timing", config: {duration: 300}},
-      close: {animation: "timing", config: {duration: 300}},
+      open: {animation: 'timing', config: {duration: 300}},
+      close: {animation: 'timing', config: {duration: 300}},
     },
     cardStyleInterpolator: ({current}) => ({
       cardStyle: {

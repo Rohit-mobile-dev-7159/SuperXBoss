@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,29 +11,29 @@ import {
   FlatList,
   Keyboard,
   Alert,
-} from "react-native";
-import {Formik} from "formik";
-import * as Yup from "yup";
-import Animated, {FadeIn, FadeOut} from "react-native-reanimated";
-import axios from "axios";
-import Variable from "../../../Constant/Variable";
-import {useCreateAddress} from "../../../Services/Main/Hooks";
-import {showErrorAlert, showSuccessAlert} from "../../../Constant/ShowDailog";
-import colors from "../../../Style/Color";
+} from 'react-native';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
+import axios from 'axios';
+import Variable from '../../../Constant/Variable';
+import {useCreateAddress} from '../../../Services/Main/Hooks';
+import {showErrorAlert, showSuccessAlert} from '../../../Constant/ShowDailog';
+import colors from '../../../Style/Color';
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 const AddressSchema = Yup.object().shape({
-  name: Yup.string().min(2).max(50).required("Required"),
+  name: Yup.string().min(2).max(50).required('Required'),
   mobile: Yup.string()
-    .matches(/^[0-9]{10}$/, "Invalid")
-    .required("Required"),
-  address: Yup.string().min(5).required("Required"),
+    .matches(/^[0-9]{10}$/, 'Invalid')
+    .required('Required'),
+  address: Yup.string().min(5).required('Required'),
 });
 
 const AddressModal = ({visible, onClose}: any) => {
   const [loadingPincode, setLoadingPincode] = useState(false);
-  const [addressType, setAddressType] = useState("Home");
+  const [addressType, setAddressType] = useState('Home');
   const [isDefault, setIsDefault] = useState(false);
   const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
   const [isAddressFocused, setIsAddressFocused] = useState(false);
@@ -57,12 +57,12 @@ const AddressModal = ({visible, onClose}: any) => {
     setLoadingAddress(true);
     try {
       const response = await axios.get(
-        "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+        'https://maps.googleapis.com/maps/api/place/autocomplete/json',
         {
           params: {
             input: query,
             key: Variable.GOOGLE_API_KEY,
-            components: "country:in",
+            components: 'country:in',
           },
         },
       );
@@ -71,7 +71,7 @@ const AddressModal = ({visible, onClose}: any) => {
         setAddressSuggestions(response.data.predictions);
       }
     } catch (error) {
-      console.error("Error fetching address suggestions:", error);
+      console.error('Error fetching address suggestions:', error);
     } finally {
       setLoadingAddress(false);
     }
@@ -81,52 +81,52 @@ const AddressModal = ({visible, onClose}: any) => {
 
   const handleAddressSelect = async (item: any, setFieldValue: any) => {
     Keyboard.dismiss();
-    setFieldValue("address", item.description);
+    setFieldValue('address', item.description);
     setAddressSuggestions([]);
     setIsAddressFocused(false);
 
     try {
       const response = await axios.get(
-        "https://maps.googleapis.com/maps/api/place/details/json",
+        'https://maps.googleapis.com/maps/api/place/details/json',
         {
           params: {
             place_id: item.place_id,
             key: Variable.GOOGLE_API_KEY,
             // fields: 'address_component',
-            fields: "address_component,geometry",
+            fields: 'address_component,geometry',
           },
         },
       );
       const location = response.data.result.geometry?.location;
       setLatLong([location?.lng, location?.lat]);
       const addressComponents = response.data.result.address_components;
-      let state = "";
-      let city = "";
-      let pincode = "";
+      let state = '';
+      let city = '';
+      let pincode = '';
 
       addressComponents.forEach((component: any) => {
-        if (component.types.includes("administrative_area_level_1")) {
+        if (component.types.includes('administrative_area_level_1')) {
           state = component.long_name;
         }
         if (
-          component.types.includes("locality") ||
-          component.types.includes("postal_town")
+          component.types.includes('locality') ||
+          component.types.includes('postal_town')
         ) {
           city = component.long_name;
         }
-        if (component.types.includes("postal_code")) {
+        if (component.types.includes('postal_code')) {
           pincode = component.long_name;
         }
       });
 
       // Auto-fill the fields
-      setFieldValue("city", city);
-      setFieldValue("state", state);
+      setFieldValue('city', city);
+      setFieldValue('state', state);
       if (pincode) {
-        setFieldValue("pinCode", pincode);
+        setFieldValue('pinCode', pincode);
       }
     } catch (error) {
-      console.error("Error fetching address details:", error);
+      console.error('Error fetching address details:', error);
     }
   };
 
@@ -144,12 +144,12 @@ const AddressModal = ({visible, onClose}: any) => {
       >
         <Formik
           initialValues={{
-            name: "",
-            mobile: "",
-            pinCode: "",
-            address: "",
-            city: "",
-            state: "",
+            name: '',
+            mobile: '',
+            pinCode: '',
+            address: '',
+            city: '',
+            state: '',
           }}
           validationSchema={AddressSchema}
           onSubmit={values => {
@@ -168,7 +168,7 @@ const AddressModal = ({visible, onClose}: any) => {
                 }
               },
               onError: error => {
-                console.error("Failed:", error.message);
+                console.error('Failed:', error.message);
                 Alert.alert(error.message);
               },
             });
@@ -196,8 +196,8 @@ const AddressModal = ({visible, onClose}: any) => {
                       errors.name && touched.name && styles.inputError,
                       {flex: 1},
                     ]}
-                    onChangeText={handleChange("name")}
-                    onBlur={handleBlur("name")}
+                    onChangeText={handleChange('name')}
+                    onBlur={handleBlur('name')}
                     value={values.name}
                     placeholder="Enter full name"
                     placeholderTextColor="#999"
@@ -222,8 +222,8 @@ const AddressModal = ({visible, onClose}: any) => {
                         styles.phoneInput,
                         errors.mobile && touched.mobile && styles.inputError,
                       ]}
-                      onChangeText={handleChange("mobile")}
-                      onBlur={handleBlur("mobile")}
+                      onChangeText={handleChange('mobile')}
+                      onBlur={handleBlur('mobile')}
                       value={values.mobile}
                       placeholder="Enter contact number"
                       placeholderTextColor="#999"
@@ -253,10 +253,10 @@ const AddressModal = ({visible, onClose}: any) => {
                       {flex: 1},
                     ]}
                     onChangeText={text => {
-                      handleChange("address")(text);
+                      handleChange('address')(text);
                       debouncedFetchAddress(text);
                     }}
-                    onBlur={handleBlur("address")}
+                    onBlur={handleBlur('address')}
                     onFocus={() => setIsAddressFocused(true)}
                     value={values.address}
                     placeholder="Start typing your address..."
@@ -357,7 +357,7 @@ const AddressModal = ({visible, onClose}: any) => {
               <View style={styles.inputContainer}>
                 <Text style={styles.label}>Address Type</Text>
                 <View style={styles.addressTypeContainer}>
-                  {["Home", "Office", "Other"].map(type => (
+                  {['Home', 'Office', 'Other'].map(type => (
                     <TouchableOpacity
                       key={type}
                       style={[
@@ -410,7 +410,7 @@ const AddressModal = ({visible, onClose}: any) => {
                   onPress={() => handleSubmit()}
                 >
                   {isPending ? (
-                    <ActivityIndicator size={"small"} color={colors.White} />
+                    <ActivityIndicator size={'small'} color={colors.White} />
                   ) : (
                     <Text style={styles.buttonText}>Save</Text>
                   )}
@@ -427,7 +427,7 @@ const AddressModal = ({visible, onClose}: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingTop: 20,
   },
   scrollContainer: {
@@ -436,64 +436,64 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: '700',
     marginBottom: 20,
-    color: "#2c3e50",
+    color: '#2c3e50',
   },
   inputContainer: {
     marginBottom: 15,
   },
   label: {
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: '600',
     marginBottom: 6,
-    color: "#7f8c8d",
+    color: '#7f8c8d',
   },
   inputRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   input: {
     borderWidth: 1,
-    borderColor: "#dfe6e9",
+    borderColor: '#dfe6e9',
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 12,
     fontSize: 14,
-    backgroundColor: "#fff",
-    color: "#2d3436",
+    backgroundColor: '#fff',
+    color: '#2d3436',
   },
   readOnlyInput: {
-    backgroundColor: "#f5f6fa",
-    color: "#7f8c8d",
+    backgroundColor: '#f5f6fa',
+    color: '#7f8c8d',
   },
   inputError: {
-    borderColor: "#e17055",
+    borderColor: '#e17055',
   },
   errorTextRight: {
-    position: "absolute",
-    color: "#e17055",
+    position: 'absolute',
+    color: '#e17055',
     fontSize: 11,
     maxWidth: 100,
     right: 10,
   },
   phoneInputContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     flex: 1,
   },
   countryCode: {
     padding: 10,
-    backgroundColor: "#f1f2f6",
+    backgroundColor: '#f1f2f6',
     borderWidth: 1,
-    borderColor: "#dfe6e9",
+    borderColor: '#dfe6e9',
     borderRightWidth: 0,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
   },
   countryCodeText: {
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   phoneInput: {
     flex: 1,
@@ -501,7 +501,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
   },
   addressTypeContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 10,
     marginTop: 6,
   },
@@ -509,27 +509,27 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: "#dfe6e9",
+    borderColor: '#dfe6e9',
     borderRadius: 8,
-    backgroundColor: "#f1f2f6",
-    alignItems: "center",
+    backgroundColor: '#f1f2f6',
+    alignItems: 'center',
   },
   addressTypeSelected: {
-    backgroundColor: "#0984e3",
-    borderColor: "#0984e3",
+    backgroundColor: '#0984e3',
+    borderColor: '#0984e3',
   },
   addressTypeText: {
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   addressTypeTextSelected: {
     fontSize: 13,
-    color: "#fff",
-    fontWeight: "600",
+    color: '#fff',
+    fontWeight: '600',
   },
   checkboxContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginVertical: 15,
   },
   checkbox: {
@@ -537,26 +537,26 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#dfe6e9",
+    borderColor: '#dfe6e9',
     marginRight: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   checkboxChecked: {
     fontSize: 13,
-    color: "#0984e3",
+    color: '#0984e3',
   },
   checkboxUnchecked: {
     fontSize: 13,
-    color: "transparent",
+    color: 'transparent',
   },
   checkboxLabel: {
     fontSize: 13,
-    fontWeight: "500",
-    color: "#7f8c8d",
+    fontWeight: '500',
+    color: '#7f8c8d',
   },
   buttonContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 12,
     marginTop: 15,
   },
@@ -564,36 +564,36 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   saveButton: {
-    backgroundColor: "#0984e3",
+    backgroundColor: '#0984e3',
   },
   cancelButton: {
-    backgroundColor: "#e17055",
+    backgroundColor: '#e17055',
   },
   buttonText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 15,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   suggestionsContainer: {
     marginTop: 5,
     borderWidth: 1,
-    borderColor: "#dfe6e9",
+    borderColor: '#dfe6e9',
     borderRadius: 8,
     maxHeight: 200,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   suggestionItem: {
     padding: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#dfe6e9",
+    borderBottomColor: '#dfe6e9',
   },
   suggestionText: {
     fontSize: 14,
-    color: "#2d3436",
+    color: '#2d3436',
   },
 });
 

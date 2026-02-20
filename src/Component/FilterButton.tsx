@@ -1,9 +1,9 @@
-import {View, Text, TouchableOpacity} from "react-native";
-import React from "react";
-import {useNavigation} from "@react-navigation/native";
-import Icon3 from "react-native-vector-icons/MaterialCommunityIcons";
-import colors from "../Style/Color";
-import NavigationString from "../Constant/NavigationString";
+import {View, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
+import colors from '../Style/Color';
+import NavigationString from '../Constant/NavigationString';
 const FilterButton = () => {
   const Navigation: any = useNavigation();
   return (
@@ -18,9 +18,9 @@ const FilterButton = () => {
         height: 50,
         backgroundColor: colors.primaryLight,
         borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
-        position: "absolute",
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
         zIndex: 20,
         bottom: 20,
         right: 10,

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,23 +7,23 @@ import {
   ScrollView,
   ActivityIndicator,
   BackHandler,
-} from "react-native";
+} from 'react-native';
 import Animated, {
   FadeIn,
   FadeInUp,
   SlideInRight,
   Layout,
-} from "react-native-reanimated";
-import LinearGradient from "react-native-linear-gradient";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import {Header} from "../../Component/Index";
-import colors from "../../Style/Color";
-import {CommonActions, useNavigation} from "@react-navigation/native";
-import NavigationString from "../../Constant/NavigationString";
-import {useFetchAllOrder} from "../../Services/Main/Hooks";
+} from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Header} from '../../Component/Index';
+import colors from '../../Style/Color';
+import {CommonActions, useNavigation} from '@react-navigation/native';
+import NavigationString from '../../Constant/NavigationString';
+import {useFetchAllOrder} from '../../Services/Main/Hooks';
 
 const OrderHistoryDetail = ({route}: any) => {
   const {_id, goHome = false} = route.params;
@@ -39,25 +39,25 @@ const OrderHistoryDetail = ({route}: any) => {
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
-      case "delivered":
-        return ["#4CAF50", "#8BC34A"];
-      case "shipped":
-        return ["#2196F3", "#03A9F4"];
-      case "processing":
-        return ["#FF9800", "#FFC107"];
-      case "cancelled":
-        return ["#F44336", "#E91E63"];
+      case 'delivered':
+        return ['#4CAF50', '#8BC34A'];
+      case 'shipped':
+        return ['#2196F3', '#03A9F4'];
+      case 'processing':
+        return ['#FF9800', '#FFC107'];
+      case 'cancelled':
+        return ['#F44336', '#E91E63'];
       default:
-        return ["#9E9E9E", "#607D8B"];
+        return ['#9E9E9E', '#607D8B'];
     }
   };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
   };
 
@@ -89,7 +89,7 @@ const OrderHistoryDetail = ({route}: any) => {
   );
 
   const [statusColorStart, statusColorEnd] = getStatusColor(
-    order?.status || "",
+    order?.status || '',
   );
 
   useEffect(() => {
@@ -108,7 +108,7 @@ const OrderHistoryDetail = ({route}: any) => {
     };
 
     const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
+      'hardwareBackPress',
       backAction,
     );
 
@@ -125,7 +125,7 @@ const OrderHistoryDetail = ({route}: any) => {
 
   return (
     <View style={{flex: 1}} testID="order_history_detail">
-      <Header title={"Order Details"} isIcons={true} arrow={true} />
+      <Header title={'Order Details'} isIcons={true} arrow={true} />
       {!order?._id ? null : (
         <ScrollView
           style={styles.container}
@@ -153,16 +153,16 @@ const OrderHistoryDetail = ({route}: any) => {
             >
               <View style={styles.statusContent}>
                 <View style={styles.statusIcon}>
-                  {order?.status?.toLowerCase() === "delivered" && (
+                  {order?.status?.toLowerCase() === 'delivered' && (
                     <Icon name="check-circle" size={24} color="white" />
                   )}
-                  {order?.status?.toLowerCase() === "shipped" && (
+                  {order?.status?.toLowerCase() === 'shipped' && (
                     <Icon name="local-shipping" size={24} color="white" />
                   )}
-                  {order?.status?.toLowerCase() === "processing" && (
+                  {order?.status?.toLowerCase() === 'processing' && (
                     <Ionicons name="time-outline" size={24} color="white" />
                   )}
-                  {order?.status?.toLowerCase() === "cancelled" && (
+                  {order?.status?.toLowerCase() === 'cancelled' && (
                     <Icon name="cancel" size={24} color="white" />
                   )}
                 </View>
@@ -170,7 +170,7 @@ const OrderHistoryDetail = ({route}: any) => {
                   <Text style={styles.statusTitle}>
                     ORDER {order?.status?.toUpperCase()}
                   </Text>
-                  {order?.status?.toLowerCase() === "delivered" &&
+                  {order?.status?.toLowerCase() === 'delivered' &&
                     order.updatedAt && (
                       <Text style={styles.deliveryDate}>
                         Delivered on {formatDate(order.updatedAt)}
@@ -197,9 +197,9 @@ const OrderHistoryDetail = ({route}: any) => {
               <Text style={styles.paymentText}>
                 {order.payment.method
                   ? `${order.payment.method.toUpperCase()} •••• ${
-                      order.payment.last4 || "****"
+                      order.payment.last4 || '****'
                     }`
-                  : "Not specified"}
+                  : 'Not specified'}
               </Text>
             </View>
           </Animated.View>
@@ -277,7 +277,7 @@ const OrderHistoryDetail = ({route}: any) => {
               {order.totalDiscount > 0 && (
                 <View style={styles.summaryRow}>
                   <Text style={styles.summaryLabel}>Discount</Text>
-                  <Text style={[styles.summaryValue, {color: "#4CAF50"}]}>
+                  <Text style={[styles.summaryValue, {color: '#4CAF50'}]}>
                     -₹{order.totalDiscount.toFixed(2)}
                   </Text>
                 </View>
@@ -287,7 +287,7 @@ const OrderHistoryDetail = ({route}: any) => {
                   <Text style={styles.summaryLabel}>
                     Coupon ({order.coupon_applied.code})
                   </Text>
-                  <Text style={[styles.summaryValue, {color: "#4CAF50"}]}>
+                  <Text style={[styles.summaryValue, {color: '#4CAF50'}]}>
                     -₹{order.coupon_applied.amount?.toFixed(2)}
                   </Text>
                 </View>
@@ -323,11 +323,11 @@ const OrderHistoryDetail = ({route}: any) => {
                   styles.summaryValue,
                   {
                     color:
-                      order.payment.status === "paid" ? "#4CAF50" : "#FF9800",
+                      order.payment.status === 'paid' ? '#4CAF50' : '#FF9800',
                   },
                 ]}
               >
-                {order.payment.status.toUpperCase() || "pending"}
+                {order.payment.status.toUpperCase() || 'pending'}
               </Text>
             </View>
           </Animated.View>
@@ -339,48 +339,48 @@ const OrderHistoryDetail = ({route}: any) => {
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.White},
-  loadingContainer: {flex: 1, justifyContent: "center", alignItems: "center"},
+  loadingContainer: {flex: 1, justifyContent: 'center', alignItems: 'center'},
   scrollContent: {paddingHorizontal: 15, paddingBottom: 40},
   header: {marginBottom: 10, marginTop: 10},
   orderNumber: {
     fontSize: 20,
-    fontWeight: "800",
-    color: "#1A1A1A",
+    fontWeight: '800',
+    color: '#1A1A1A',
     marginBottom: 4,
   },
-  orderDate: {fontSize: 15, color: "#666"},
+  orderDate: {fontSize: 15, color: '#666'},
   statusCard: {
     borderRadius: 16,
-    overflow: "hidden",
+    overflow: 'hidden',
     marginBottom: 20,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 5,
   },
   statusGradient: {padding: 20},
-  statusContent: {flexDirection: "row", alignItems: "center"},
+  statusContent: {flexDirection: 'row', alignItems: 'center'},
   statusIcon: {marginRight: 16},
-  statusTitle: {fontSize: 18, fontWeight: "700", color: "white"},
-  deliveryDate: {fontSize: 14, color: "rgba(255,255,255,0.8)", marginTop: 4},
+  statusTitle: {fontSize: 18, fontWeight: '700', color: 'white'},
+  deliveryDate: {fontSize: 14, color: 'rgba(255,255,255,0.8)', marginTop: 4},
   card: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.05,
     shadowRadius: 10,
     elevation: 3,
   },
   summaryCard: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.05,
     shadowRadius: 10,
@@ -389,71 +389,71 @@ const styles = StyleSheet.create({
   summaryGroup: {
     marginBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#F0F0F0",
+    borderBottomColor: '#F0F0F0',
     paddingBottom: 12,
   },
-  cardHeader: {flexDirection: "row", alignItems: "center", marginBottom: 16},
+  cardHeader: {flexDirection: 'row', alignItems: 'center', marginBottom: 16},
   cardTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1A1A1A",
+    fontWeight: '600',
+    color: '#1A1A1A',
     marginLeft: 10,
   },
   paymentContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 16,
   },
   paymentIcon: {
     width: 40,
     height: 24,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: "#EEE",
-    justifyContent: "center",
-    alignItems: "center",
+    borderColor: '#EEE',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 12,
   },
-  paymentText: {fontSize: 15, color: "#333"},
-  itemCard: {flexDirection: "row", alignItems: "center", paddingVertical: 12},
+  paymentText: {fontSize: 15, color: '#333'},
+  itemCard: {flexDirection: 'row', alignItems: 'center', paddingVertical: 12},
   itemImagePlaceholder: {
     width: 60,
     height: 60,
     borderRadius: 8,
-    backgroundColor: "#6C63FF",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#6C63FF',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  itemImageText: {color: "white", fontSize: 20, fontWeight: "bold"},
+  itemImageText: {color: 'white', fontSize: 20, fontWeight: 'bold'},
   itemDetails: {flex: 1, marginLeft: 16, marginRight: 8},
   itemName: {
     fontSize: 15,
-    fontWeight: "600",
-    color: "#1A1A1A",
+    fontWeight: '600',
+    color: '#1A1A1A',
     marginBottom: 4,
   },
-  itemDescription: {fontSize: 13, color: "#666", marginBottom: 6},
-  itemPrice: {fontSize: 13, color: "#666"},
-  itemTotal: {fontSize: 15, fontWeight: "700", color: "#1A1A1A"},
-  itemSeparator: {height: 1, backgroundColor: "#F0F0F0", marginVertical: 8},
+  itemDescription: {fontSize: 13, color: '#666', marginBottom: 6},
+  itemPrice: {fontSize: 13, color: '#666'},
+  itemTotal: {fontSize: 15, fontWeight: '700', color: '#1A1A1A'},
+  itemSeparator: {height: 1, backgroundColor: '#F0F0F0', marginVertical: 8},
   summaryRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 8,
   },
-  summaryLabel: {fontSize: 15, color: "#666"},
-  summaryValue: {fontSize: 15, color: "#333"},
+  summaryLabel: {fontSize: 15, color: '#666'},
+  summaryValue: {fontSize: 15, color: '#333'},
   totalRow: {
     marginTop: 12,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: "#F0F0F0",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    borderTopColor: '#F0F0F0',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  totalLabel: {fontSize: 16, fontWeight: "700", color: "#1A1A1A"},
-  totalValue: {fontSize: 16, fontWeight: "700", color: "#1A1A1A"},
+  totalLabel: {fontSize: 16, fontWeight: '700', color: '#1A1A1A'},
+  totalValue: {fontSize: 16, fontWeight: '700', color: '#1A1A1A'},
 });
 
 export default OrderHistoryDetail;

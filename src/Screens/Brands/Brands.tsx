@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -9,17 +9,17 @@ import {
   ActivityIndicator,
   RefreshControl,
   TouchableOpacity,
-} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
-import {useFetchBrand} from "../../Services/Main/Hooks";
-import ImagePath from "../../Constant/ImagePath";
-import colors from "../../Style/Color";
-import {Header} from "../../Component/Index";
-import {useNavigation} from "@react-navigation/native";
-import NavigationString from "../../Constant/NavigationString";
-import LottieLoader from "../../Component/LottieLoader";
+} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {useFetchBrand} from '../../Services/Main/Hooks';
+import ImagePath from '../../Constant/ImagePath';
+import colors from '../../Style/Color';
+import {Header} from '../../Component/Index';
+import {useNavigation} from '@react-navigation/native';
+import NavigationString from '../../Constant/NavigationString';
+import LottieLoader from '../../Component/LottieLoader';
 
-const {width, height} = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 const CARD_MARGIN = 8;
 const CARD_WIDTH = (width - 20 * 2 - CARD_MARGIN) / 2;
 
@@ -107,11 +107,11 @@ const Brands = ({route}: any) => {
     <SafeAreaView
       testID="brandWrapper"
       style={styles.container}
-      edges={["bottom"]}
+      edges={['bottom']}
     >
       <Header
         arrow={true}
-        title={type == "Vehicle" ? "Vehicle Brands" : "Spare Brands"}
+        title={type == 'Vehicle' ? 'Vehicle Brands' : 'Spare Brands'}
         isIcons={true}
       />
       {isLoading ? (
@@ -127,7 +127,7 @@ const Brands = ({route}: any) => {
           ListEmptyComponent={() => {
             return (
               <View testID="lottieLoader" style={{height: height - 100}}>
-                <LottieLoader url={require("../../lottie/Inventory.json")} />
+                <LottieLoader url={require('../../lottie/Inventory.json')} />
               </View>
             );
           }}
@@ -166,87 +166,87 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 16,
     marginRight: CARD_MARGIN,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 6,
     shadowOffset: {width: 0, height: 2},
     elevation: 2,
     borderWidth: 1,
-    borderColor: "#f0f0f0",
-    alignItems: "center",
+    borderColor: '#f0f0f0',
+    alignItems: 'center',
   },
   imageContainer: {
-    width: "100%",
+    width: '100%',
     height: 100,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: colors.White,
     borderRadius: 8,
     marginBottom: 12,
-    overflow: "hidden",
-    position: "relative",
+    overflow: 'hidden',
+    position: 'relative',
   },
   logo: {
-    width: "90%",
-    height: "90%",
-    resizeMode: "contain",
+    width: '90%',
+    height: '90%',
+    resizeMode: 'contain',
   },
   imageBorder: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.08)",
+    borderColor: 'rgba(0,0,0,0.08)',
     borderRadius: 8,
   },
   details: {
-    width: "100%",
+    width: '100%',
     paddingHorizontal: 4,
   },
   name: {
     fontSize: 15,
-    fontWeight: "600",
+    fontWeight: '600',
     color: colors.Black,
-    textAlign: "center",
+    textAlign: 'center',
   },
   // Skeleton Styles
   skeletonContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     paddingHorizontal: 10,
     paddingTop: 8,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   skeletonCard: {
-    width: "49%",
+    width: '49%',
     marginBottom: 16,
   },
   skeletonImage: {
-    width: "100%",
+    width: '100%',
     height: 100,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: '#f0f0f0',
     borderRadius: 8,
     marginBottom: 12,
-    position: "relative",
+    position: 'relative',
   },
   skeletonImageBorder: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.08)",
+    borderColor: 'rgba(0,0,0,0.08)',
     borderRadius: 8,
   },
   skeletonText: {
     height: 16,
-    width: "70%",
-    backgroundColor: "#f0f0f0",
+    width: '70%',
+    backgroundColor: '#f0f0f0',
     borderRadius: 4,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
 });
 

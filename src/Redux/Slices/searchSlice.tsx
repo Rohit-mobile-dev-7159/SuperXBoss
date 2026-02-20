@@ -1,5 +1,5 @@
 // searchSlice.ts
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface RecentSearch {
   _id: string;
@@ -15,7 +15,7 @@ const initialState: SearchState = {
 };
 
 export const searchSlice = createSlice({
-  name: "search",
+  name: 'search',
   initialState,
   reducers: {
     addRecentSearch: (state, action: PayloadAction<RecentSearch>) => {

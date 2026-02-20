@@ -9,27 +9,27 @@ import {
   Platform,
   FlatList,
   Keyboard,
-} from "react-native";
-import React, {useState, useEffect, useRef} from "react";
-import {Dropdown} from "react-native-element-dropdown";
-import {RadioButton} from "react-native-paper";
-import axios from "axios";
-import {useSelector, useDispatch} from "react-redux";
-import Styles from "../../Styles/Styles";
-import ImagePath from "../../Constant/ImagePath";
-import colors from "../../Style/Color";
-import Variable from "../../Constant/Variable";
-import {useNavigation} from "@react-navigation/native";
-import NavigationString from "../../Constant/NavigationString";
-import {setToken} from "../../Redux/Slices/Token";
-import {useCustomerUpdate} from "../../Services/User/Hooks";
-import {showErrorAlert, showSuccessAlert} from "../../Constant/ShowDailog";
+} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
+import {Dropdown} from 'react-native-element-dropdown';
+import {RadioButton} from 'react-native-paper';
+import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import Styles from '../../Styles/Styles';
+import ImagePath from '../../Constant/ImagePath';
+import colors from '../../Style/Color';
+import Variable from '../../Constant/Variable';
+import {useNavigation} from '@react-navigation/native';
+import NavigationString from '../../Constant/NavigationString';
+import {setToken} from '../../Redux/Slices/Token';
+import {useCustomerUpdate} from '../../Services/User/Hooks';
+import {showErrorAlert, showSuccessAlert} from '../../Constant/ShowDailog';
 
 const businessType = [
-  {label: "B2B", value: "1"},
-  {label: "B2C", value: "2"},
-  {label: "C2C", value: "3"},
-  {label: "B2G", value: "4"},
+  {label: 'B2B', value: '1'},
+  {label: 'B2C', value: '2'},
+  {label: 'C2C', value: '3'},
+  {label: 'B2G', value: '4'},
 ];
 
 interface AddressData {
@@ -56,20 +56,20 @@ interface FormValues {
 
 const UserInfo = () => {
   const [formData, setFormData] = useState<FormValues>({
-    name: "",
-    email: "",
-    reference_code: "",
-    business_type: "",
-    type: "",
-    business_name: "",
-    gst_number: "",
-    business_contact_no: "",
-    state: "",
-    city: "",
-    pinCode: "",
-    address: "",
-    longitude: "",
-    latitude: "",
+    name: '',
+    email: '',
+    reference_code: '',
+    business_type: '',
+    type: '',
+    business_name: '',
+    gst_number: '',
+    business_contact_no: '',
+    state: '',
+    city: '',
+    pinCode: '',
+    address: '',
+    longitude: '',
+    latitude: '',
   });
 
   const [addressSuggestions, setAddressSuggestions] = useState<AddressData[]>(
@@ -77,7 +77,7 @@ const UserInfo = () => {
   );
   const [isAddressFocused, setIsAddressFocused] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [currentUserType, updateUserType] = useState("customer");
+  const [currentUserType, updateUserType] = useState('customer');
   const userData = useSelector((state: any) => state.token.token);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -101,12 +101,12 @@ const UserInfo = () => {
       if (searchTerm.length > 2) {
         try {
           const response = await axios.get(
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+            'https://maps.googleapis.com/maps/api/place/autocomplete/json',
             {
               params: {
                 input: searchTerm,
                 key: Variable.GOOGLE_API_KEY,
-                components: "country:in",
+                components: 'country:in',
               },
             },
           );
@@ -143,13 +143,13 @@ const UserInfo = () => {
 
       // Then fetch the place details
       const response = await axios.get(
-        "https://maps.googleapis.com/maps/api/place/details/json",
+        'https://maps.googleapis.com/maps/api/place/details/json',
         {
           params: {
             place_id: item.place_id,
             key: Variable.GOOGLE_API_KEY,
             // fields: 'address_component',
-            fields: "address_component,geometry",
+            fields: 'address_component,geometry',
           },
         },
       );
@@ -159,21 +159,21 @@ const UserInfo = () => {
       const longitude = location?.lng;
       // Extract address components
       const addressComponents = response.data.result.address_components;
-      let state = "";
-      let city = "";
-      let pinCode = "";
+      let state = '';
+      let city = '';
+      let pinCode = '';
 
       addressComponents.forEach((component: any) => {
-        if (component.types.includes("administrative_area_level_1")) {
+        if (component.types.includes('administrative_area_level_1')) {
           state = component.long_name;
         }
         if (
-          component.types.includes("locality") ||
-          component.types.includes("postal_town")
+          component.types.includes('locality') ||
+          component.types.includes('postal_town')
         ) {
           city = component.long_name;
         }
-        if (component.types.includes("postal_code")) {
+        if (component.types.includes('postal_code')) {
           pinCode = component.long_name;
         }
       });
@@ -220,16 +220,16 @@ const UserInfo = () => {
   return (
     <View testID="wrapper" style={{flex: 1, paddingTop: 30}}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{flex: 1}}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       >
         <ScrollView
           style={{paddingHorizontal: 20}}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          <View style={{flex: 1, backgroundColor: "white"}}>
+          <View style={{flex: 1, backgroundColor: 'white'}}>
             <View style={Styles.logo}>
               <ImagePath.Logo width={150} height={50} />
             </View>
@@ -244,14 +244,14 @@ const UserInfo = () => {
                   placeholder="Name"
                   style={Styles.input}
                   placeholderTextColor="#1B4B66"
-                  onChangeText={handleChange("name")}
+                  onChangeText={handleChange('name')}
                   value={formData.name}
                 />
                 <TextInput
                   placeholder="Email..."
                   style={Styles.input}
                   placeholderTextColor="#1B4B66"
-                  onChangeText={handleChange("email")}
+                  onChangeText={handleChange('email')}
                   value={formData.email}
                   keyboardType="email-address"
                 />
@@ -259,7 +259,7 @@ const UserInfo = () => {
                   placeholder="Referral code...."
                   style={Styles.input}
                   placeholderTextColor="#1B4B66"
-                  onChangeText={handleChange("reference_code")}
+                  onChangeText={handleChange('reference_code')}
                   value={formData.reference_code}
                   autoCapitalize="characters"
                 />
@@ -307,20 +307,20 @@ const UserInfo = () => {
                 {/* Auto-filled address details */}
                 <View
                   style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
                   }}
                 >
                   <TextInput
                     placeholder="State"
-                    style={[Styles.input, {width: "48%"}]}
+                    style={[Styles.input, {width: '48%'}]}
                     placeholderTextColor="#1B4B66"
                     value={formData.state}
                     editable={false}
                   />
                   <TextInput
                     placeholder="City"
-                    style={[Styles.input, {width: "48%"}]}
+                    style={[Styles.input, {width: '48%'}]}
                     placeholderTextColor="#1B4B66"
                     value={formData.city}
                     editable={false}
@@ -341,23 +341,23 @@ const UserInfo = () => {
                   <TouchableOpacity
                     testID="updateType"
                     style={
-                      currentUserType === "customer"
+                      currentUserType === 'customer'
                         ? styles.ActiveUserButton
                         : styles.UserButton
                     }
-                    onPress={() => updateUserType("customer")}
+                    onPress={() => updateUserType('customer')}
                   >
                     <RadioButton
                       value="first"
                       status={
-                        currentUserType === "customer" ? "checked" : "unchecked"
+                        currentUserType === 'customer' ? 'checked' : 'unchecked'
                       }
                       color={colors.DBlue}
                     />
-                    <View style={{alignItems: "center"}}>
+                    <View style={{alignItems: 'center'}}>
                       <ImagePath.Customer
                         fill={
-                          currentUserType === "customer" ? "#1B4B66" : "gray"
+                          currentUserType === 'customer' ? '#1B4B66' : 'gray'
                         }
                         width={60}
                         height={60}
@@ -368,22 +368,22 @@ const UserInfo = () => {
                   <TouchableOpacity
                     testID="typeB2b"
                     style={
-                      currentUserType === "b2b"
+                      currentUserType === 'b2b'
                         ? styles.ActiveUserButton
                         : styles.UserButton
                     }
-                    onPress={() => updateUserType("b2b")}
+                    onPress={() => updateUserType('b2b')}
                   >
                     <RadioButton
                       value="first"
                       status={
-                        currentUserType === "b2b" ? "checked" : "unchecked"
+                        currentUserType === 'b2b' ? 'checked' : 'unchecked'
                       }
                       color={colors.DBlue}
                     />
-                    <View style={{alignItems: "center"}}>
+                    <View style={{alignItems: 'center'}}>
                       <ImagePath.Business
-                        fill={currentUserType === "b2b" ? "#1B4B66" : "gray"}
+                        fill={currentUserType === 'b2b' ? '#1B4B66' : 'gray'}
                         width={60}
                         height={60}
                       />
@@ -392,7 +392,7 @@ const UserInfo = () => {
                   </TouchableOpacity>
                 </View>
 
-                {currentUserType === "b2b" && (
+                {currentUserType === 'b2b' && (
                   <View style={{marginTop: 20}}>
                     <Text style={styles.personalInfo}>
                       Business Information
@@ -402,7 +402,7 @@ const UserInfo = () => {
                         testID="dropdown"
                         style={[
                           styles.dropdown,
-                          isFocus && {borderColor: "blue"},
+                          isFocus && {borderColor: 'blue'},
                         ]}
                         placeholderStyle={styles.placeholderStyle}
                         selectedTextStyle={styles.selectedTextStyle}
@@ -413,7 +413,7 @@ const UserInfo = () => {
                         maxHeight={300}
                         labelField="label"
                         valueField="value"
-                        placeholder={!isFocus ? "Business Type" : "..."}
+                        placeholder={!isFocus ? 'Business Type' : '...'}
                         searchPlaceholder="Search..."
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
@@ -429,21 +429,21 @@ const UserInfo = () => {
                         placeholder="Business Name"
                         style={Styles.input}
                         placeholderTextColor="#1B4B66"
-                        onChangeText={handleChange("business_name")}
+                        onChangeText={handleChange('business_name')}
                         value={formData.business_name}
                       />
                       <TextInput
                         placeholder="GST Number"
                         style={Styles.input}
                         placeholderTextColor="#1B4B66"
-                        onChangeText={handleChange("gst_number")}
+                        onChangeText={handleChange('gst_number')}
                         value={formData.gst_number}
                       />
                       <TextInput
                         placeholder="Business Contact Number"
                         style={Styles.input}
                         placeholderTextColor="#1B4B66"
-                        onChangeText={handleChange("business_contact_no")}
+                        onChangeText={handleChange('business_contact_no')}
                         value={formData.business_contact_no}
                         keyboardType="phone-pad"
                       />
@@ -470,7 +470,7 @@ const UserInfo = () => {
                   disabled={isPending}
                 >
                   <Text style={Styles.next}>
-                    {isPending ? "SUBMITTING..." : "SUBMIT"}
+                    {isPending ? 'SUBMITTING...' : 'SUBMIT'}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -486,7 +486,7 @@ const styles = StyleSheet.create({
   personalInfo: {
     fontSize: 16,
     color: colors.DBlue,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   dropdown: {
     backgroundColor: colors.LGray,
@@ -511,14 +511,14 @@ const styles = StyleSheet.create({
     color: colors.DBlue,
   },
   UserButton: {
-    width: "48%",
+    width: '48%',
     height: 150,
     backgroundColor: colors.LGray,
     borderRadius: 20,
     padding: 10,
   },
   ActiveUserButton: {
-    width: "48%",
+    width: '48%',
     height: 150,
     backgroundColor: colors.LGray,
     borderRadius: 20,
@@ -527,30 +527,30 @@ const styles = StyleSheet.create({
     borderColor: colors.DBlue,
   },
   radioText: {
-    fontFamily: "Raleway-Bold",
+    fontFamily: 'Raleway-Bold',
     fontSize: 15,
     color: colors.DBlue,
-    fontWeight: "600",
+    fontWeight: '600',
     marginTop: 4,
   },
   radioWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
   },
   suggestionsContainer: {
-    position: "absolute",
+    position: 'absolute',
     top: 50,
     left: 0,
     right: 0,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     zIndex: 1000,
     elevation: 3,
     borderRadius: 5,
     maxHeight: 200,
     borderWidth: 1,
-    borderColor: "#ddd",
-    shadowColor: "#000",
+    borderColor: '#ddd',
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
   suggestionItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: '#eee',
   },
   suggestionText: {
     color: colors.DBlue,

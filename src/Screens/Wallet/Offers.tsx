@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -7,20 +7,20 @@ import {
   StyleSheet,
   ActivityIndicator,
   Dimensions,
-} from "react-native";
+} from 'react-native';
 
 import {
   useFetchOffers,
   useFetchUserProfile,
   useRechargeWallet,
   useRechargeWalletVerify,
-} from "../../Services/Main/Hooks";
-import {Header} from "../../Component/Index";
-import colors from "../../Style/Color";
-import RazorpayCheckout from "react-native-razorpay";
-import {showErrorAlert, showToast} from "../../Constant/ShowDailog";
-import {useNavigation} from "@react-navigation/native";
-const {width} = Dimensions.get("window");
+} from '../../Services/Main/Hooks';
+import {Header} from '../../Component/Index';
+import colors from '../../Style/Color';
+import RazorpayCheckout from 'react-native-razorpay';
+import {showErrorAlert, showToast} from '../../Constant/ShowDailog';
+import {useNavigation} from '@react-navigation/native';
+const {width} = Dimensions.get('window');
 const CARD_WIDTH = (width - 60) / 2; // 20 padding + 20 between cards
 
 const Offers = () => {
@@ -50,11 +50,11 @@ const Offers = () => {
               const options: any = {
                 description: `Payment for order ${res?._payload?.orderId}`,
                 // image: require('../../Images/ic_launcher.png'),
-                currency: "INR",
-                key: "rzp_test_FJbZTaMr0yy4pM",
+                currency: 'INR',
+                key: 'rzp_test_FJbZTaMr0yy4pM',
                 amount: res._payload.amount,
-                name: "SuperXBoss",
-                order_id: res?._payload?.orderId || "",
+                name: 'SuperXBoss',
+                order_id: res?._payload?.orderId || '',
                 prefill: {
                   email: userProfile?._payload?.email,
                   contact: userProfile?._payload?.mobile,
@@ -66,7 +66,7 @@ const Offers = () => {
               RazorpayCheckout.open(options)
                 .then(data => {
                   console.log(
-                    "Payment Success:",
+                    'Payment Success:',
                     JSON.stringify(data, null, 2),
                   );
                   rechargeVerifyMutate(
@@ -84,12 +84,12 @@ const Offers = () => {
                 })
                 .catch(error => {
                   console.error(`Error: ${error.code} | ${error.description}`);
-                  showErrorAlert("Paymet failed");
+                  showErrorAlert('Paymet failed');
                 });
             }
           },
           onError: error => {
-            console.log(error, "----------");
+            console.log(error, '----------');
           },
         },
       );
@@ -133,7 +133,7 @@ const Offers = () => {
 
   return (
     <>
-      <Header title={"Wallet Offers"} />
+      <Header title={'Wallet Offers'} />
       <View style={styles.container}>
         <FlatList
           data={data?.result || []}
@@ -141,7 +141,7 @@ const Offers = () => {
           renderItem={renderOfferItem}
           numColumns={2}
           columnWrapperStyle={{
-            justifyContent: "space-between",
+            justifyContent: 'space-between',
             marginBottom: 15,
           }}
           onEndReached={loadMoreOffers}
@@ -163,7 +163,7 @@ const Offers = () => {
             disabled={!selectedOfferId}
           >
             {isPending || isPending1 ? (
-              <ActivityIndicator color={colors.White} size={"small"} />
+              <ActivityIndicator color={colors.White} size={'small'} />
             ) : (
               <Text style={styles.payNowText}>Pay Now</Text>
             )}
@@ -175,13 +175,13 @@ const Offers = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: "#f5f5f5", padding: 10},
+  container: {flex: 1, backgroundColor: '#f5f5f5', padding: 10},
   offerCard: {
     width: CARD_WIDTH,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 15,
     padding: 15,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: {width: 0, height: 4},
     shadowRadius: 6,
@@ -190,61 +190,61 @@ const styles = StyleSheet.create({
   },
   selectedOffer: {
     borderWidth: 2,
-    borderColor: "#4caf50",
+    borderColor: '#4caf50',
   },
   offerHeader: {
-    backgroundColor: "#e0f7fa",
+    backgroundColor: '#e0f7fa',
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 10,
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
     marginBottom: 10,
   },
   offerTitle: {
     fontSize: 12,
-    fontWeight: "bold",
-    color: "#00796b",
+    fontWeight: 'bold',
+    color: '#00796b',
   },
   offerBody: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   amountText: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
+    fontWeight: 'bold',
+    color: '#333',
   },
   offerAmountText: {
     fontSize: 14,
-    color: "#ff5722",
+    color: '#ff5722',
     marginVertical: 5,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   totalAmountText: {
     fontSize: 16,
-    fontWeight: "bold",
-    color: "#4caf50",
+    fontWeight: 'bold',
+    color: '#4caf50',
   },
-  loadingContainer: {flex: 1, justifyContent: "center", alignItems: "center"},
+  loadingContainer: {flex: 1, justifyContent: 'center', alignItems: 'center'},
   payNowContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    width: "100%",
+    width: '100%',
     padding: 20,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: '#f5f5f5',
   },
   payNowButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: '#4caf50',
     paddingVertical: 15,
     borderRadius: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   payNowDisabled: {
-    backgroundColor: "#a5d6a7",
+    backgroundColor: '#a5d6a7',
   },
   payNowText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 

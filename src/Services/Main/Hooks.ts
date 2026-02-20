@@ -1,5 +1,5 @@
-import {useInfiniteQuery, useMutation, useQuery} from "@tanstack/react-query";
-import {categoryPayload, productType, TripPage} from "./types";
+import {useInfiniteQuery, useMutation, useQuery} from '@tanstack/react-query';
+import {categoryPayload, productType, TripPage} from './types';
 import {
   addRecentViewd,
   confirmOrder,
@@ -30,13 +30,13 @@ import {
   updateAddToCart,
   updateRecharge,
   updateWishlist,
-} from "./apis";
+} from './apis';
 
 // User
 
 export const useFetchUserProfile = () => {
   return useQuery({
-    queryKey: ["fetchUserProfile"],
+    queryKey: ['fetchUserProfile'],
     queryFn: () => fetchUserProfile(),
   });
 };
@@ -44,7 +44,7 @@ export const useFetchUserProfile = () => {
 // Category
 export const useFetchCategory = (payload: categoryPayload) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchCategory", payload],
+    queryKey: ['fetchCategory', payload],
     queryFn: ({pageParam = 1}) =>
       fetchCategory({
         ...payload,
@@ -72,7 +72,7 @@ export const useFetchCategory = (payload: categoryPayload) => {
 // Brand
 export const useFetchBrand = (payload: categoryPayload) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchBrands", payload],
+    queryKey: ['fetchBrands', payload],
     queryFn: ({pageParam = 1}) =>
       fetchBrands({
         ...payload,
@@ -98,10 +98,10 @@ export const useFetchBrand = (payload: categoryPayload) => {
 };
 // Banner
 export const useFetchBanners = (
-  payload: Omit<categoryPayload, "page" | "page_size">,
+  payload: Omit<categoryPayload, 'page' | 'page_size'>,
 ) => {
   return useQuery({
-    queryKey: ["fetchBanners", payload],
+    queryKey: ['fetchBanners', payload],
     queryFn: () =>
       fetchBanners({
         ...payload,
@@ -112,10 +112,10 @@ export const useFetchBanners = (
 };
 // Vehicle Segment
 export const useFetchVehicleSegment = (
-  payload: Omit<categoryPayload, "page" | "page_size">,
+  payload: Omit<categoryPayload, 'page' | 'page_size'>,
 ) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchVehicleSegment", payload],
+    queryKey: ['fetchVehicleSegment', payload],
     queryFn: ({pageParam = 1}) =>
       fetchVehicleSegment({
         ...payload,
@@ -142,7 +142,7 @@ export const useFetchVehicleSegment = (
 // Products
 export const useFetchAllProduct = (payload: productType) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchAllProduct", payload],
+    queryKey: ['fetchAllProduct', payload],
     queryFn: ({pageParam = 1}) =>
       fetchAllProduct({
         ...payload,
@@ -168,7 +168,7 @@ export const useFetchAllProduct = (payload: productType) => {
 };
 export const useFetchAllBrandProduct = (payload: productType) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchAllBrandProduct", payload],
+    queryKey: ['fetchAllBrandProduct', payload],
     queryFn: ({pageParam = 1}) =>
       fetchAllBrandProduct({
         ...payload,
@@ -194,7 +194,7 @@ export const useFetchAllBrandProduct = (payload: productType) => {
 };
 export const useFetchProductDetail = (payload: {_id: string}) => {
   return useQuery({
-    queryKey: ["fetchProductDetails", payload],
+    queryKey: ['fetchProductDetails', payload],
     queryFn: () => fetchProductDetails({...payload}),
   });
 };
@@ -212,7 +212,7 @@ export const useUpdateWishlist = () => {
 };
 export const useFetchWishlistProduct = () => {
   return useQuery({
-    queryKey: ["fetchWishlist"],
+    queryKey: ['fetchWishlist'],
     queryFn: () => fetchWishlist(),
   });
 };
@@ -221,7 +221,7 @@ export const useFetchRecentViewedProduct = (payload: {
   page_size: number;
 }) => {
   return useQuery({
-    queryKey: ["fetchRecentViewd", payload],
+    queryKey: ['fetchRecentViewd', payload],
     queryFn: () => fetchRecentViewd(payload),
   });
 };
@@ -234,7 +234,7 @@ export const useAddToCart = () => {
 
 export const useFetchAllAddToCartProduct = (payload: productType) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchAllAddToCart", payload],
+    queryKey: ['fetchAllAddToCart', payload],
     queryFn: ({}) => fetchAllAddToCart(),
     initialPageParam: 1,
     getNextPageParam: lastPage => lastPage?.nextPage ?? undefined,
@@ -254,7 +254,7 @@ export const useFetchAllAddToCartProduct = (payload: productType) => {
 // Rating
 export const useFetchRating = () => {
   return useQuery({
-    queryKey: ["fetchBanners"],
+    queryKey: ['fetchBanners'],
     queryFn: () => fetchRating(),
   });
 };
@@ -263,7 +263,7 @@ export const useFetchRating = () => {
 
 export const useFetchCoupon = (payload: productType) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchCoupon", payload],
+    queryKey: ['fetchCoupon', payload],
     queryFn: ({pageParam = 1}) =>
       fetchCoupon({
         ...payload,
@@ -291,7 +291,7 @@ export const useFetchCoupon = (payload: productType) => {
 // Products
 export const useFetchAllOrder = (payload: productType) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchAllOrder", payload],
+    queryKey: ['fetchAllOrder', payload],
     queryFn: ({pageParam = 1}) =>
       fetchAllOrder({
         ...payload,
@@ -325,7 +325,7 @@ export const useCreateAddress = () => {
 
 export const useFetchAddress = () => {
   return useQuery({
-    queryKey: ["fetchAddress"],
+    queryKey: ['fetchAddress'],
     queryFn: () => fetchAddress(),
   });
 };
@@ -353,7 +353,7 @@ export const useRechargeWalletVerify = () => {
 
 export const useFetchWalletHistory = (payload: any) => {
   return useInfiniteQuery({
-    queryKey: ["fetchWalletHistory", payload],
+    queryKey: ['fetchWalletHistory', payload],
     queryFn: ({pageParam = 1}) =>
       fetchWalletHistory({
         ...payload,
@@ -398,7 +398,7 @@ export const useOrderConfirm = () => {
 
 export const useKmPointCharge = () => {
   return useQuery({
-    queryKey: ["fetchCharges"],
+    queryKey: ['fetchCharges'],
     queryFn: () => fetchCharges(),
   });
 };
@@ -406,7 +406,7 @@ export const useKmPointCharge = () => {
 // FAQs
 export const useFetchFAQs = (payload: any) => {
   return useInfiniteQuery({
-    queryKey: ["fetchFAQs", payload],
+    queryKey: ['fetchFAQs', payload],
     queryFn: ({pageParam = 1}) => fetchFAQs({page: pageParam, page_size: 10}),
     initialPageParam: 1,
     getNextPageParam: (lastPage: any) =>
@@ -429,7 +429,7 @@ export const useFetchFAQs = (payload: any) => {
 // Offers
 export const useFetchOffers = (payload: categoryPayload) => {
   return useInfiniteQuery<TripPage, Error>({
-    queryKey: ["fetchOffers", payload],
+    queryKey: ['fetchOffers', payload],
     queryFn: ({pageParam = 1}) =>
       fetchOffers({
         ...payload,
@@ -458,7 +458,7 @@ export const useFetchOffers = (payload: categoryPayload) => {
 
 export const usePrivacyPolicy = () => {
   return useQuery({
-    queryKey: ["fetchPrivacyPolicy"],
+    queryKey: ['fetchPrivacyPolicy'],
     queryFn: () => fetchPrivacyPolicy(),
   });
 };

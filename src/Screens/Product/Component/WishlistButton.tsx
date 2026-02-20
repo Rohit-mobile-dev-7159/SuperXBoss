@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {TouchableOpacity, ActivityIndicator} from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import {useUpdateWishlist} from "../../../Services/Main/Hooks";
+import React, {useEffect, useState} from 'react';
+import {TouchableOpacity, ActivityIndicator} from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useUpdateWishlist} from '../../../Services/Main/Hooks';
 
 interface WishlistButtonProps {
   productId: string;
@@ -17,8 +17,8 @@ const WishlistButton = ({
   productId,
   status,
   iconSize = 20,
-  activeColor = "red",
-  inactiveColor = "gray",
+  activeColor = 'red',
+  inactiveColor = 'gray',
   isPageRefresh = false,
   refetch,
 }: WishlistButtonProps) => {
@@ -74,7 +74,7 @@ const WishlistButton = ({
       ) : (
         <AntDesign
           testID="icon-1"
-          name={isWishlist ? "heart" : "hearto"}
+          name={isWishlist ? 'heart' : 'hearto'}
           size={iconSize}
           color={isWishlist ? activeColor : inactiveColor}
         />

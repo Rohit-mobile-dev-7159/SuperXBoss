@@ -1,8 +1,8 @@
 // test-utils.tsx
-import React from "react";
-import {render} from "@testing-library/react-native";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {SafeAreaProvider} from "react-native-safe-area-context";
+import React from 'react';
+import {render} from '@testing-library/react-native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const createTestQueryClient = () =>
   new QueryClient({
@@ -12,7 +12,7 @@ const createTestQueryClient = () =>
     },
   });
 
-jest.mock("@react-navigation/native", () => ({
+jest.mock('@react-navigation/native', () => ({
   useNavigation: () => ({
     navigate: jest.fn(),
   }),

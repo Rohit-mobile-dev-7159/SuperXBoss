@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,26 +7,26 @@ import {
   Dimensions,
   FlatList,
   ActivityIndicator,
-} from "react-native";
-import LottieView from "lottie-react-native";
-import Animated, {FadeInDown, FadeIn, FadeInUp} from "react-native-reanimated";
-import {colors, NavigationString, ImagePath} from "../../Constant/AllImports";
-import {Header} from "../../Component/Index";
-import {useFocusEffect, useNavigation} from "@react-navigation/native";
-import {Image} from "react-native";
-import MainStyle from "../../Styles/MainStyle";
+} from 'react-native';
+import LottieView from 'lottie-react-native';
+import Animated, {FadeInDown, FadeIn, FadeInUp} from 'react-native-reanimated';
+import {colors, NavigationString, ImagePath} from '../../Constant/AllImports';
+import {Header} from '../../Component/Index';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {Image} from 'react-native';
+import MainStyle from '../../Styles/MainStyle';
 import {
   useAddToCart,
   useFetchAllAddToCartProduct,
   useUpdateWishlist,
-} from "../../Services/Main/Hooks";
-import {useDispatch, useSelector} from "react-redux";
-const {width, height} = Dimensions.get("window");
-import {removeFromCart} from "../../Redux/Slices/AddToCartProduct";
-import CouponModal from "./Component/CouponModal";
-import Icon from "react-native-vector-icons/Ionicons";
-import BulkDiscount from "../Home/Component/BulkDiscount";
-import QuantitySelector from "../Product/Component/QuantitySelector";
+} from '../../Services/Main/Hooks';
+import {useDispatch, useSelector} from 'react-redux';
+const {width, height} = Dimensions.get('window');
+import {removeFromCart} from '../../Redux/Slices/AddToCartProduct';
+import CouponModal from './Component/CouponModal';
+import Icon from 'react-native-vector-icons/Ionicons';
+import BulkDiscount from '../Home/Component/BulkDiscount';
+import QuantitySelector from '../Product/Component/QuantitySelector';
 
 interface BulkDiscount {
   count: number;
@@ -55,7 +55,7 @@ const Cart = () => {
     refetch,
     isPending,
   }: any = useFetchAllAddToCartProduct({});
-  const [payload, setPayload] = useState({products: [], coupon: ""});
+  const [payload, setPayload] = useState({products: [], coupon: ''});
   const {mutate, isPending: isPending1} = useAddToCart();
   const {mutate: wishListMutate} = useUpdateWishlist();
   const [loadingItems, setLoadingItems] = useState<{[key: string]: boolean}>(
@@ -89,7 +89,7 @@ const Cart = () => {
     }
 
     const isLoading = loadingItems[item._id] || false;
-    if (item._id === "add-more-item") {
+    if (item._id === 'add-more-item') {
       return (
         <TouchableOpacity
           testID="addMore"
@@ -133,7 +133,7 @@ const Cart = () => {
               <Text style={styles.qtyLabel}>Qty:</Text>
               <QuantitySelector
                 quantity={item?.addToCartQty || 0}
-                productId={item?._id || ""}
+                productId={item?._id || ''}
                 itemStock={item?.item_stock}
                 refetch={refetch}
                 style={{
@@ -145,7 +145,7 @@ const Cart = () => {
             <View style={styles.priceRow}>
               <Text style={styles.price}>
                 ₹
-                {userData?.type === "customer"
+                {userData?.type === 'customer'
                   ? Math.round(
                       item?.customer_price -
                         (item?.customer_price * applicableDiscount) / 100,
@@ -160,7 +160,7 @@ const Cart = () => {
                 <>
                   <Text style={styles.oldPrice}>
                     ₹
-                    {userData?.type === "customer"
+                    {userData?.type === 'customer'
                       ? item?.customer_price
                       : item?.b2b_price}
                   </Text>
@@ -169,7 +169,7 @@ const Cart = () => {
               )}
             </View>
             <Text
-              style={{fontSize: 12, color: colors.Black, fontWeight: "500"}}
+              style={{fontSize: 12, color: colors.Black, fontWeight: '500'}}
             >
               Item Stock : {item.item_stock}
             </Text>
@@ -205,7 +205,7 @@ const Cart = () => {
               <ActivityIndicator
                 testID="activityLoader"
                 color={colors.DBlue}
-                size={"small"}
+                size={'small'}
               />
             ) : (
               <Text style={[styles.bottomBtn, styles.removeText]}>Remove</Text>
@@ -253,7 +253,7 @@ const Cart = () => {
     items.forEach((item: any) => {
       totalPoint = totalPoint + item.point * item.addToCartQty;
       const originalPrice =
-        userType === "customer" ? item.customer_price : item.b2b_price;
+        userType === 'customer' ? item.customer_price : item.b2b_price;
       const quantity = item.addToCartQty || 0;
 
       // Calculate subtotal using original prices (without any discounts)
@@ -342,7 +342,7 @@ const Cart = () => {
 
   return (
     <View testID="cart" style={styles.container}>
-      <Header title={"My Cart"} />
+      <Header title={'My Cart'} />
       {fetchLoading ? (
         <View testID="loader" style={{flex: 1, backgroundColor: colors.White}}>
           <ActivityIndicator size="large" color={colors.DBlue} />
@@ -353,13 +353,13 @@ const Cart = () => {
           style={{
             paddingHorizontal: 20,
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Animated.View entering={FadeIn.duration(800)}>
             <LottieView
-              source={require("../../lottie/ShoppingCart.json")}
+              source={require('../../lottie/ShoppingCart.json')}
               autoPlay
               loop
               style={styles.animation}
@@ -402,7 +402,7 @@ const Cart = () => {
               testID="list"
               data={
                 data?.result
-                  ? [...data.result, {title: "add More", _id: "add-more-item"}]
+                  ? [...data.result, {title: 'add More', _id: 'add-more-item'}]
                   : []
               }
               renderItem={renderItem}
@@ -428,19 +428,19 @@ const Cart = () => {
                   backgroundColor: colors.White,
                   elevation: 2,
                   zIndex: 10,
-                  flexDirection: "column",
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
                   borderRadius: 5,
                 },
               ]}
               onPress={() => setIsCouponModalVisible(true)}
             >
-              <View style={{flexDirection: "row", gap: 10}}>
+              <View style={{flexDirection: 'row', gap: 10}}>
                 <Icon name="pricetag-outline" size={20} color={colors.DBlue} />
                 {appliedCoupon?.code ? (
                   <Text
-                    style={{color: "green", fontSize: 14, fontWeight: "600"}}
+                    style={{color: 'green', fontSize: 14, fontWeight: '600'}}
                   >
                     Coupon Applyed Succesfully ({appliedCoupon.code})
                   </Text>
@@ -449,7 +449,7 @@ const Cart = () => {
                     style={{
                       color: colors.Black,
                       fontSize: 14,
-                      fontWeight: "600",
+                      fontWeight: '600',
                     }}
                   >
                     Apple Coupon Code
@@ -458,9 +458,9 @@ const Cart = () => {
               </View>
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "100%",
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: '100%',
                   marginTop: 5,
                 }}
               >
@@ -468,7 +468,7 @@ const Cart = () => {
                   style={{
                     fontSize: 14,
                     color: colors.Black,
-                    fontWeight: "500",
+                    fontWeight: '500',
                     marginLeft: 30,
                   }}
                 >
@@ -485,7 +485,7 @@ const Cart = () => {
                       style={{
                         fontSize: 14,
                         color: colors.Red,
-                        fontWeight: "500",
+                        fontWeight: '500',
                         marginLeft: 30,
                       }}
                     >
@@ -495,7 +495,7 @@ const Cart = () => {
                 )}
               </View>
             </TouchableOpacity>
-            <View style={{position: "absolute", bottom: -10}}>
+            <View style={{position: 'absolute', bottom: -10}}>
               <ImagePath.DotLine />
             </View>
           </View>
@@ -509,13 +509,13 @@ const Cart = () => {
               </View>
               <View style={styles.detailRow}>
                 <Text style={styles.label}>Earn Point</Text>
-                <Text style={[styles.value, {color: "green"}]}>
+                <Text style={[styles.value, {color: 'green'}]}>
                   +{cartAmmount.point}
                 </Text>
               </View>
               <View style={styles.detailRow}>
                 <Text style={styles.label}>Discount</Text>
-                <Text style={[styles.value, {color: "red"}]}>
+                <Text style={[styles.value, {color: 'red'}]}>
                   -₹{cartAmmount.discount}
                 </Text>
               </View>
@@ -524,12 +524,12 @@ const Cart = () => {
                 <Text style={styles.value}>₹{cartAmmount.gst}</Text>
               </View>
               <View style={styles.detailRow}>
-                <Text style={[styles.label, {fontWeight: "bold"}]}>Total</Text>
-                <Text style={[styles.value, {fontWeight: "bold"}]}>
+                <Text style={[styles.label, {fontWeight: 'bold'}]}>Total</Text>
+                <Text style={[styles.value, {fontWeight: 'bold'}]}>
                   ₹{cartAmmount.grandTotal}
                 </Text>
               </View>
-              <Text style={{fontSize: 12, color: "red"}}>
+              <Text style={{fontSize: 12, color: 'red'}}>
                 Note : Your final amount will be shown at checkout, once all
                 calculations are complete.
               </Text>
@@ -537,7 +537,7 @@ const Cart = () => {
 
             <View style={styles.bottomRow}>
               <View style={MainStyle.flexCloumn}>
-                <Text style={[styles.label, {fontWeight: "bold"}]}>
+                <Text style={[styles.label, {fontWeight: 'bold'}]}>
                   Total Amount
                 </Text>
                 <Text style={styles.totalAmount}>
@@ -561,7 +561,7 @@ const Cart = () => {
                   });
                 }}
               >
-                <Text style={{color: "#fff", fontWeight: "bold"}}>
+                <Text style={{color: '#fff', fontWeight: 'bold'}}>
                   Checkout
                 </Text>
               </TouchableOpacity>
@@ -589,109 +589,109 @@ export default Cart;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingTop: 0,
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     marginHorizontal: 12,
     borderRadius: 12,
     padding: 16,
     borderWidth: 1,
-    borderColor: "#f0f0f0",
+    borderColor: '#f0f0f0',
     marginVertical: 8,
-    height: "auto",
-    shadowColor: "#000",
+    height: 'auto',
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
   row: {
-    flexDirection: "row",
-    width: "100%",
+    flexDirection: 'row',
+    width: '100%',
     marginBottom: 12,
-    alignItems: "center",
+    alignItems: 'center',
   },
   imageContainer: {
-    width: "35%",
+    width: '35%',
     aspectRatio: 1,
     padding: 4,
     backgroundColor: colors.White,
     borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     borderRadius: 6,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   detailsContainer: {
-    width: "65%",
+    width: '65%',
     paddingLeft: 12,
   },
   title: {
-    fontWeight: "600",
+    fontWeight: '600',
     fontSize: 16,
-    color: "#333",
+    color: '#333',
     marginBottom: 4,
   },
   desc: {
-    color: "#666",
+    color: '#666',
     fontSize: 13,
     marginBottom: 8,
   },
   qtyRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 10,
   },
   qtyLabel: {
     fontSize: 14,
-    color: "#555",
+    color: '#555',
   },
   qtyActionContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 10,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     borderRadius: 6,
     paddingHorizontal: 8,
     width: 120,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     height: 37,
     backgroundColor: colors.White,
   },
   priceRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
   price: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 16,
     color: colors.DBlue,
   },
   oldPrice: {
-    textDecorationLine: "line-through",
-    color: "#999",
+    textDecorationLine: 'line-through',
+    color: '#999',
     marginLeft: 8,
     fontSize: 14,
   },
   discount: {
-    color: "#E53935",
+    color: '#E53935',
     marginLeft: 8,
     fontSize: 13,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   cardBottom: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderTopWidth: 1,
-    borderTopColor: "#f0f0f0",
+    borderTopColor: '#f0f0f0',
     paddingTop: 12,
     marginTop: 8,
   },
@@ -705,91 +705,91 @@ const styles = StyleSheet.create({
   },
   bottomBtn: {
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: '600',
     color: colors.DBlue,
-    textAlign: "center",
+    textAlign: 'center',
   },
   removeText: {
-    color: "#E53935",
+    color: '#E53935',
   },
   divider: {
     width: 1,
-    height: "100%",
-    backgroundColor: "#eee",
+    height: '100%',
+    backgroundColor: '#eee',
   },
   addMoreCard: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     marginHorizontal: 12,
     borderRadius: 12,
     padding: 16,
     marginVertical: 8,
     borderWidth: 1,
     borderColor: colors.DBlue,
-    borderStyle: "dashed",
-    alignItems: "center",
-    justifyContent: "center",
+    borderStyle: 'dashed',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   addMoreContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   addMoreIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
     backgroundColor: colors.DBlue,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 12,
   },
   addMorePlus: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     lineHeight: 28,
   },
   addMoreText: {
     color: colors.DBlue,
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   orderContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     elevation: 15,
   },
   sectionTitle: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 16,
     marginBottom: 12,
   },
   detailRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginVertical: 4,
   },
   label: {
-    color: "#333",
+    color: '#333',
   },
   value: {
-    color: "#000",
+    color: '#000',
   },
   bottomRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     borderTopWidth: 0.2,
     borderColor: colors.LGray,
     elevation: 1,
     padding: 10,
   },
   totalAmount: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
   },
   placeBtn: {
@@ -804,8 +804,8 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    textAlign: "center",
-    color: "#777",
+    textAlign: 'center',
+    color: '#777',
     marginTop: 10,
     marginBottom: 30,
     paddingHorizontal: 10,
@@ -818,8 +818,8 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: '500',
   },
 });

@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -19,38 +19,38 @@ import Animated, {
   withTiming,
   interpolate,
   Extrapolate,
-} from "react-native-reanimated";
-import LinearGradient from "react-native-linear-gradient";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
+} from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 import {
   useFetchUserProfile,
   useRechargeWallet,
   useRechargeWalletVerify,
-} from "../../Services/Main/Hooks";
-import RazorpayCheckout from "react-native-razorpay";
-import {showErrorAlert, showToast} from "../../Constant/ShowDailog";
-import MainStyle from "../../Styles/MainStyle";
-import {useFocusEffect, useNavigation} from "@react-navigation/native";
-import NavigationString from "../../Constant/NavigationString";
-const {width} = Dimensions.get("window");
+} from '../../Services/Main/Hooks';
+import RazorpayCheckout from 'react-native-razorpay';
+import {showErrorAlert, showToast} from '../../Constant/ShowDailog';
+import MainStyle from '../../Styles/MainStyle';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import NavigationString from '../../Constant/NavigationString';
+const {width} = Dimensions.get('window');
 const colors = {
-  primary: "#1B4B66",
-  primaryLight: "#2D7A9C",
-  primaryDark: "#0F2D3F",
-  secondary: "#FF8C4B",
-  accent: "#FFD166",
-  background: "#F5F5F5",
-  textLight: "#FFFFFF",
-  textDark: "#333333",
-  cardGradientStart: "#1B4B66",
-  cardGradientEnd: "#2D7A9C",
+  primary: '#1B4B66',
+  primaryLight: '#2D7A9C',
+  primaryDark: '#0F2D3F',
+  secondary: '#FF8C4B',
+  accent: '#FFD166',
+  background: '#F5F5F5',
+  textLight: '#FFFFFF',
+  textDark: '#333333',
+  cardGradientStart: '#1B4B66',
+  cardGradientEnd: '#2D7A9C',
 };
 const Wallet = () => {
   const Navigation: any = useNavigation();
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
-  const [customAmount, setCustomAmount] = useState("");
+  const [customAmount, setCustomAmount] = useState('');
   const [isRecharging, setIsRecharging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showCustomInput, setShowCustomInput] = useState(false);
@@ -103,7 +103,7 @@ const Wallet = () => {
       rechargePanelOpacity.value = withTiming(0, {duration: 200});
       cardScale.value = withSpring(1);
       setShowCustomInput(false);
-      setCustomAmount("");
+      setCustomAmount('');
     } else {
       // Open panel
       rechargePanelHeight.value = withTiming(400, {duration: 400});
@@ -119,7 +119,7 @@ const Wallet = () => {
   };
   const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
-    setCustomAmount("");
+    setCustomAmount('');
     setShowCustomInput(false);
 
     // Card animation when amount is selected
@@ -159,11 +159,11 @@ const Wallet = () => {
             const options: any = {
               description: `Payment for order ${res?._payload?.orderId}`,
               // image: require('../../Images/ic_launcher.png'),
-              currency: "INR",
-              key: "rzp_test_FJbZTaMr0yy4pM",
+              currency: 'INR',
+              key: 'rzp_test_FJbZTaMr0yy4pM',
               amount: selectedAmount * 100,
-              name: "SuperXBoss",
-              order_id: res?._payload?.orderId || "",
+              name: 'SuperXBoss',
+              order_id: res?._payload?.orderId || '',
               prefill: {
                 email: userProfile?._payload?.email,
                 contact: userProfile?._payload?.mobile,
@@ -174,7 +174,7 @@ const Wallet = () => {
 
             RazorpayCheckout.open(options)
               .then(data => {
-                console.log("Payment Success:", JSON.stringify(data, null, 2));
+                console.log('Payment Success:', JSON.stringify(data, null, 2));
                 rechargeVerifyMutate(
                   {...data, name: userProfile?._payload?.name},
                   {
@@ -190,7 +190,7 @@ const Wallet = () => {
                         });
                         cardScale.value = withSpring(1);
                         setShowCustomInput(false);
-                        setCustomAmount("");
+                        setCustomAmount('');
                         showToast(response.message);
                         setIsLoading(false);
                       }
@@ -202,7 +202,7 @@ const Wallet = () => {
                 );
               })
               .catch(() => {
-                showErrorAlert("Paymet failed");
+                showErrorAlert('Paymet failed');
                 setIsLoading(false);
               });
           }
@@ -226,14 +226,14 @@ const Wallet = () => {
   const toggleCustomInput = () => {
     setShowCustomInput(!showCustomInput);
     setSelectedAmount(null);
-    setCustomAmount("");
+    setCustomAmount('');
   };
 
   useFocusEffect(
     useCallback(() => {
       refetch();
       return () => {
-        console.log("Screen lost focus");
+        console.log('Screen lost focus');
       };
     }, [refetch]),
   );
@@ -241,7 +241,7 @@ const Wallet = () => {
   return (
     <KeyboardAvoidingView
       testID="wrapper"
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{flex: 1}}
     >
       <SafeAreaView
@@ -367,7 +367,7 @@ const Wallet = () => {
           >
             <Text style={styles.rechargeTitle}>Select Recharge Amount</Text>
             <TouchableOpacity
-              style={{padding: 10, position: "absolute", right: 10, top: 10}}
+              style={{padding: 10, position: 'absolute', right: 10, top: 10}}
               activeOpacity={0.8}
               onPress={handleRechargePress}
             >
@@ -446,7 +446,7 @@ const Wallet = () => {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <ActivityIndicator size={"small"} color={colors.textLight} />
+                  <ActivityIndicator size={'small'} color={colors.textLight} />
                 ) : (
                   <View style={[MainStyle.flexRow]}>
                     <Text style={styles.confirmButtonText}>
@@ -477,30 +477,30 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   background: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
     height: 220,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 20,
     marginTop: 10,
   },
   headerTitle: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   card: {
     marginHorizontal: 20,
     marginTop: 20,
     borderRadius: 20,
     elevation: 10,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 10},
     shadowOpacity: 0.3,
     shadowRadius: 20,
@@ -509,45 +509,45 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     height: 180,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   cardHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   cardTitle: {
-    color: "rgba(255,255,255,0.9)",
+    color: 'rgba(255,255,255,0.9)',
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: '500',
     letterSpacing: 0.5,
   },
   cardBalanceContainer: {
     marginVertical: 20,
   },
   cardBalanceLabel: {
-    color: "rgba(255,255,255,0.7)",
+    color: 'rgba(255,255,255,0.7)',
     fontSize: 14,
     letterSpacing: 0.5,
   },
   cardBalance: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 36,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 5,
   },
   cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   cardNumber: {
-    color: "rgba(255,255,255,0.7)",
+    color: 'rgba(255,255,255,0.7)',
     fontSize: 16,
     letterSpacing: 1,
   },
   cardExpiry: {
-    color: "rgba(255,255,255,0.7)",
+    color: 'rgba(255,255,255,0.7)',
     fontSize: 16,
   },
   quickActions: {
@@ -560,51 +560,51 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1B4B66",
+    fontWeight: '600',
+    color: '#1B4B66',
     marginBottom: 15,
   },
   actionsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 10,
   },
   actionButton: {
-    alignItems: "center",
-    width: "30%",
+    alignItems: 'center',
+    width: '30%',
   },
   actionIcon: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     elevation: 5,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 5,
   },
   actionText: {
     marginTop: 10,
-    color: "#1B4B66",
-    fontWeight: "500",
-    textAlign: "center",
+    color: '#1B4B66',
+    fontWeight: '500',
+    textAlign: 'center',
   },
   transactionItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 15,
     borderBottomWidth: 1,
-    borderBottomColor: "#EEEEEE",
+    borderBottomColor: '#EEEEEE',
   },
   transactionIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: "rgba(27, 75, 102, 0.1)",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'rgba(27, 75, 102, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 15,
   },
   transactionDetails: {
@@ -612,137 +612,137 @@ const styles = StyleSheet.create({
   },
   transactionTitle: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "#333333",
+    fontWeight: '500',
+    color: '#333333',
   },
   transactionDate: {
     fontSize: 12,
-    color: "#888888",
+    color: '#888888',
     marginTop: 3,
   },
   transactionAmount: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   rechargePanel: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     padding: 25,
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    overflow: "hidden",
+    overflow: 'hidden',
     elevation: 20,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: -5},
     shadowOpacity: 0.1,
     shadowRadius: 10,
   },
   rechargeTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 20,
-    color: "#1B4B66",
-    textAlign: "center",
+    color: '#1B4B66',
+    textAlign: 'center',
   },
   amountGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     marginBottom: 15,
   },
   amountButton: {
     width: width * 0.28,
     height: 70,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: '#F5F5F5',
     borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: "#E0E0E0",
-    position: "relative",
+    borderColor: '#E0E0E0',
+    position: 'relative',
   },
   amountButtonSelected: {
-    backgroundColor: "#1B4B66",
-    borderColor: "#1B4B66",
+    backgroundColor: '#1B4B66',
+    borderColor: '#1B4B66',
   },
   amountText: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#333333",
+    fontWeight: 'bold',
+    color: '#333333',
   },
   amountTextSelected: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   amountCheck: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     right: 5,
   },
   customAmountButton: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 15,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: '#F5F5F5',
     borderRadius: 15,
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: "#E0E0E0",
+    borderColor: '#E0E0E0',
   },
   customAmountButtonText: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "#1B4B66",
+    fontWeight: '500',
+    color: '#1B4B66',
     marginRight: 10,
   },
   customInputContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 15,
   },
   customInput: {
     flex: 1,
     height: 50,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: '#F5F5F5',
     borderRadius: 15,
     paddingHorizontal: 15,
     borderWidth: 1,
-    borderColor: "#E0E0E0",
+    borderColor: '#E0E0E0',
     fontSize: 16,
-    color: "#333333",
+    color: '#333333',
   },
   customInputButton: {
     width: 80,
     height: 50,
-    backgroundColor: "#1B4B66",
+    backgroundColor: '#1B4B66',
     borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 10,
   },
   customInputButtonText: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   confirmButton: {
-    backgroundColor: "#1B4B66",
+    backgroundColor: '#1B4B66',
     height: 50,
     borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   confirmButtonDisabled: {
-    backgroundColor: "#CCCCCC",
+    backgroundColor: '#CCCCCC',
   },
   confirmButtonText: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   confirmIcon: {
     marginLeft: 10,

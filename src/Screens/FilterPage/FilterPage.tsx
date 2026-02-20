@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -10,22 +10,22 @@ import {
   TextInput,
   SafeAreaView,
   ScrollView,
-} from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import {useInfiniteQuery, useQuery} from "@tanstack/react-query";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
 import {
   fetchAllBrandProduct,
   fetchBrandCategory,
   fetchBrands,
   fetchVehicles,
   fetchVehicleSegment,
-} from "../../Services/Main/apis";
-import colors from "../../Style/Color";
-import MainStyle from "../../Styles/MainStyle";
-import {useNavigation} from "@react-navigation/native";
-import ProductList from "../Product/Component/ProductList";
-import LinearGradient from "react-native-linear-gradient";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
+} from '../../Services/Main/apis';
+import colors from '../../Style/Color';
+import MainStyle from '../../Styles/MainStyle';
+import {useNavigation} from '@react-navigation/native';
+import ProductList from '../Product/Component/ProductList';
+import LinearGradient from 'react-native-linear-gradient';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 //  Types
 interface FilterScreenProps {
@@ -64,7 +64,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectSegement, setSelectSegement] = useState(null);
   const {data: segments, refetch: refetchSegments} = useQuery({
-    queryKey: ["fetchVehicleSegment", selectedVehicleIds],
+    queryKey: ['fetchVehicleSegment', selectedVehicleIds],
     queryFn: () =>
       fetchVehicleSegment({
         status: true,
@@ -89,10 +89,10 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
   const [showYears, setShowYears] = useState(false);
   const [showSegment, setShowSegment] = useState(false);
 
-  const [vehicleBrandSearch, setVehicleBrandSearch] = useState("");
-  const [spareBrandSearch, setSpareBrandSearch] = useState("");
-  const [vehicleModelSearch, setVehicleModelSearch] = useState("");
-  const [categorisSearch, setCategorisSearch] = useState("");
+  const [vehicleBrandSearch, setVehicleBrandSearch] = useState('');
+  const [spareBrandSearch, setSpareBrandSearch] = useState('');
+  const [vehicleModelSearch, setVehicleModelSearch] = useState('');
+  const [categorisSearch, setCategorisSearch] = useState('');
 
   const debouncedVehicleSearch = useDebounce(vehicleBrandSearch);
   const debouncedSpareSearch = useDebounce(spareBrandSearch);
@@ -112,11 +112,11 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
   // 🔹 Queries
   const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
     useInfiniteQuery({
-      queryKey: ["fetchVehicleBrands", debouncedVehicleSearch],
+      queryKey: ['fetchVehicleBrands', debouncedVehicleSearch],
       queryFn: async ({pageParam = 1}) => {
         const res = await fetchBrands({
           active: true,
-          type: "Vehicle",
+          type: 'Vehicle',
           page: pageParam,
           page_size: 15,
           search: debouncedVehicleSearch,
@@ -139,11 +139,11 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
     isFetchingNextPage: isFetchingNextPage3,
     isLoading: isLoading3,
   } = useInfiniteQuery({
-    queryKey: ["fetchSpareBrands", debouncedSpareSearch],
+    queryKey: ['fetchSpareBrands', debouncedSpareSearch],
     queryFn: async ({pageParam = 1}) => {
       const res = await fetchBrands({
         active: true,
-        type: "Spare Parts",
+        type: 'Spare Parts',
         page: pageParam,
         page_size: 15,
         search: debouncedSpareSearch,
@@ -166,7 +166,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
     isFetchingNextPage: isFetchingNextPage2,
     isLoading: isLoading2,
   } = useInfiniteQuery({
-    queryKey: ["fetchVehicles", selectedBrandId, debouncedModelSearch],
+    queryKey: ['fetchVehicles', selectedBrandId, debouncedModelSearch],
     queryFn: async ({pageParam = 1}) => {
       const res = await fetchVehicles(
         {
@@ -196,7 +196,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
     isLoading: isLoading4,
   } = useInfiniteQuery({
     queryKey: [
-      "fetchBrandCategory",
+      'fetchBrandCategory',
       selectedSpareBrandId,
       debouncedCategoryModelSearch,
     ],
@@ -228,7 +228,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
     isLoading: isLoading5,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["fetchAllBrandProduct", enable, reload],
+    queryKey: ['fetchAllBrandProduct', enable, reload],
     queryFn: async ({pageParam = 1}) => {
       const res = await fetchAllBrandProduct({
         page: pageParam,
@@ -320,7 +320,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
     selectedId: string | number | null,
     isCheckbox = false,
     selectedIds: (string | number)[] = [],
-    search = "",
+    search = '',
     onChangeSearch: (val: string) => void = () => {},
   ) => (
     <View style={styles.categoryCard}>
@@ -330,14 +330,14 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
       >
         <Text style={styles.categoryTitle}>{title}</Text>
         <Icon
-          name={show ? "chevron-up" : "chevron-down"}
+          name={show ? 'chevron-up' : 'chevron-down'}
           size={22}
           color={colors.primary}
         />
       </TouchableOpacity>
       {show && (
         <View style={styles.dropdownContent}>
-          {title !== "Year" && (
+          {title !== 'Year' && (
             <View style={styles.searchBox}>
               <Icon name="search" size={18} color="#aaa" />
               <TextInput
@@ -383,28 +383,28 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
             )}
             onEndReached={() => {
               if (
-                title === "Vehicle Brands" &&
+                title === 'Vehicle Brands' &&
                 hasNextPage &&
                 !isFetchingNextPage
               ) {
                 fetchNextPage();
               }
               if (
-                title === "Vehicle Models" &&
+                title === 'Vehicle Models' &&
                 hasNextPage2 &&
                 !isFetchingNextPage2
               ) {
                 fetchNextPage2();
               }
               if (
-                title === "Spare Brands" &&
+                title === 'Spare Brands' &&
                 hasNextPage3 &&
                 !isFetchingNextPage3
               ) {
                 fetchNextPage3();
               }
               if (
-                title === "Categories" &&
+                title === 'Categories' &&
                 hasNextPage4 &&
                 !isFetchingNextPage4
               ) {
@@ -424,7 +424,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
               isLoading || isLoading2 || isLoading3 || isLoading4 ? (
                 <ActivityIndicator />
               ) : (
-                <Text style={{textAlign: "center", padding: 10, color: "#777"}}>
+                <Text style={{textAlign: 'center', padding: 10, color: '#777'}}>
                   No data found
                 </Text>
               )
@@ -446,7 +446,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
       <ScrollView contentContainerStyle={{paddingBottom: 50}}>
         <View>
           <LinearGradient
-            colors={["rgba(27, 75, 102, 0.8)", "rgba(76, 115, 138, 0.2)"]}
+            colors={['rgba(27, 75, 102, 0.8)', 'rgba(76, 115, 138, 0.2)']}
             start={{x: 0, y: 0}}
             end={{x: 0, y: 1}}
             style={{paddingTop: insets.top, paddingBottom: 20}}
@@ -463,7 +463,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
             </View>
             <View style={styles.categoriesWrapper}>
               {renderCategory(
-                "Vehicle Brands",
+                'Vehicle Brands',
                 showVehicleBrands,
                 setShowVehicleBrands,
                 vehicleBrands,
@@ -482,7 +482,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
                 setVehicleBrandSearch,
               )}
               {renderCategory(
-                "Vehicle Models",
+                'Vehicle Models',
                 showVehicle,
                 setShowVehicle,
                 vehicles,
@@ -499,7 +499,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
                 setVehicleModelSearch,
               )}
               {renderCategory(
-                "Year",
+                'Year',
                 showYears,
                 setShowYears,
                 years,
@@ -507,7 +507,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
                 selectedYear,
               )}
               {renderCategory(
-                "Segments",
+                'Segments',
                 showSegment,
                 setShowSegment,
                 segments?._payload || [],
@@ -516,7 +516,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
               )}
 
               {renderCategory(
-                "Spare Brands",
+                'Spare Brands',
                 showSpareBrands,
                 setShowSpareBrands,
                 spareBrands,
@@ -533,7 +533,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
                 setSpareBrandSearch,
               )}
               {renderCategory(
-                "Categories",
+                'Categories',
                 showCategories,
                 setShowCategories,
                 categories,
@@ -583,10 +583,10 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
                     filter.spart_brand = selectedSpareBrandId;
                   }
                   if (categoryIds.length) {
-                    filter.categories = categoryIds.join(",");
+                    filter.categories = categoryIds.join(',');
                   }
                   if (selectedVehicleIds.length) {
-                    filter.vehicle = selectedVehicleIds.join(",");
+                    filter.vehicle = selectedVehicleIds.join(',');
                   }
                   if (selectedYear) {
                     filter.year = selectedYear;
@@ -604,8 +604,8 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
         </View>
 
         {isLoading6 ? (
-          <View style={{height: 50, justifyContent: "center", alignItems: "c"}}>
-            <ActivityIndicator size={"small"} color={colors.DBlue} />
+          <View style={{height: 50, justifyContent: 'center', alignItems: 'c'}}>
+            <ActivityIndicator size={'small'} color={colors.DBlue} />
           </View>
         ) : (
           productData?.length > 0 && (
@@ -621,7 +621,7 @@ const FilterScreen: React.FC<FilterScreenProps> = props => {
                     style={{
                       fontSize: 18,
                       color: colors.DBlue,
-                      fontWeight: "600",
+                      fontWeight: '600',
                     }}
                   >
                     Products
@@ -650,55 +650,55 @@ const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.white},
   header: {
     padding: 14,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     gap: 10,
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: colors.White,
-    textAlign: "center",
+    textAlign: 'center',
   },
   categoriesWrapper: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     paddingHorizontal: 12,
     paddingTop: 10,
   },
   categoryCard: {
-    width: "48%",
+    width: '48%',
     marginBottom: 16,
     borderRadius: 12,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
+    backgroundColor: '#fff',
+    shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 4,
     elevation: 2,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   categoryHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 14,
-    backgroundColor: "#f7f7f7",
+    backgroundColor: '#f7f7f7',
   },
-  categoryTitle: {fontSize: 15, fontWeight: "600", color: "#333"},
+  categoryTitle: {fontSize: 15, fontWeight: '600', color: '#333'},
   dropdownContent: {
     paddingHorizontal: 12,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     zIndex: 200,
     maxHeight: 200,
   },
   optionItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    borderBottomColor: '#f0f0f0',
   },
   radioOuter: {
     width: 20,
@@ -707,8 +707,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
     marginRight: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   radioInner: {
     width: 10,
@@ -721,26 +721,26 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     marginRight: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  optionText: {fontSize: 12, color: "#333"},
+  optionText: {fontSize: 12, color: '#333'},
   searchBox: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     borderRadius: 8,
     paddingHorizontal: 10,
     marginVertical: 10,
-    backgroundColor: "#fafafa",
+    backgroundColor: '#fafafa',
   },
   searchInput: {flex: 1, padding: 6, marginLeft: 6, fontSize: 14},
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     gap: 10,
     paddingHorizontal: 10,
   },
@@ -748,10 +748,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     borderRadius: 10,
-    alignItems: "center",
+    alignItems: 'center',
     paddingVertical: 10,
   },
-  clearBtn: {backgroundColor: "#f2f2f2"},
+  clearBtn: {backgroundColor: '#f2f2f2'},
   applyBtn: {backgroundColor: colors.primary},
-  buttonText: {fontWeight: "600", fontSize: 15, color: colors.white},
+  buttonText: {fontWeight: '600', fontSize: 15, color: colors.white},
 });

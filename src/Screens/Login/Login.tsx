@@ -5,30 +5,30 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
-import React, {useState} from "react";
-import {Formik} from "formik";
-import Styles from "../../Styles/Styles";
+} from 'react-native';
+import React, {useState} from 'react';
+import {Formik} from 'formik';
+import Styles from '../../Styles/Styles';
 import {
   showSuccessAlert,
   NavigationString,
   AllUrls,
   showErrorAlert,
-} from "../../Constant/AllImports";
-import colors from "../../Style/Color";
-import Schemas from "../../Schemas";
-import {SafeAreaView} from "react-native-safe-area-context";
-import {loginApiPayload} from "../../Services/User/types";
+} from '../../Constant/AllImports';
+import colors from '../../Style/Color';
+import Schemas from '../../Schemas';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {loginApiPayload} from '../../Services/User/types';
 import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import MainStyle from "../../Styles/MainStyle";
-import {useNavigation} from "@react-navigation/native";
-import axios from "axios";
-import Lottie from "lottie-react-native";
+} from 'react-native-reanimated';
+import MainStyle from '../../Styles/MainStyle';
+import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
+import Lottie from 'lottie-react-native';
 const Login = () => {
   const Navigation: any = useNavigation();
   const [loading, setLoading] = useState(false);
@@ -52,7 +52,7 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(AllUrls.Login, value);
-      if (response.data.type === "success") {
+      if (response.data.type === 'success') {
         animation.value = withTiming(1, {duration: 500});
         showSuccessAlert(response.data.message);
         Navigation.navigate(NavigationString.Otp, value);
@@ -69,13 +69,13 @@ const Login = () => {
     <SafeAreaView style={{flex: 1}} testID="login">
       <View style={{flex: 1}}>
         <Lottie
-          source={require("../../lottie/Login.json")}
+          source={require('../../lottie/Login.json')}
           autoPlay
           loop
-          style={{width: "100%", height: "35%"}}
+          style={{width: '100%', height: '35%'}}
         />
         <Formik
-          initialValues={{mobile: ""}}
+          initialValues={{mobile: ''}}
           validateOnMount={true}
           onSubmit={values => {
             handleLogin(values);
@@ -91,10 +91,10 @@ const Login = () => {
             isValid,
             errors,
           }) => (
-            <View style={{flex: 1, backgroundColor: "white"}}>
+            <View style={{flex: 1, backgroundColor: 'white'}}>
               <View
                 style={{
-                  alignItems: "center",
+                  alignItems: 'center',
                   flex: 1,
                   paddingHorizontal: 20,
                   paddingTop: 50,
@@ -106,9 +106,9 @@ const Login = () => {
                 {/* <Text style={Styles.heading}>Login</Text> */}
                 <View
                   style={{
-                    width: "100%",
-                    alignItems: "center",
-                    position: "relative",
+                    width: '100%',
+                    alignItems: 'center',
+                    position: 'relative',
                   }}
                 >
                   <Text style={styles.code}>+91</Text>
@@ -116,10 +116,10 @@ const Login = () => {
                     style={{
                       width: 2,
                       height: 46,
-                      backgroundColor: "#949494",
-                      position: "absolute",
+                      backgroundColor: '#949494',
+                      position: 'absolute',
                       zIndex: 1,
-                      left: "20%",
+                      left: '20%',
                       top: 7,
                     }}
                   />
@@ -128,19 +128,19 @@ const Login = () => {
                     placeholder="Enter mobile number"
                     style={styles.mobile}
                     placeholderTextColor="#1B4B66"
-                    onChangeText={handleChange("mobile")}
-                    onBlur={handleBlur("mobile")}
-                    keyboardType={"number-pad"}
+                    onChangeText={handleChange('mobile')}
+                    onBlur={handleBlur('mobile')}
+                    keyboardType={'number-pad'}
                     value={values.mobile}
                     maxLength={10}
                   />
                   {errors.mobile && touched.mobile ? (
                     <Text
                       style={{
-                        color: "red",
+                        color: 'red',
                         fontSize: 10,
-                        textAlign: "right",
-                        position: "absolute",
+                        textAlign: 'right',
+                        position: 'absolute',
                         top: 70,
                         right: 10,
                       }}
@@ -151,17 +151,17 @@ const Login = () => {
                   <View
                     style={[
                       MainStyle.flexRow,
-                      {width: "100%", marginBottom: 50},
+                      {width: '100%', marginBottom: 50},
                     ]}
                   >
                     <AnimatedTouchableOpacity
-                      testID={"submit"}
+                      testID={'submit'}
                       style={
                         isValid
                           ? [styles.button, animatedStyle]
                           : [
                               styles.button,
-                              {backgroundColor: "lightgray"},
+                              {backgroundColor: 'lightgray'},
                               animatedStyle,
                             ]
                       }
@@ -171,7 +171,7 @@ const Login = () => {
                         <Text style={Styles.next}>NEXT</Text>
                       ) : (
                         <ActivityIndicator
-                          size={"small"}
+                          size={'small'}
                           color={colors.White}
                         />
                       )}
@@ -217,20 +217,20 @@ const styles = StyleSheet.create({
     // marginBottom: 87
   },
   code: {
-    position: "absolute",
+    position: 'absolute',
     fontSize: 15,
     top: 20,
-    left: "10%",
+    left: '10%',
     zIndex: 1,
-    color: "#1B4B66",
+    color: '#1B4B66',
   },
   mobile: {
-    width: "100%",
+    width: '100%',
     height: 60,
-    backgroundColor: "#F4F4F4",
+    backgroundColor: '#F4F4F4',
     borderRadius: 20,
     fontSize: 15,
-    color: "#1B4B66",
+    color: '#1B4B66',
     paddingLeft: 100,
     marginBottom: 30,
   },
@@ -240,17 +240,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.DBlue,
   },
   middle: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   guestLOgin: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
     gap: 5,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 40,
   },
   guestLOginText: {

@@ -4,7 +4,7 @@ export type loginApiPayload = {
 
 export interface CustomerUpdateInput {
   customerId: string;
-  type: "customer" | "b2b";
+  type: 'customer' | 'b2b';
 
   // Fields required conditionally
   first_name?: string;

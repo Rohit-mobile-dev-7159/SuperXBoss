@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -6,13 +6,13 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-} from "react-native";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import Icon from "react-native-vector-icons/Ionicons";
-import Screens from "../Screens";
-import colors from "../Style/Color";
+} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Screens from '../Screens';
+import colors from '../Style/Color';
 
-const {width} = Dimensions.get("window");
+const {width} = Dimensions.get('window');
 const TAB_BAR_HEIGHT = 60;
 const TAB_BUTTON_WIDTH = width / 4;
 
@@ -20,10 +20,10 @@ const Tab = createBottomTabNavigator();
 
 const TabButton = ({route, isFocused, onPress}: any) => {
   const icons: any = {
-    Home: {outline: "home-outline", filled: "home"},
-    Categories: {outline: "apps-outline", filled: "apps"},
-    BrandDay: {outline: "pricetags-outline", filled: "pricetags"},
-    Profile: {outline: "person-outline", filled: "person"},
+    Home: {outline: 'home-outline', filled: 'home'},
+    Categories: {outline: 'apps-outline', filled: 'apps'},
+    BrandDay: {outline: 'pricetags-outline', filled: 'pricetags'},
+    Profile: {outline: 'person-outline', filled: 'person'},
   };
 
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -96,7 +96,7 @@ const TabButton = ({route, isFocused, onPress}: any) => {
             isFocused ? icons[route.name].filled : icons[route.name].outline
           }
           size={26}
-          color={isFocused ? colors.DBlue : "#888"}
+          color={isFocused ? colors.DBlue : '#888'}
         />
       </Animated.View>
 
@@ -104,12 +104,12 @@ const TabButton = ({route, isFocused, onPress}: any) => {
         style={[
           styles.label,
           {
-            color: isFocused ? colors.DBlue : "#888",
-            fontWeight: isFocused ? "600" : "400",
+            color: isFocused ? colors.DBlue : '#888',
+            fontWeight: isFocused ? '600' : '400',
           },
         ]}
       >
-        {route.name === "BrandDay" ? "Coupons" : route.name}
+        {route.name === 'BrandDay' ? 'Coupons' : route.name}
       </Text>
     </TouchableOpacity>
   );
@@ -156,29 +156,29 @@ export default function BottomTab() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   tabBar: {
-    flexDirection: "row",
+    flexDirection: 'row',
     height: TAB_BAR_HEIGHT,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderTopWidth: 1,
-    borderTopColor: "#eee",
+    borderTopColor: '#eee',
     elevation: 5,
   },
   tabButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
   },
   iconContainer: {
     marginBottom: 4,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   label: {
     fontSize: 11,
-    textAlign: "center",
+    textAlign: 'center',
     includeFontPadding: false,
   },
 });

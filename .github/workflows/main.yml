@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-node-
       
       - name: Install Node.js dependencies
-        run: npm install
+        run: npm install -f
       
       - name: Run Prettier
         run: npm run format
@@ -80,8 +80,8 @@ jobs:
       - name: Install Fastlane
         run: gem install fastlane -NV
 
-      - name: Deploy to Google Play Store
-        run: |
-          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > android/fastlane/playstore-credentials.json
-          cd android
-          fastlane playstore
+      # - name: Deploy to Google Play Store
+      #   run: |
+      #     echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > android/fastlane/playstore-credentials.json
+      #     cd android
+      #     fastlane playstore
