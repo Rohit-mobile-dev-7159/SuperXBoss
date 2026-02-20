@@ -87,10 +87,11 @@ jobs:
           gem install bundler
           bundle install
 
-      # - name: Deploy to Google Play Store
-      #   env:
-      #     GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-      #   run: |
-      #     echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > android/fastlane/playstore-credentials.json
-      #     cd android
-      #     bundle exec fastlane playstore
+      - name: Deploy to Google Play Store
+        env:
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > android/fastlane/playstore-credentials.json
+          cd android
+          bundle exec fastlane playstore
+
