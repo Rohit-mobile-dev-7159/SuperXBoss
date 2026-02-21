@@ -69,7 +69,7 @@ const App = () => {
   useEffect(() => {
     fcmTokenUpdate()
   }, [])
-       
+        
   return (
     <NavigationContainer
       linking={linking}
