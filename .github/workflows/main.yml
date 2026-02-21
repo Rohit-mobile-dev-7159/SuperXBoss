@@ -36,10 +36,6 @@ jobs:
       - name: Run ESLint
         run: npm run lint:fix
 
-      # - name: Run Unit Tests
-      #   run: npm run test
-
-
   deploy:
     runs-on: ubuntu-latest
     needs: lint-and-test
@@ -62,24 +58,41 @@ jobs:
       - name: Install Node.js dependencies
         run: npm i -f
 
-      # ✅ Build AAB
+      # 🔐 Decode Keystore from GitHub Secret
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/my-upload-key.keystore
+
+      # 🔐 Create gradle.properties dynamically
+      - name: Create gradle.properties
+        run: |
+          echo "MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
+
+      # 📦 Build Release AAB
       - name: Build Release AAB
         run: |
           cd android
           chmod +x gradlew
           ./gradlew clean bundleRelease --stacktrace
 
-      # ✅ Setup Ruby
+      # 🧪 Verify AAB Exists
+      - name: Verify AAB
+        run: find android -name "*.aab"
+
+      # 💎 Setup Ruby
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
 
-      # ✅ Install Fastlane (NO Bundler)
+      # 🚀 Install Fastlane
       - name: Install Fastlane
         run: gem install fastlane -NV
 
-      # ✅ Deploy to Play Store
+      # 🚀 Deploy to Google Play
       - name: Deploy to Google Play Store
         working-directory: android/fastlane
         env:
