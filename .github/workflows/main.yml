@@ -98,5 +98,5 @@ jobs:
         env:
           GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         run: |
-          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > playstore-credentials.json
+          echo "$GOOGLE_PLAY_SERVICE_ACCOUNT_JSON" > fastlane/playstore-credentials.json
           fastlane playstore
