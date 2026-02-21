@@ -59,8 +59,8 @@ platform :android do
   lane :playstore do
     upload_to_play_store(
       track: "internal",
-      aab: File.expand_path("../app/build/outputs/bundle/release/app-release.aab", __dir__),
-      json_key_file: "playstore-credentials.json"
+      aab: "app/build/outputs/bundle/release/app-release.aab",
+      json_key: "fastlane/playstore-credentials.json"
     )
   end
 end
